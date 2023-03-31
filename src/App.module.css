@@ -1,4 +1,17 @@
 .App {
     background-color: #232323fa;
     color: #ffffffff;
+    min-height: 100vh;
+}
+
+.Main {
+    padding-top: 50px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a:hover {
+    text-decoration: none;
 }

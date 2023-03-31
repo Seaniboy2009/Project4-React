@@ -1,0 +1,12 @@
+.NavBar {
+    color: #232323fa;
+}
+
+.Link {
+    padding: 10px;
+    color: #000000;
+}
+
+a:hover {
+    color: #1d8922;
+}
