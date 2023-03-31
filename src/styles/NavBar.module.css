@@ -2,6 +2,10 @@
     color: #232323fa;
 }
 
+.Active i {
+    color: #1d8922;
+}
+
 .Link {
     padding: 10px;
     color: #000000;

@@ -1,0 +1,14 @@
+.Full {
+    padding: 10px 50px;
+    width: 100%;
+}
+
+.Main {
+    background-color: #1d8922;
+    border-color: #164518;
+}
+
+.Main:hover {
+    background-color: #164518;
+    border-color: #1d8922;
+}

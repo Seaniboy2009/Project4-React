@@ -10,10 +10,10 @@ const NavBar = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto text-left">
-                    <NavLink className={styles.Link} to='/'>Home</NavLink>
-                    <NavLink className={styles.Link} to='/signin'>Sign in</NavLink>
-                    <NavLink className={styles.Link} to='/signup'>Sign up</NavLink>
-                    <NavLink className={styles.Link} to='/signout'>Sign out</NavLink>
+                    <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-solid fa-house"></i> Home</NavLink>
+                    <NavLink className={styles.Link} activeClassName={styles.Active} to='/signin'><i className="fa-solid fa-arrow-right-to-bracket"></i> Sign in</NavLink>
+                    <NavLink className={styles.Link} activeClassName={styles.Active} to='/signup'><i className="fa-solid fa-user-plus"></i> Sign up</NavLink>
+                    <NavLink className={styles.Link} activeClassName={styles.Active} to='/signout'><i className="fa-solid fa-arrow-right-from-bracket"></i> Sign out</NavLink>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
