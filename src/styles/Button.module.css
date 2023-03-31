@@ -12,3 +12,21 @@
     background-color: #164518;
     border-color: #1d8922;
 }
+
+.Main:hover:active {
+    background-color: #164518 !important;
+    border-color: #1d8922;
+    box-shadow: none;
+}
+  
+.Main:active {
+    background-color: #164518 !important;
+    border-color: #1d8922;
+    box-shadow: none;
+}
+  
+.Main:focus {
+    background-color: #164518;
+    border-color: #1d8922;
+    box-shadow: none;
+}
