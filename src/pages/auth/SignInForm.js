@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import btnstyles from '../../styles/Button.module.css'
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap'
 import axios from "axios";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { SetSignedInUserContext } from '../../App';
 
 const SignInForm = () => {
+    // Use the sign in user context 
+    const setSignedInUser = useContext(SetSignedInUserContext)
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -22,11 +25,14 @@ const SignInForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post('https://project-5-api.herokuapp.com/dj-rest-auth/login/', formData)
+            const { data } = await axios.post('https://project-5-api.herokuapp.com/dj-rest-auth/login/', formData)
+            setSignedInUser(data.user)
             history.push("/");
+            console.log(data)
+            console.log(`Signed in as ${data.user.username}`)
         } catch (errors) {
             setErrors(errors.response?.data)
-            console.log(errors.response)
+            console.log(errors.response?.data)
         }
     }
     return (
