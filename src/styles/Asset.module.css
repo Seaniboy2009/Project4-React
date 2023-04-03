@@ -8,9 +8,8 @@
 
 .Alike {
     background-color: #a32424fa;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #666666fa;
-    display: block;
 }
 
 .AlikeImage {
@@ -24,10 +23,14 @@
 
 .NotAlike {
     background-color: #232fa0fa;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #666666fa;
 }
 
 .NotAlikeImage {
     background-color: #242ca367;
+}
+
+p {
+    padding: 10px;
 }
