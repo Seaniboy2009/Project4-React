@@ -33,10 +33,8 @@ const SignInForm = () => {
             const { data } = await axios.post('https://project-5-api.herokuapp.com/dj-rest-auth/login/', formData)
             setSignedInUser(data.user)
             history.push("/");
-            console.log(data)
         } catch (errors) {
             setErrors(errors.response?.data)
-            console.log('Errors' + errors.response?.data)
         }
     }
     return (
