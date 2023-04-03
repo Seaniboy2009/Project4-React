@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styles from '../styles/NavBar.module.css';
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { SignedInUserContext } from '../App';
+import { useSignedInUser } from '../contexts/SignedInUserContext';
 
 const NavBar = () => {
-    const signedInUser = useContext(SignedInUserContext);
+    // Custom hook to get the signed in user
+    const signedInUser = useSignedInUser()
 
     return (
         <Navbar className={styles.NavBar} bg="light" expand="lg" fixed='top'>
@@ -14,6 +15,7 @@ const NavBar = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto text-left">
                     <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-solid fa-house"></i> Home</NavLink>
+                    {/* Check if the user is signed in, if so display signout and account, if not signed in, display sign up and sign in  */}
                     {signedInUser ?
                         (
                             <>

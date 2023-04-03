@@ -1,13 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import btnstyles from '../../styles/Button.module.css'
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap'
 import axios from "axios";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { SetSignedInUserContext } from '../../App';
+import { useSetSignedInUser } from '../../contexts/SignedInUserContext';
 
 const SignInForm = () => {
-    // Use the sign in user context 
-    const setSignedInUser = useContext(SetSignedInUserContext)
+    // Custom hook to set the signed in user
+    const setSignedInUser = useSetSignedInUser()
+
+    // Data that will be sent to the API
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -16,12 +18,15 @@ const SignInForm = () => {
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
+    // Handle the changes made on the form
     const handleChange = (event) => {
         setFormData({
             ...formData,
             [event.target.name]: event.target.value,
         })
     }
+
+    // Send the formdata to the API and send user to homepage
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -29,7 +34,6 @@ const SignInForm = () => {
             setSignedInUser(data.user)
             history.push("/");
             console.log(data)
-            console.log(`Signed in as ${data.user.username}`)
         } catch (errors) {
             setErrors(errors.response?.data)
             console.log(errors.response?.data)
