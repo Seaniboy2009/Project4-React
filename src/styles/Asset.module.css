@@ -1,0 +1,33 @@
+.Asset {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+  }
+
+.Alike {
+    background-color: #a32424fa;
+    padding: 20px;
+    border: 1px solid #666666fa;
+    display: block;
+}
+
+.AlikeImage {
+    background-color: #a324246e;
+}
+
+.AlikeImage, .NotAlikeImage {
+    border: 1px solid #666666fa;
+    margin: 0 1px 0 1px;
+}
+
+.NotAlike {
+    background-color: #232fa0fa;
+    padding: 20px;
+    border: 1px solid #666666fa;
+}
+
+.NotAlikeImage {
+    background-color: #242ca367;
+}

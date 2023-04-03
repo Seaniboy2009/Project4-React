@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import btnstyles from '../../styles/Button.module.css'
+import btnStyles from '../../styles/Button.module.css'
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap'
 import axios from "axios";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
@@ -67,7 +67,7 @@ const SignInForm = () => {
                             <Alert key={index}>{message}</Alert>
                         )}
                     </Form.Group>
-                    <Button className={`${btnstyles.Full} ${btnstyles.Main}`} type="submit">
+                    <Button className={`${btnStyles.Full} ${btnStyles.Main}`} type="submit">
                         Sign in
                     </Button>
                     {errors.non_field_errors?.map((message, index) =>

@@ -1,5 +1,5 @@
 .App {
-    background-color: #232323fa;
+    background-color: #858585;
     color: #ffffffff;
     min-height: 100vh;
 }
@@ -14,4 +14,10 @@
 
 a:hover {
     text-decoration: none;
+}
+
+.Container {
+    background-color: #858585;
+    border: 1px solid #666666fa;
+    padding: 10px;
 }

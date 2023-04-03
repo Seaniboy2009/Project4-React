@@ -2,6 +2,15 @@
     color: #232323fa;
 }
 
+.Brand {
+    color: #000000fa;
+    font-size: 150%;
+}
+
+.Brand:hover {
+    color: #1d8922;
+}
+
 .Active i {
     color: #1d8922;
 }
