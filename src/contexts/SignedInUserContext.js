@@ -1,5 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import axios from "axios";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { useHistory } from "react-router";
 
 // Create context object for passing the signed in user
 export const SignedInUserContext = createContext();
@@ -14,23 +16,65 @@ export const useSetSignedInUser = () =>  useContext(SetSignedInUserContext);
 export const SignedInUserProvider = ({ children }) => {
     // Current user and set the current user state
     const [signedInUser, setSignedInUser] = useState(null)
+    const history = useHistory()
 
-    // Get the current user and then set signed in user state
     const handleMount = async () => {
         try {
-            const { data } = await axios.get('dj-rest-auth/user/')
-            setSignedInUser(data);
-            console.log(data);
-
-        } catch (error) {
-            console.log(error)
+          const { data } = await axiosRes.get("dj-rest-auth/user/");
+          setSignedInUser(data);
+        } catch (err) {
+          console.log(err);
         }
-    }
-
-    // wait until the component has mounted then run function
-    useEffect(() => {
+      };
+    
+      useEffect(() => {
         handleMount();
-    }, [])
+      }, []);
+    
+      useMemo(() => {
+        // request interceptor, this will try and refresh the token before making a request
+        axiosReq.interceptors.request.use(
+          async (config) => {
+            try {
+              await axios.post("/dj-rest-auth/token/refresh/");
+            } catch (err) {
+                setSignedInUser((prevCurrentUser) => {
+                if (prevCurrentUser) {
+                  history.push("/signin");
+                }
+                return null;
+              });
+              return config;
+            }
+            return config;
+          },
+          (err) => {
+            return Promise.reject(err);
+          }
+        );
+    
+        // response interceptor to refresh auth token
+        axiosRes.interceptors.response.use(
+          (response) => response,
+          async (err) => {
+            if (err.response?.status === 401) {
+              try {
+                await axios.post("/dj-rest-auth/token/refresh/");
+                console.log('401 error');
+              } catch (err) {
+                setSignedInUser((prevCurrentUser) => {
+                  if (prevCurrentUser) {
+                    history.push("/signin");
+                  }
+                  return null;
+                });
+              }
+              return axios(err.config);
+            }
+            return Promise.reject(err);
+          }
+        );
+      }, [history]);
 
     return (
         <SignedInUserContext.Provider value={signedInUser}>
