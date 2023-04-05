@@ -10,6 +10,8 @@ const PostsList = ({ message, filter = "" }) => {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
 
+  // This will get all posts, or get the filtered posts and 
+  // set posts state
   useEffect(() => {
     const getPosts = async () => {
       try {
@@ -22,6 +24,8 @@ const PostsList = ({ message, filter = "" }) => {
       }
     };
 
+    // has loaded is used to display the spinner until the posts
+    // have been returned
     setHasLoaded(false);
     const timer = setTimeout(() => {
       getPosts();
@@ -43,24 +47,24 @@ const PostsList = ({ message, filter = "" }) => {
               <Col><Card.Img className={styles.Alike} src={post.advert_image}></Card.Img></Col>
               <Col><Card.Img className={styles.NotAlike} src={post.reality_image}></Card.Img></Col>
             </Row>
-            <Row>
-              <Col><Card.Text>Advert</Card.Text></Col>
-              <Col><Card.Text>Reality</Card.Text></Col>
+            <Row className="justify-content-center">
+              <Col><Card.Text className={styles.AlikeText}>Advert</Card.Text></Col>
+              <Col><Card.Text className={styles.NotAlikeText}>Reality</Card.Text></Col>
             </Row>
             <Card.Body>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk
                 of the card's content.
               </Card.Text>
-              <Card.Text><p>Owner: {post.owner}</p></Card.Text>
               <Card.Text><p>Content: {post.content}</p></Card.Text>
               <Card.Text><p>Location: {post.location}</p></Card.Text>
               <Card.Text><p>Franchisor : {post.franchisor}</p></Card.Text>
             </Card.Body>
             <Card.Footer>
-              <small className="text-muted">Created: {post.created_at}</small>
+              <small className="text-muted">Created: {post.created_at} : Created by: {post.owner}</small>
             </Card.Footer>
           </Card>
+          <br />
         </>
       ))}</div>
   )

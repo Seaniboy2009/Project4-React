@@ -1,23 +1,35 @@
 .Card {
     color: #000000fa;
+    margin: 0;
+}
+
+.Alike, .NotAlike {
+    padding: 5px;
+    border: 1px solid #666666fa;
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
 }
 
 .Alike {
     background-color: #a32424fa;
-    padding: 5px;
-    border: 1px solid #666666fa;
-    height: 250px;
 }
 
 .NotAlike {
     background-color: #232fa0fa;
-    padding: 5px;
-    border: 1px solid #666666fa;
-    height: 250px;
+    text-align: center;
 }
 
-.AlikeImage, .NotAlikeImage {
-    border: 1px solid #666666fa;
-    margin: 0 1px 0 1px;
+.AlikeText, .NotAlikeText {
+    color: #fafafafa;
+    text-align: center;
+}
+
+.AlikeText {
+    background-color: #a32424fa;
+}
+
+.NotAlikeText {
+    background-color: #232fa0fa;
 }
 

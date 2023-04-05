@@ -8,6 +8,8 @@ import useClickOutsideArea from '../hooks/useClickOutsideArea';
 const NavBar = () => {
     // Custom hook to get the signed in user
     const signedInUser = useSignedInUser()
+    // Custom hook to detect if the navbar has been clicked off or
+    // a navlink has been clicked, this will then close/hide
     const { expanded, setExpanded, ref } = useClickOutsideArea();
 
     return (
