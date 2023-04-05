@@ -12,10 +12,6 @@
     border: 1px solid #666666fa;
 }
 
-.AlikeImage {
-    background-color: #a324246e;
-}
-
 .AlikeImage, .NotAlikeImage {
     border: 1px solid #666666fa;
     margin: 0 1px 0 1px;
@@ -25,10 +21,6 @@
     background-color: #232fa0fa;
     padding: 10px;
     border: 1px solid #666666fa;
-}
-
-.NotAlikeImage {
-    background-color: #242ca367;
 }
 
 p {
