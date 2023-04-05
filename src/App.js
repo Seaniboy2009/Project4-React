@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import { Route, Switch } from 'react-router-dom'
 import './api/axiosDefaults';
 import PostCreateForm from './pages/posts/PostCreateForm';
+import PostsList from './pages/posts/PostsList';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route exact path='/signup' render={() => <SignUpForm />} />
           <Route exact path='/signout' render={() => <h1>Sign out</h1>} />
           <Route exact path='/post/create' render={() => <PostCreateForm />} />
+          <Route exact path='/posts' render={() => <PostsList />} />
           <Route render={() => <h1>Page not found</h1>} />
         </Switch>
       </Container>
