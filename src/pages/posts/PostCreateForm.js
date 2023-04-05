@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button, Form, Row, Col, Container, Alert, Image } from "react-bootstrap";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { axiosReq } from "../../api/axiosDefaults";
 
 function PostCreateForm() {
 
     const postURL = 'https://res.cloudinary.com/dgj9rjuka/image/upload/v1678359959/media/images/default_post_fr07hq.jpg'
+    const advertImageInput = useRef(null)
+    const realityImageInput = useRef(null)
 
     // Data that will be sent to the API
     const [formData, setFormData] = useState({
@@ -30,6 +33,7 @@ function PostCreateForm() {
         })
     }
 
+    // handle the image change for advert image
     const handleChangeImageAdvert = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(advert_image);
@@ -40,6 +44,7 @@ function PostCreateForm() {
         }
     };
 
+    // handle the image change for reality image
     const handleChangeImageReality = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(reality_image);
@@ -50,7 +55,26 @@ function PostCreateForm() {
         }
     };
 
-    const textFields = (
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData();
+    
+        formData.append('title', title)
+        formData.append('location', title)
+        formData.append('franchisor', title)
+        formData.append('content', content)
+        formData.append('advert_image', advertImageInput.current.files[0])
+        formData.append('reality_image', realityImageInput.current.files[0])
+        try {
+            await axiosReq.post("/posts/", formData);
+            history.push("/");
+        } catch (errors) {
+            console.log(errors.response?.data)
+            setErrors(errors.response?.data)
+        }
+    }
+
+    const formFields = (
         <div className="text-center">
             <Form.Group controlId="title">
                 <Form.Label>Post Title</Form.Label>
@@ -61,6 +85,9 @@ function PostCreateForm() {
                     value={title}
                     onChange={handleChange}
                 />
+                {errors.title?.map((message, index) =>
+                    <Alert key={index}>{message}</Alert>
+                )}
             </Form.Group>
             <Form.Group controlId="location">
                 <Form.Label>Post Title</Form.Label>
@@ -71,6 +98,9 @@ function PostCreateForm() {
                     value={location}
                     onChange={handleChange}
                 />
+                {errors.location?.map((message, index) =>
+                    <Alert key={index}>{message}</Alert>
+                )}
             </Form.Group>
             <Form.Group controlId="franchisor">
                 <Form.Label>Post Title</Form.Label>
@@ -81,6 +111,9 @@ function PostCreateForm() {
                     value={franchisor}
                     onChange={handleChange}
                 />
+                {errors.franchisor?.map((message, index) =>
+                    <Alert key={index}>{message}</Alert>
+                )}
             </Form.Group>
             <Form.Group controlId="content">
                 <Form.Label>Content</Form.Label>
@@ -91,6 +124,9 @@ function PostCreateForm() {
                     value={content}
                     onChange={handleChange}
                 />
+                {errors.content?.map((message, index) =>
+                    <Alert key={index}>{message}</Alert>
+                )}
             </Form.Group>
             <Button
                 className={`${btnStyles.Full} ${btnStyles.Main}`}
@@ -101,11 +137,14 @@ function PostCreateForm() {
             <Button className={`${btnStyles.Full} ${btnStyles.Main}`} type="submit">
                 create
             </Button>
+            {errors.advert_image?.map((message, index) =>
+                    <Alert key={index}>{message}</Alert>
+            )}
         </div>
     );
 
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container className={`${appStyles.Container} d-flex flex-column justify-content-center`}>
@@ -138,14 +177,13 @@ function PostCreateForm() {
                                             />
                                         </Form.Label>
                                     )}
-
                                     <Form.File
                                         id="image-upload-advert"
                                         accept="image/*"
                                         onChange={handleChangeImageAdvert}
+                                        ref={advertImageInput}
                                     />
                                 </Form.Group>
-
                             </Col>
                             <Col>
                                 <Form.Group className="text-center">
@@ -176,21 +214,21 @@ function PostCreateForm() {
                                             />
                                         </Form.Label>
                                     )}
-
                                     <Form.File
                                         id="image-upload-reality"
                                         accept="image/*"
                                         onChange={handleChangeImageReality}
+                                        ref={realityImageInput}
                                     />
                                 </Form.Group>
                             </Col>
                         </Row>
-                        <div className="d-md-none">{textFields}</div>
+                        <div className="d-md-none">{formFields}</div>
                     </Container>
                 </Col>
                 <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
                     <Container className={appStyles.Container}>
-                        {textFields}
+                        {formFields}
                     </Container>
                 </Col>
             </Row>
