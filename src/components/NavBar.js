@@ -3,15 +3,21 @@ import styles from '../styles/NavBar.module.css';
 import { Navbar, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useSignedInUser } from '../contexts/SignedInUserContext';
+import useClickOutsideArea from '../hooks/useClickOutsideArea';
 
 const NavBar = () => {
     // Custom hook to get the signed in user
     const signedInUser = useSignedInUser()
+    const { expanded, setExpanded, ref } = useClickOutsideArea();
 
     return (
-        <Navbar className={styles.NavBar} bg="light" expand="lg" fixed='top'>
+        <Navbar className={styles.NavBar} bg="light" expand="lg" fixed='top' expanded={expanded}>
             <Navbar.Brand className={styles.Brand} href="#home">As Advertised</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Toggle
+                aria-controls="basic-navbar-nav"
+                ref={ref}
+                onClick={() => setExpanded(!expanded)}
+            />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto text-left">
                     <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-solid fa-house"></i> Home</NavLink>

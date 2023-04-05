@@ -60,7 +60,6 @@ export const SignedInUserProvider = ({ children }) => {
             if (err.response?.status === 401) {
               try {
                 await axios.post("/dj-rest-auth/token/refresh/");
-                console.log('401 error');
               } catch (err) {
                 setSignedInUser((prevCurrentUser) => {
                   if (prevCurrentUser) {
