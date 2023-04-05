@@ -1,0 +1,23 @@
+.Card {
+    color: #000000fa;
+}
+
+.Alike {
+    background-color: #a32424fa;
+    padding: 5px;
+    border: 1px solid #666666fa;
+    height: 250px;
+}
+
+.NotAlike {
+    background-color: #232fa0fa;
+    padding: 5px;
+    border: 1px solid #666666fa;
+    height: 250px;
+}
+
+.AlikeImage, .NotAlikeImage {
+    border: 1px solid #666666fa;
+    margin: 0 1px 0 1px;
+}
+

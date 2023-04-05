@@ -1,11 +1,12 @@
 .App {
     background-color: #858585;
     color: #ffffffff;
-    min-height: 100vh;
+    min-height: 140vh;
 }
 
 .Main {
     padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 * {
