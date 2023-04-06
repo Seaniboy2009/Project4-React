@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../../api/axiosDefaults';
 import { useLocation } from 'react-router-dom';
-import { Card, Col, Row } from 'react-bootstrap';
-import styles from '../../styles/Post.module.css'
 import Post from './Post';
+import { Container, Row, Spinner } from "react-bootstrap";
 
 const PostsList = ({ message, filter = "" }) => {
   const [query, setQuery] = useState("");
@@ -39,12 +38,23 @@ const PostsList = ({ message, filter = "" }) => {
 
   return (
     <div>
-      {posts.results.map(post => (
-        <>
-          <Post {...posts.results[0]} setPosts={setPosts} />
+      <Container>
+        <Row className="justify-content-md-center">
+          {hasLoaded ? (
+            <>
+              {posts.results.map(post => (
+                <Post {...post} setPosts={setPosts} />
+              ))}
+            </>
+          ) : (
+            <>
+              {Spinner && <Spinner animation="border" />}
+            </>
+          )}
           <br />
-        </>
-      ))}</div>
+        </Row>
+      </Container>
+    </div>
   )
 }
 

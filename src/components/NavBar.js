@@ -2,15 +2,27 @@ import React from 'react';
 import styles from '../styles/NavBar.module.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { useSignedInUser } from '../contexts/SignedInUserContext';
+import { useSetSignedInUser, useSignedInUser } from '../contexts/SignedInUserContext';
 import useClickOutsideArea from '../hooks/useClickOutsideArea';
+import axios from 'axios';
 
 const NavBar = () => {
     // Custom hook to get the signed in user
     const signedInUser = useSignedInUser()
+    const setSignedInUser = useSetSignedInUser()
+
     // Custom hook to detect if the navbar has been clicked off or
     // a navlink has been clicked, this will then close/hide
     const { expanded, setExpanded, ref } = useClickOutsideArea();
+
+    const handleSignOut = async () => {
+        try {
+          await axios.post('dj-rest-auth/logout/');
+          setSignedInUser(null);
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
     return (
         <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
@@ -42,6 +54,7 @@ const NavBar = () => {
                                     </NavLink>
                                     <NavLink
                                         className={styles.Link}
+                                        onClick={handleSignOut}
                                         activeClassName={styles.Active} to='/signout'>
                                         <i className="fa-solid fa-arrow-right-from-bracket"></i> Sign out
                                     </NavLink>

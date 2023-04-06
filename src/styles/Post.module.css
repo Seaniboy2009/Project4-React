@@ -1,6 +1,7 @@
 .Card {
     color: #000000fa;
-    margin: 0;
+    background-color: #252740;
+    border: 1px solid #4c508f;
 }
 
 .Alike, .NotAlike {
@@ -9,27 +10,32 @@
     object-fit: contain;
     width: 100%;
     height: 250px;
+    margin: 0;
 }
 
 .Alike {
-    background-color: #a32424fa;
+    background-color: #a324242e;
 }
 
 .NotAlike {
-    background-color: #232fa0fa;
-    text-align: center;
+    background-color: #232fa03b;
 }
 
 .AlikeText, .NotAlikeText {
     color: #fafafafa;
+    border: 1px solid #666666fa;
     text-align: center;
 }
 
 .AlikeText {
-    background-color: #a32424fa;
+    background-color: #a324242e;
 }
 
 .NotAlikeText {
-    background-color: #232fa0fa;
+    background-color: #232fa03b;
+}
+
+.Row {
+    margin: 0;
 }
 
