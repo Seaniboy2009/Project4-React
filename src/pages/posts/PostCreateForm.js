@@ -90,7 +90,7 @@ function PostCreateForm() {
                 )}
             </Form.Group>
             <Form.Group controlId="location">
-                <Form.Label>Post Title</Form.Label>
+                <Form.Label>Location</Form.Label>
                 <Form.Control
                     type="text"
                     placeholder="Location"
@@ -103,7 +103,7 @@ function PostCreateForm() {
                 )}
             </Form.Group>
             <Form.Group controlId="franchisor">
-                <Form.Label>Post Title</Form.Label>
+                <Form.Label>Franchise</Form.Label>
                 <Form.Control
                     type="text"
                     placeholder="Franchise"

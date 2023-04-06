@@ -3,6 +3,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useLocation } from 'react-router-dom';
 import Post from './Post';
 import { Container, Row, Spinner } from "react-bootstrap";
+import Asset from '../../components/Asset';
 
 const PostsList = ({ message, filter = "" }) => {
   const [query, setQuery] = useState("");
@@ -42,13 +43,17 @@ const PostsList = ({ message, filter = "" }) => {
         <Row className="justify-content-md-center">
           {hasLoaded ? (
             <>
-              {posts.results.map(post => (
-                <Post {...post} setPosts={setPosts} />
-              ))}
+              {posts.results.length ? (
+                posts.results.map(post => (
+                  <Post key={post.id} {...post} setPosts={setPosts} />
+                ))
+              ) : (
+                <Asset spinner message='No results' />
+              )}
             </>
           ) : (
             <>
-              {Spinner && <Spinner animation="border" />}
+              <Asset spinner />
             </>
           )}
           <br />
