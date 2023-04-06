@@ -38,7 +38,6 @@ const PostsList = ({ message, filter = "" }) => {
 
   return (
     <div>
-      <p>Posts</p>
       {posts.results.map(post => (
         <>
           <Card className={styles.Card}>

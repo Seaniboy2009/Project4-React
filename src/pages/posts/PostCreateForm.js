@@ -130,7 +130,7 @@ function PostCreateForm() {
             </Form.Group>
             <Button
                 className={`${btnStyles.Full} ${btnStyles.Main}`}
-                onClick={() => { }}
+                onClick={() => history.goBack()}
             >
                 cancel
             </Button>
