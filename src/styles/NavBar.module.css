@@ -4,7 +4,7 @@
     border-bottom: 1px solid #4c508f;
 }
 
-.Brand {
+.Brand, .Toggle {
     color: #fffffffa;
     font-size: 150%;
 }

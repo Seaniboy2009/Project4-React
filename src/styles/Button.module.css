@@ -3,9 +3,14 @@
     width: 100%;
 }
 
+.Button {
+    color: #fafafafa;
+}
+
 .Main {
     background-color: #1d8922;
     border-color: #164518;
+    color: #fafafafa;
 }
 
 .Main:hover {

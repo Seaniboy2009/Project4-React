@@ -15,8 +15,9 @@ const NavBar = () => {
     return (
         <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
             <Container>
-                <Navbar.Brand className={styles.Brand} href="#home">As Advertised</Navbar.Brand>
+                <NavLink exact className={styles.Brand} to='/'>As Advertised</NavLink>
                 <Navbar.Toggle
+                    className={styles.Toggle}
                     aria-controls="basic-navbar-nav"
                     ref={ref}
                     onClick={() => setExpanded(!expanded)}

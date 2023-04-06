@@ -132,10 +132,10 @@ function PostCreateForm() {
                 className={`${btnStyles.Full} ${btnStyles.Main}`}
                 onClick={() => history.goBack()}
             >
-                cancel
+                Cancel
             </Button>
             <Button className={`${btnStyles.Full} ${btnStyles.Main}`} type="submit">
-                create
+                Create
             </Button>
             {errors.advert_image?.map((message, index) =>
                     <Alert key={index}>{message}</Alert>
