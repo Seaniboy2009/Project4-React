@@ -3,6 +3,7 @@ import { Card, Col, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import styles from '../../styles/Post.module.css';
 import { useSignedInUser } from '../../contexts/SignedInUserContext';
 import { Link } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
 
 const Post = (props) => {
     const {
@@ -23,6 +24,9 @@ const Post = (props) => {
         comments_count,
         alikes_count,
         not_alikes_count,
+        setPosts,
+        alike_id,
+        not_alike_id,
     } = props;
 
     // get the current sign in user
@@ -31,6 +35,102 @@ const Post = (props) => {
     const is_owner = signedInUser?.username === owner;
     // compare the alike and not alike votes
     const alike = alikes_count > not_alikes_count;
+
+    const handleLike = async () => {
+        try {
+            const { data } = await axiosRes.post("/likes/", { post: id });
+            setPosts((prevPosts) => ({
+                ...prevPosts,
+                results: prevPosts.results.map((post) => {
+                    return post.id === id
+                        ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+                        : post;
+                }),
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleUnlike = async () => {
+        try {
+          await axiosRes.delete(`/likes/${like_id}`);
+          setPosts((prevPosts) => ({
+            ...prevPosts,
+            results: prevPosts.results.map((post) => {
+              return post.id === id
+                ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+                : post;
+            }),
+          }));
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+    const handleVoteALike = async () => {
+        try {
+            const { data } = await axiosRes.post("/votealike/", { post: id });
+            setPosts((prevPosts) => ({
+                ...prevPosts,
+                results: prevPosts.results.map((post) => {
+                    return post.id === id
+                        ? { ...post, alikes_count: post.alikes_count + 1, alike_id: data.id }
+                        : post;
+                }),
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleVoteUnAlike = async () => {
+        try {
+            await axiosRes.delete(`/votealike/${alike_id}`);
+            setPosts((prevPosts) => ({
+                ...prevPosts,
+                results: prevPosts.results.map((post) => {
+                    return post.id === id
+                        ? { ...post, alikes_count: post.alikes_count - 1, alike_id: null }
+                        : post;
+                }),
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleVoteNotALike = async () => {
+        try {
+            const { data } = await axiosRes.post("/votenotalike/", { post: id });
+            setPosts((prevPosts) => ({
+                ...prevPosts,
+                results: prevPosts.results.map((post) => {
+                    return post.id === id
+                        ? { ...post, not_alikes_count: post.not_alikes_count + 1, not_alike_id: data.id }
+                        : post;
+                }),
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleVoteUnNotAlike = async () => {
+        try {
+            await axiosRes.delete(`/votenotalike/${not_alike_id}`);
+            setPosts((prevPosts) => ({
+                ...prevPosts,
+                results: prevPosts.results.map((post) => {
+                    return post.id === id
+                        ? { ...post, not_alikes_count: post.not_alikes_count - 1, not_alike_id: null }
+                        : post;
+                }),
+            }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <div>
@@ -45,9 +145,11 @@ const Post = (props) => {
                             </OverlayTrigger>
                         ) : like_id ? (
                             // if the user is not the owner allow them to like it
-                            <span onClick={() => { }}><i class="fa-regular fa-star"></i> </span>
+                            <span onClick={handleUnlike}>
+                                <i class="fa-regular fa-star" />
+                            </span>
                         ) : signedInUser ? (
-                            <span onClick={() => { }}><i class="fa-regular fa-star"></i> </span>
+                            <span onClick={handleLike}><i class="fa-regular fa-star"></i></span>
                         ) : (
                             <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
                                 <i class="fa-regular fa-star"></i>
@@ -84,11 +186,11 @@ const Post = (props) => {
                             <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
                                 <i class="fa-regular fa-star"></i>
                             </OverlayTrigger>
-                        ) : like_id ? (
+                        ) : alike_id ? (
                             // if the user is not the owner allow them to Vote
-                            <span onClick={() => { }}><i class="fa-regular fa-star"></i> </span>
+                            <span onClick={handleVoteUnAlike}><i class="fa-regular fa-thumbs-up"></i>{alikes_count}</span>
                         ) : signedInUser ? (
-                            <span onClick={() => { }}><i class="fa-regular fa-star"></i> </span>
+                            <span onClick={handleVoteALike}><i class="fa-regular fa-thumbs-up"></i>{alikes_count}</span>
                         ) : (
                             <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
                                 <i class="fa-regular fa-star"></i>
@@ -102,11 +204,11 @@ const Post = (props) => {
                             <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
                                 <i class="fa-regular fa-star"></i>
                             </OverlayTrigger>
-                        ) : like_id ? (
+                        ) : not_alike_id ? (
                             // if the user is not the owner allow them to Vote
-                            <span onClick={() => { }}><i class="fa-regular fa-star"></i> </span>
+                            <span onClick={handleVoteUnNotAlike}><i class="fa-regular fa-thumbs-down"></i>{not_alikes_count} </span>
                         ) : signedInUser ? (
-                            <span onClick={() => { }}><i class="fa-regular fa-star"></i> </span>
+                            <span onClick={handleVoteNotALike}><i class="fa-regular fa-thumbs-down"></i>{not_alikes_count} </span>
                         ) : (
                             <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
                                 <i class="fa-regular fa-star"></i>
