@@ -1,9 +1,11 @@
 .NavBar {
-    color: #232323fa;
+    color: #fffffffa;
+    background-color: #141526;
+    border-bottom: 1px solid #4c508f;
 }
 
 .Brand {
-    color: #000000fa;
+    color: #fffffffa;
     font-size: 150%;
 }
 
@@ -17,7 +19,7 @@
 
 .Link {
     padding: 10px;
-    color: #000000;
+    color: #ffffff;
 }
 
 a:hover {
