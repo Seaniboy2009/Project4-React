@@ -36,6 +36,7 @@ const SignInForm = () => {
             history.push("/");
         } catch (errors) {
             setErrors(errors.response?.data)
+            console.log(errors.response?.data)
         }
     }
     return (

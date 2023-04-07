@@ -30,11 +30,9 @@ const Post = (props) => {
     } = props;
 
     // get the current sign in user
-    const currentUser = useCurrentUser()
+    const currentUser = useCurrentUser();
     // check if the signed in user is the owner of this post
     const is_owner = currentUser?.username === owner;
-    // compare the alike and not alike votes
-    const alike = alikes_count > not_alikes_count;
 
     const handleLike = async () => {
         try {
@@ -138,7 +136,9 @@ const Post = (props) => {
                 <Card className={styles.Card}>
                     <Card.Header>
                         <Col>
-                            Title: {title}
+                            <Link className={styles.Title} to={`/posts/${id}`}>
+                                Title:&nbsp;{title}&nbsp;
+                            </Link>
                             {is_owner ? (
                                 // If the owner is viewing this display the tooltop
                                 <OverlayTrigger placement='top' overlay={<Tooltip> You cant like your own post</Tooltip>}>
@@ -157,22 +157,17 @@ const Post = (props) => {
                                     <i className="fa-regular fa-star"></i>
                                 </OverlayTrigger>
                             )}
-
                         </Col>
                         <Col>
                             {/* if this belongs to the sign in user and the post detail page exists then can edit */}
                             {is_owner && postDetail && '...'}
-                            {' '}
-                            {likes_count}
-                            {' '}
-                            <Link to={`/posts/${id}`}>
-                                <i className="fa-regular fa-comments"></i>
-                            </Link>
-                            {' '}
-                            {comments_count}
-                            {' '}
-                            {/* display if this is like the add or not */}
-                            {alike ? ('alike') : ('not alike')}
+                            <span>Likes:&nbsp;</span>{likes_count}
+                            <br />
+                            <span>
+                                Comments:&nbsp;
+                                <i className="fa-regular fa-comments" />&nbsp;
+                                {comments_count}
+                            </span>
                         </Col>
                     </Card.Header>
                     <Row className={styles.Row}>
@@ -190,7 +185,7 @@ const Post = (props) => {
                                     {is_owner ? (
                                         // The user is the owner so cant vote
                                         <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
-                                            <i className="fa-regular fa-star"></i>
+                                            <i className="fa-regular fa-thumbs-up" />
                                         </OverlayTrigger>
                                     ) : alike_id ? (
                                         // The user has already voted and can unvote
@@ -215,7 +210,7 @@ const Post = (props) => {
                                         </>
                                     ) : (
                                         <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                                            <i className="fa-regular fa-star"></i>
+                                            <i className="fa-regular fa-thumbs-up" />
                                         </OverlayTrigger>
                                     )}
                                 </span>
@@ -231,7 +226,7 @@ const Post = (props) => {
                                     {is_owner ? (
                                         // The user is the owner so cant vote
                                         <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
-                                            <i className="fa-regular fa-star" />
+                                            <i className="fa-regular fa-thumbs-down" />
                                         </OverlayTrigger>
                                     ) : not_alike_id ? (
                                         // The user has already voted and can unvote
@@ -256,7 +251,7 @@ const Post = (props) => {
                                         </>
                                     ) : (
                                         <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                                            <i className="fa-regular fa-star"></i>
+                                            <i className="fa-regular fa-thumbs-down" />
                                         </OverlayTrigger>
                                     )}
 
@@ -277,7 +272,7 @@ const Post = (props) => {
                     </Card.Body>
                     <Card.Footer>
                         <Link to={`/profiles/${profile_id}`}>
-                            <small className="text-muted">Created: {created_at} : Created by:  {owner}</small>
+                            <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
                         </Link>
                     </Card.Footer>
                 </Card>

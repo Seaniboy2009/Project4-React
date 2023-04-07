@@ -1,5 +1,5 @@
 .Card {
-    color: #fffffffa;
+    color: #ffffff;
     background-color: #252740;
     border: 1px solid #4c508f;
 }
@@ -22,7 +22,7 @@
 }
 
 .AlikeText, .NotAlikeText {
-    color: #fafafafa;
+    color: #ffffff;
     border: 1px solid #4c508f;
     text-align: center;
 }
@@ -44,3 +44,10 @@
     color: #2aac2c;
 }
 
+.Title {
+    color: #ffffff;
+}
+
+.Title:hover {
+    color: #2aac2c;
+}

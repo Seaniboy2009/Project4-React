@@ -48,7 +48,7 @@ const PostsList = ({ message, filter = "" }) => {
                   <Post key={post.id} {...post} setPosts={setPosts} />
                 ))
               ) : (
-                <Asset spinner message='No results' />
+                <Asset message={message} />
               )}
             </>
           ) : (

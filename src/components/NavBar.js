@@ -17,13 +17,13 @@ const NavBar = () => {
 
     const handleSignOut = async () => {
         try {
-          await axios.post("https://project-5-api.herokuapp.com/dj-rest-auth/logout/");
-          setCurrentUser(null);
+            await axios.post("https://project-5-api.herokuapp.com/dj-rest-auth/logout/");
+            setCurrentUser(null);
         } catch (error) {
-          console.log(error);
-          console.log(error.response?.data)
+            console.log(error);
+            console.log(error.response?.data)
         }
-      };
+    };
 
     return (
         <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
@@ -45,19 +45,40 @@ const NavBar = () => {
                                 <>
                                     <NavLink
                                         className={styles.Link}
-                                        activeClassName={styles.Active} to='/post/create'>
-                                        <i className="fa-solid fa-plus"></i> Create Post
+                                        activeClassName={styles.Active}
+                                        to='/followed'>
+                                        <i class="fa-solid fa-person-walking" /> Followed
                                     </NavLink>
                                     <NavLink
                                         className={styles.Link}
-                                        activeClassName={styles.Active} to='/account'>
-                                        <i className="fa-solid fa-user"></i> Account: {currentUser.username}
+                                        activeClassName={styles.Active}
+                                        to='/liked'>
+                                        <i class="fa-solid fa-star" /> Liked posts
+                                    </NavLink>
+                                    <NavLink
+                                        className={styles.Link}
+                                        activeClassName={styles.Active}
+                                        to='/post/create'>
+                                        <i className="fa-solid fa-plus" /> Create Post
+                                    </NavLink>
+                                    <NavLink
+                                        className={styles.Link}
+                                        activeClassName={styles.Active}
+                                        to='/myposts'>
+                                        <i className="fa-solid fa-plus" /> My posts
+                                    </NavLink>
+                                    <NavLink
+                                        className={styles.Link}
+                                        activeClassName={styles.Active}
+                                        to='/account'>
+                                        <i className="fa-solid fa-user" /> Account: {currentUser.username}
                                     </NavLink>
                                     <NavLink
                                         className={styles.Link}
                                         onClick={handleSignOut}
-                                        activeClassName={styles.Active} to='/signout'>
-                                        <i className="fa-solid fa-arrow-right-from-bracket"></i> Sign out
+                                        activeClassName={styles.Active}
+                                        to='/signout'>
+                                        <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
                                     </NavLink>
                                 </>
                             ) :

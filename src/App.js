@@ -9,16 +9,44 @@ import './api/axiosDefaults';
 import PostCreateForm from './pages/posts/PostCreateForm';
 import PostsList from './pages/posts/PostsList';
 import PostDetail from './pages/posts/PostDetail';
+import { useCurrentUser } from './contexts/CurrentUserContext';
 
 function App() {
+  const currentUser = useCurrentUser()
+  const profile_id = currentUser?.profile_id || ''
 
   return (
-
     <div className={styles.App}>
       <NavBar />
       <Container className={styles.Main}>
         <Switch >
-          <Route exact path='/' render={() => <h1>Hello World</h1>} />
+          <Route exact path='/' render={() => (
+            <PostsList
+              message={'No results found'}
+            />
+          )}
+          />
+          <Route exact path='/followed' render={() => (
+            <PostsList
+              message={'No results found'}
+              filter={`owner__followed__owner__profile=${profile_id}&`}
+            />
+          )}
+          />
+          <Route exact path='/liked' render={() => (
+            <PostsList
+              message={'No results found'}
+              filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+            />
+          )}
+          />
+          <Route exact path='/myposts' render={() => (
+            <PostsList
+              message={'No results found'}
+              filter={`owner__profile=${profile_id}&`}
+            />
+          )}
+          />
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />
           <Route exact path='/signout' render={() => <h1>Sign out</h1>} />

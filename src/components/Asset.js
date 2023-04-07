@@ -9,6 +9,7 @@ const Asset = ({ spinner, src, message, alike, notAlike}) => {
         {src && <img src={src} alt={message} width={250}/>}
         {message && alike && <p className={styles.Alike}>{message}</p>}
         {message && notAlike && <p className={styles.NotAlike}>{message}</p>}
+        {message && <p>{message}</p>}
       </div>
     );
   };
