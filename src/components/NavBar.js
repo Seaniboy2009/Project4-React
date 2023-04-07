@@ -2,14 +2,14 @@ import React from 'react';
 import styles from '../styles/NavBar.module.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import { useSetSignedInUser, useSignedInUser } from '../contexts/SignedInUserContext';
+import { useSetCurrentUser, useCurrentUser } from '../contexts/CurrentUserContext';
 import useClickOutsideArea from '../hooks/useClickOutsideArea';
 import axios from 'axios';
 
 const NavBar = () => {
     // Custom hook to get the signed in user
-    const signedInUser = useSignedInUser()
-    const setSignedInUser = useSetSignedInUser()
+    const currentUser = useCurrentUser()
+    const setCurrentUser = useSetCurrentUser()
 
     // Custom hook to detect if the navbar has been clicked off or
     // a navlink has been clicked, this will then close/hide
@@ -18,7 +18,7 @@ const NavBar = () => {
     const handleSignOut = async () => {
         try {
           await axios.post("https://project-5-api.herokuapp.com/dj-rest-auth/logout/");
-          setSignedInUser(null);
+          setCurrentUser(null);
         } catch (error) {
           console.log(error);
           console.log(error.response?.data)
@@ -40,7 +40,7 @@ const NavBar = () => {
                         <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-solid fa-house"></i> Home</NavLink>
                         <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/posts'><i class="fa-brands fa-wpexplorer fa-lg"></i> Explore</NavLink>
                         {/* Check if the user is signed in, if so display signout and account, if not signed in, display sign up and sign in  */}
-                        {signedInUser ?
+                        {currentUser ?
                             (
                                 <>
                                     <NavLink
@@ -51,7 +51,7 @@ const NavBar = () => {
                                     <NavLink
                                         className={styles.Link}
                                         activeClassName={styles.Active} to='/account'>
-                                        <i className="fa-solid fa-user"></i> Account: {signedInUser.username}
+                                        <i className="fa-solid fa-user"></i> Account: {currentUser.username}
                                     </NavLink>
                                     <NavLink
                                         className={styles.Link}

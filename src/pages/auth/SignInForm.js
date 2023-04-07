@@ -3,11 +3,11 @@ import btnStyles from '../../styles/Button.module.css'
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap'
 import axios from "axios";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { useSetSignedInUser } from '../../contexts/SignedInUserContext';
+import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 
 const SignInForm = () => {
     // Custom hook to set the signed in user
-    const setSignedInUser = useSetSignedInUser()
+    const setCurrentUser = useSetCurrentUser()
 
     // Data that will be sent to the API
     const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ const SignInForm = () => {
         event.preventDefault();
         try {
             const { data } = await axios.post('https://project-5-api.herokuapp.com/dj-rest-auth/login/', formData)
-            setSignedInUser(data.user)
+            setCurrentUser(data.user)
             console.log(data.user)
             history.push("/");
         } catch (errors) {
