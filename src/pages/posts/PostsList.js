@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../../api/axiosDefaults';
 import { useLocation } from 'react-router-dom';
-import Post from './Post';
-import { Container, Row, Spinner } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from 'react-bootstrap/Col';
 import Asset from '../../components/Asset';
+import styles from '../../styles/PostList.module.css'
+import Post from './Post';
+import { Form } from 'react-bootstrap';
 
 const PostsList = ({ message, filter = "" }) => {
   const [query, setQuery] = useState("");
@@ -19,9 +23,8 @@ const PostsList = ({ message, filter = "" }) => {
         const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         setPosts(data);
         setHasLoaded(true);
-        console.log(data)
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
       }
     };
 
@@ -40,23 +43,40 @@ const PostsList = ({ message, filter = "" }) => {
   return (
     <div>
       <Container>
-        <Row className="justify-content-md-center">
-          {hasLoaded ? (
-            <>
-              {posts.results.length ? (
-                posts.results.map(post => (
-                  <Post key={post.id} {...post} setPosts={setPosts} />
-                ))
-              ) : (
-                <Asset message={message} />
-              )}
-            </>
-          ) : (
-            <>
-              <Asset spinner />
-            </>
-          )}
-          <br />
+        <Row className="h-150">
+          <Col className='py-2 p-0 p-lg-2' lg={12}>
+            <i className={`${styles.SearchIcon} fas fa-search`} />
+            <Form className={styles.SearchBar}
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type='text'
+              className='mr-sm-2'
+              placeholder='Search Posts'
+              >
+              </Form.Control>
+            </Form>
+            {hasLoaded ? (
+              <>
+                {/* check if there are posts with length if there are map and then display */}
+                {posts.results.length ? (
+                  posts.results.map(post => (
+                    <Post key={post.id} {...post} setPosts={setPosts} />
+                  ))
+                ) : (
+                  <Asset message={message} />
+                )}
+              </>
+            ) : (
+              <>
+                <Asset spinner />
+              </>
+            )}
+            <br />
+
+          </Col>
         </Row>
       </Container>
     </div>
