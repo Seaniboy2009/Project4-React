@@ -25,6 +25,62 @@ const NavBar = () => {
         }
     };
 
+    const loggedIn = (
+        <>
+            <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                to='/followed'>
+                <i class="fa-solid fa-person-walking" /> Followed
+            </NavLink>
+            <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                to='/liked'>
+                <i class="fa-solid fa-star" /> Liked posts
+            </NavLink>
+            <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                to='/post/create'>
+                <i className="fa-solid fa-plus" /> Create Post
+            </NavLink>
+            <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                to='/myposts'>
+                <i className="fa-solid fa-plus" /> My posts
+            </NavLink>
+            <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active}
+                to='/account'>
+                <i className="fa-solid fa-user" /> Account: {currentUser?.username}
+            </NavLink>
+            <NavLink
+                className={styles.Link}
+                onClick={handleSignOut}
+                activeClassName={styles.Active}
+                to='/signout'>
+                <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
+            </NavLink>
+        </>
+    )
+
+    const loggedOut = (
+        <>
+            <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active} to='/signup'>
+                <i className="fa-solid fa-user-plus"></i> Sign up
+            </NavLink>
+            <NavLink
+                className={styles.Link}
+                activeClassName={styles.Active} to='/signin'>
+                <i className="fa-solid fa-arrow-right-to-bracket"></i> Sign in
+            </NavLink>
+        </>
+    )
     return (
         <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
             <Container>
@@ -39,63 +95,7 @@ const NavBar = () => {
                     <Nav className="ml-auto text-left">
                         <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-solid fa-house"></i> Home</NavLink>
                         <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/posts'><i class="fa-brands fa-wpexplorer fa-lg"></i> Explore</NavLink>
-                        {/* Check if the user is signed in, if so display signout and account, if not signed in, display sign up and sign in  */}
-                        {currentUser ?
-                            (
-                                <>
-                                    <NavLink
-                                        className={styles.Link}
-                                        activeClassName={styles.Active}
-                                        to='/followed'>
-                                        <i class="fa-solid fa-person-walking" /> Followed
-                                    </NavLink>
-                                    <NavLink
-                                        className={styles.Link}
-                                        activeClassName={styles.Active}
-                                        to='/liked'>
-                                        <i class="fa-solid fa-star" /> Liked posts
-                                    </NavLink>
-                                    <NavLink
-                                        className={styles.Link}
-                                        activeClassName={styles.Active}
-                                        to='/post/create'>
-                                        <i className="fa-solid fa-plus" /> Create Post
-                                    </NavLink>
-                                    <NavLink
-                                        className={styles.Link}
-                                        activeClassName={styles.Active}
-                                        to='/myposts'>
-                                        <i className="fa-solid fa-plus" /> My posts
-                                    </NavLink>
-                                    <NavLink
-                                        className={styles.Link}
-                                        activeClassName={styles.Active}
-                                        to='/account'>
-                                        <i className="fa-solid fa-user" /> Account: {currentUser.username}
-                                    </NavLink>
-                                    <NavLink
-                                        className={styles.Link}
-                                        onClick={handleSignOut}
-                                        activeClassName={styles.Active}
-                                        to='/signout'>
-                                        <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
-                                    </NavLink>
-                                </>
-                            ) :
-                            (
-                                <>
-                                    <NavLink
-                                        className={styles.Link}
-                                        activeClassName={styles.Active} to='/signup'>
-                                        <i className="fa-solid fa-user-plus"></i> Sign up
-                                    </NavLink>
-                                    <NavLink
-                                        className={styles.Link}
-                                        activeClassName={styles.Active} to='/signin'>
-                                        <i className="fa-solid fa-arrow-right-to-bracket"></i> Sign in
-                                    </NavLink>
-                                </>
-                            )}
+                        {currentUser ? loggedIn : loggedOut}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
