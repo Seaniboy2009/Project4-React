@@ -69,6 +69,7 @@ const NavBar = () => {
                 activeClassName={styles.Active}
                 to='/signout'>
                 <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
+                {console.log(currentUser)}
             </NavLink>
         </>
     )

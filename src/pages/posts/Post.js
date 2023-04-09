@@ -3,8 +3,9 @@ import { Card, Col, Container, Dropdown, OverlayTrigger, Row, Tooltip } from 're
 import styles from '../../styles/Post.module.css';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Link } from 'react-router-dom';
-import { axiosRes } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { DropdownMenu } from '../../components/DropdownMenu'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Post = (props) => {
     const {
@@ -35,6 +36,20 @@ const Post = (props) => {
     // check if the current user is the owner of this post
     const is_owner = currentUser?.username === owner;
     console.log(postDetail)
+    const history = useHistory()
+    
+    const handleEdit = () => {
+        history.push(`/posts/${id}/edit`)
+    }
+
+    const handleDelete = async () => {
+        try {
+            await axiosReq.delete(`/posts/${id}`)
+            history.goBack()
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const handleLike = async () => {
         try {
@@ -277,7 +292,7 @@ const Post = (props) => {
                             </Col>
 
                             <div className='d-flex align-items-center'>
-                                {is_owner && postDetail && (<DropdownMenu />)}
+                                {is_owner && postDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete}/>)}
                             </div>
                         </Row>
                     </Card.Header>
