@@ -29,9 +29,9 @@ const Post = (props) => {
         not_alike_id,
     } = props;
 
-    // get the current sign in user
+    // get the current user
     const currentUser = useCurrentUser();
-    // check if the signed in user is the owner of this post
+    // check if the current user is the owner of this post
     const is_owner = currentUser?.username === owner;
 
     const handleLike = async () => {
@@ -135,40 +135,42 @@ const Post = (props) => {
             <Container>
                 <Card className={styles.Card}>
                     <Card.Header>
-                        <Col>
-                            <Link className={styles.Title} to={`/posts/${id}`}>
-                                Title:&nbsp;{title}&nbsp;
-                            </Link>
-                            {is_owner ? (
-                                // If the owner is viewing this display the tooltop
-                                <OverlayTrigger placement='top' overlay={<Tooltip> You cant like your own post</Tooltip>}>
-                                    <i className="fa-regular fa-star"></i>
-                                </OverlayTrigger>
-                            ) : like_id ? (
-                                // The user has already liked and can unlike
-                                <span onClick={handleUnlike}>
-                                    <i className={`${styles.Icon} fa-solid fa-star`} />
+                        <Row>
+                            <Col>
+                                <Link className={styles.Title} to={`/posts/${id}`}>
+                                    Title:&nbsp;{title}&nbsp;
+                                </Link>
+                                {is_owner ? (
+                                    // If the owner is viewing this display the tooltop
+                                    <OverlayTrigger placement='top' overlay={<Tooltip> You cant like your own post</Tooltip>}>
+                                        <i className="fa-regular fa-star"></i>
+                                    </OverlayTrigger>
+                                ) : like_id ? (
+                                    // The user has already liked and can unlike
+                                    <span onClick={handleUnlike}>
+                                        <i className={`${styles.Icon} fa-solid fa-star`} />
+                                    </span>
+                                ) : currentUser ? (
+                                    // User has not liked and can like
+                                    <span onClick={handleLike}><i className="fa-regular fa-star"></i></span>
+                                ) : (
+                                    <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
+                                        <i className="fa-regular fa-star"></i>
+                                    </OverlayTrigger>
+                                )}
+                            </Col>
+                            <Col>
+                                {/* if this belongs to the sign in user and the post detail page exists then can edit */}
+                                {is_owner && postDetail && '...'}
+                                <span>Likes:&nbsp;</span>{likes_count}
+                                <br />
+                                <span>
+                                    Comments:&nbsp;
+                                    <i className="fa-regular fa-comments" />&nbsp;
+                                    {comments_count}
                                 </span>
-                            ) : currentUser ? (
-                                // User has not liked and can like
-                                <span onClick={handleLike}><i className="fa-regular fa-star"></i></span>
-                            ) : (
-                                <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                                    <i className="fa-regular fa-star"></i>
-                                </OverlayTrigger>
-                            )}
-                        </Col>
-                        <Col>
-                            {/* if this belongs to the sign in user and the post detail page exists then can edit */}
-                            {is_owner && postDetail && '...'}
-                            <span>Likes:&nbsp;</span>{likes_count}
-                            <br />
-                            <span>
-                                Comments:&nbsp;
-                                <i className="fa-regular fa-comments" />&nbsp;
-                                {comments_count}
-                            </span>
-                        </Col>
+                            </Col>
+                        </Row>
                     </Card.Header>
                     <Row className={styles.Row}>
                         <Col><Card.Img className={styles.Alike} src={advert_image} alt={title}></Card.Img></Col>
@@ -260,14 +262,14 @@ const Post = (props) => {
                         </Col>
                     </Row>
                     <Card.Body>
-                        {content ? (
-                            <Card.Text><p>Content: {content}</p></Card.Text>
-                        ) : location ? (
-                            <Card.Text><p>Location: {location}</p></Card.Text>
-                        ) : franchisor ? (
-                            <Card.Text><p>Franchisor : {franchisor}</p></Card.Text>
+                        {postDetail ? (
+                            <>
+                                <Card.Text><p>Content: {content}</p></Card.Text>
+                                <Card.Text><p>Location: {location}</p></Card.Text>
+                                <Card.Text><p>Franchisor : {franchisor}</p></Card.Text>
+                            </>
                         ) : (
-                            <Card.Text><p>No content</p></Card.Text>
+                            <Card.Text><p>Open post for details and comments</p></Card.Text>
                         )}
                     </Card.Body>
                     <Card.Footer>
