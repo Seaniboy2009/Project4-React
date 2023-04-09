@@ -144,17 +144,23 @@ const Post = (props) => {
                 </OverlayTrigger>
             ) : like_id ? (
                 // The user has already liked and can unlike
-                <span onClick={handleUnlike}>
-                    <i className={`${styles.Icon} fa-solid fa-star`} />
-                </span>
+                <OverlayTrigger placement='top' overlay={<Tooltip>UnLike</Tooltip>}>
+                    <span onClick={handleUnlike}>
+                        <i className={`${styles.Icon} fa-solid fa-star`} />
+                    </span>
+                </OverlayTrigger>
             ) : currentUser ? (
                 // User has not liked and can like
-                <span onClick={handleLike}><i className="fa-regular fa-star"></i></span>
+                <OverlayTrigger placement='top' overlay={<Tooltip>Like</Tooltip>}>
+                    <span onClick={handleLike}>
+                        <i className="fa-regular fa-star" />
+                    </span>
+                </OverlayTrigger>
             ) : (
                 <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
                     <i className="fa-regular fa-star"></i>
                 </OverlayTrigger>
-            )};
+            )}
         </>
     );
 
@@ -172,10 +178,13 @@ const Post = (props) => {
                     </OverlayTrigger>
                 ) : alike_id ? (
                     // The user has already voted and can unvote
-                    <span onClick={handleVoteUnAlike}>
-                        <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
-                        {alikes_count}
-                    </span>
+                    <OverlayTrigger placement='top' overlay={<Tooltip>UnVote</Tooltip>}>
+                        <span onClick={handleVoteUnAlike}>
+                            <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
+                            {alikes_count}
+                        </span>
+                    </OverlayTrigger>
+
                 ) : currentUser ? (
                     <>
                         {not_alike_id ? (
@@ -185,10 +194,12 @@ const Post = (props) => {
                             </OverlayTrigger>
                         ) : (
                             // user has not voted yet so can vote on this
-                            <span onClick={handleVoteALike}>
-                                <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
-                                {alikes_count}
-                            </span>
+                            <OverlayTrigger placement='top' overlay={<Tooltip>Vote alike</Tooltip>}>
+                                <span onClick={handleVoteALike}>
+                                    <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
+                                    {alikes_count}
+                                </span>
+                            </OverlayTrigger>
                         )}
                     </>
                 ) : (
@@ -214,10 +225,13 @@ const Post = (props) => {
                     </OverlayTrigger>
                 ) : not_alike_id ? (
                     // The user has already voted and can unvote
-                    <span onClick={handleVoteUnNotAlike}>
-                        <i className={`${styles.Icon} fa-solid fa-thumbs-down`} />
-                        {not_alikes_count}
-                    </span>
+                    <OverlayTrigger placement='top' overlay={<Tooltip>UnVote</Tooltip>}>
+                        <span onClick={handleVoteUnNotAlike}>
+                            <i className={`${styles.Icon} fa-solid fa-thumbs-down`} />
+                            {not_alikes_count}
+                        </span>
+                    </OverlayTrigger>
+
                 ) : currentUser ? (
                     <>
                         {alike_id ? (
@@ -227,10 +241,13 @@ const Post = (props) => {
                             </OverlayTrigger>
                         ) : (
                             // User has not voted so can vote
-                            <span onClick={handleVoteNotALike}>
-                                <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
-                                {not_alikes_count}
-                            </span>
+                            <OverlayTrigger placement='top' overlay={<Tooltip>Vote not alike</Tooltip>}>
+                                <span onClick={handleVoteNotALike}>
+                                    <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
+                                    {not_alikes_count}
+                                </span>
+                            </OverlayTrigger>
+
                         )}
                     </>
                 ) : (
@@ -262,8 +279,6 @@ const Post = (props) => {
                             <div className='d-flex align-items-center'>
                                 {is_owner && postDetail && (<DropdownMenu />)}
                             </div>
-
-
                         </Row>
                     </Card.Header>
                     <Row className={styles.Row}>
@@ -285,12 +300,16 @@ const Post = (props) => {
                     <Card.Body>
                         {postDetail ? (
                             <>
-                                <Card.Text><p>Content: {content}</p></Card.Text>
-                                <Card.Text><p>Location: {location}</p></Card.Text>
-                                <Card.Text><p>Franchisor : {franchisor}</p></Card.Text>
+                                <Card.Text><p>Content: {content ? content : 'No details given'}</p></Card.Text>
+                                <Card.Text><p>Location: {location ? location : 'No details given'}</p></Card.Text>
+                                <Card.Text><p>Franchisor : {franchisor ? franchisor : 'No details given'}</p></Card.Text>
                             </>
                         ) : (
-                            <Card.Text><p>Open post for details and comments</p></Card.Text>
+                            <Card.Text>
+                                <Link className={styles.Title} to={`/posts/${id}`}>
+                                    Open post for details and comments
+                                </Link>
+                            </Card.Text>
                         )}
                     </Card.Body>
                     <Card.Footer>

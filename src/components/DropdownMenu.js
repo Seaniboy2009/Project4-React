@@ -20,8 +20,14 @@ export const DropdownMenu = () => {
             <Dropdown.Toggle as={ThreeDots} />
 
             <Dropdown.Menu className={`text-center ${styles.Dropdown}`}>
-                <Dropdown.Item className={styles.DropdownItem}>Edit</Dropdown.Item>
-                <Dropdown.Item className={styles.DropdownItem}>Delete</Dropdown.Item>
+                <Dropdown.Item
+                    className={styles.DropdownItem}
+                    aria-label="edit"
+                    onClick={() => { }}>Edit</Dropdown.Item>
+                <Dropdown.Item
+                    className={styles.DropdownItem}
+                    aria-label="delete"
+                    onClick={() => { }}>Delete</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );

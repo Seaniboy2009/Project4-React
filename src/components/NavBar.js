@@ -30,36 +30,42 @@ const NavBar = () => {
             <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}
+                aria-label="followed page"
                 to='/followed'>
                 <i class="fa-solid fa-person-walking" /> Followed
             </NavLink>
             <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}
+                aria-label="liked posts page"
                 to='/liked'>
                 <i class="fa-solid fa-star" /> Liked posts
             </NavLink>
             <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}
+                aria-label="create a post"
                 to='/post/create'>
                 <i className="fa-solid fa-plus" /> Create Post
             </NavLink>
             <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}
+                aria-label="my posts page"
                 to='/myposts'>
                 <i className="fa-solid fa-plus" /> My posts
             </NavLink>
             <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}
+                aria-label="account page"
                 to='/account'>
                 <i className="fa-solid fa-user" /> Account: {currentUser?.username}
             </NavLink>
             <NavLink
                 className={styles.Link}
                 onClick={handleSignOut}
+                aria-label="sign out page"
                 activeClassName={styles.Active}
                 to='/signout'>
                 <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
@@ -71,11 +77,13 @@ const NavBar = () => {
         <>
             <NavLink
                 className={styles.Link}
+                aria-label="sign up page"
                 activeClassName={styles.Active} to='/signup'>
                 <i className="fa-solid fa-user-plus"></i> Sign up
             </NavLink>
             <NavLink
                 className={styles.Link}
+                aria-label="sign in page"
                 activeClassName={styles.Active} to='/signin'>
                 <i className="fa-solid fa-arrow-right-to-bracket"></i> Sign in
             </NavLink>
@@ -88,13 +96,13 @@ const NavBar = () => {
                 <Navbar.Toggle
                     className={styles.Toggle}
                     aria-controls="basic-navbar-nav"
+                    aria-label="navbar toggle for mobile"
                     ref={ref}
                     onClick={() => setExpanded(!expanded)}
                 />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto text-left">
-                        <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-solid fa-house"></i> Home</NavLink>
-                        <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/posts'><i class="fa-brands fa-wpexplorer fa-lg"></i> Explore</NavLink>
+                        <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i class="fa-brands fa-wpexplorer fa-lg"></i> Explore</NavLink>
                         {currentUser ? loggedIn : loggedOut}
                     </Nav>
                 </Navbar.Collapse>

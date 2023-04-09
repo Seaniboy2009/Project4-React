@@ -51,7 +51,6 @@ function App() {
           <Route exact path='/signup' render={() => <SignUpForm />} />
           <Route exact path='/signout' render={() => <h1>Sign out</h1>} />
           <Route exact path='/post/create' render={() => <PostCreateForm />} />
-          <Route exact path='/posts' render={() => <PostsList />} />
           <Route exact path='/posts/:id' render={() => <PostDetail />} />
           <Route render={() => <h1>Page not found</h1>} />
         </Switch>
