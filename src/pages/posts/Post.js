@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, Col, Container, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { Card, Col, Container, Dropdown, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import styles from '../../styles/Post.module.css';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Link } from 'react-router-dom';
 import { axiosRes } from '../../api/axiosDefaults';
+import { DropdownMenu } from '../../components/DropdownMenu'
 
 const Post = (props) => {
     const {
@@ -33,6 +34,7 @@ const Post = (props) => {
     const currentUser = useCurrentUser();
     // check if the current user is the owner of this post
     const is_owner = currentUser?.username === owner;
+    console.log(postDetail)
 
     const handleLike = async () => {
         try {
@@ -130,6 +132,116 @@ const Post = (props) => {
         }
     };
 
+    const likeDetails = (
+        <>
+            <Link className={styles.Title} to={`/posts/${id}`}>
+                Title:&nbsp;{title}&nbsp;
+            </Link>
+            {is_owner ? (
+                // If the owner is viewing this display the tooltop
+                <OverlayTrigger placement='top' overlay={<Tooltip> You cant like your own post</Tooltip>}>
+                    <i className="fa-regular fa-star"></i>
+                </OverlayTrigger>
+            ) : like_id ? (
+                // The user has already liked and can unlike
+                <span onClick={handleUnlike}>
+                    <i className={`${styles.Icon} fa-solid fa-star`} />
+                </span>
+            ) : currentUser ? (
+                // User has not liked and can like
+                <span onClick={handleLike}><i className="fa-regular fa-star"></i></span>
+            ) : (
+                <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
+                    <i className="fa-regular fa-star"></i>
+                </OverlayTrigger>
+            )};
+        </>
+    );
+
+    const alikeDetails = (
+        <>
+            <span>Advert image</span>
+            <br />
+            <span>Is this like the advert? : </span>
+            <br />
+            <span>
+                {is_owner ? (
+                    // The user is the owner so cant vote
+                    <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
+                        <i className="fa-regular fa-thumbs-up" />
+                    </OverlayTrigger>
+                ) : alike_id ? (
+                    // The user has already voted and can unvote
+                    <span onClick={handleVoteUnAlike}>
+                        <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
+                        {alikes_count}
+                    </span>
+                ) : currentUser ? (
+                    <>
+                        {not_alike_id ? (
+                            // user has already voted not alike
+                            <OverlayTrigger placement='top' overlay={<Tooltip>You have already voted</Tooltip>}>
+                                <i className="fa-regular fa-thumbs-up" />
+                            </OverlayTrigger>
+                        ) : (
+                            // user has not voted yet so can vote on this
+                            <span onClick={handleVoteALike}>
+                                <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
+                                {alikes_count}
+                            </span>
+                        )}
+                    </>
+                ) : (
+                    <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
+                        <i className="fa-regular fa-thumbs-up" />
+                    </OverlayTrigger>
+                )}
+            </span>
+        </>
+    );
+
+    const notAlikeDetails = (
+        <>
+            <span>Actual image</span>
+            <br />
+            <span>Is this not like the advert? : </span>
+            <br />
+            <span>
+                {is_owner ? (
+                    // The user is the owner so cant vote
+                    <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
+                        <i className="fa-regular fa-thumbs-down" />
+                    </OverlayTrigger>
+                ) : not_alike_id ? (
+                    // The user has already voted and can unvote
+                    <span onClick={handleVoteUnNotAlike}>
+                        <i className={`${styles.Icon} fa-solid fa-thumbs-down`} />
+                        {not_alikes_count}
+                    </span>
+                ) : currentUser ? (
+                    <>
+                        {alike_id ? (
+                            // User has already voted alike
+                            <OverlayTrigger placement='top' overlay={<Tooltip>You have already voted</Tooltip>}>
+                                <i className="fa-regular fa-thumbs-down" />
+                            </OverlayTrigger>
+                        ) : (
+                            // User has not voted so can vote
+                            <span onClick={handleVoteNotALike}>
+                                <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
+                                {not_alikes_count}
+                            </span>
+                        )}
+                    </>
+                ) : (
+                    <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
+                        <i className="fa-regular fa-thumbs-down" />
+                    </OverlayTrigger>
+                )}
+            </span>
+        </>
+    );
+
     return (
         <div>
             <Container>
@@ -137,39 +249,21 @@ const Post = (props) => {
                     <Card.Header>
                         <Row>
                             <Col>
-                                <Link className={styles.Title} to={`/posts/${id}`}>
-                                    Title:&nbsp;{title}&nbsp;
-                                </Link>
-                                {is_owner ? (
-                                    // If the owner is viewing this display the tooltop
-                                    <OverlayTrigger placement='top' overlay={<Tooltip> You cant like your own post</Tooltip>}>
-                                        <i className="fa-regular fa-star"></i>
-                                    </OverlayTrigger>
-                                ) : like_id ? (
-                                    // The user has already liked and can unlike
-                                    <span onClick={handleUnlike}>
-                                        <i className={`${styles.Icon} fa-solid fa-star`} />
-                                    </span>
-                                ) : currentUser ? (
-                                    // User has not liked and can like
-                                    <span onClick={handleLike}><i className="fa-regular fa-star"></i></span>
-                                ) : (
-                                    <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                                        <i className="fa-regular fa-star"></i>
-                                    </OverlayTrigger>
-                                )}
+                                {likeDetails}
                             </Col>
                             <Col>
-                                {/* if this belongs to the sign in user and the post detail page exists then can edit */}
-                                {is_owner && postDetail && '...'}
-                                <span>Likes:&nbsp;</span>{likes_count}
-                                <br />
                                 <span>
                                     Comments:&nbsp;
                                     <i className="fa-regular fa-comments" />&nbsp;
                                     {comments_count}
                                 </span>
                             </Col>
+
+                            <div className='d-flex align-items-center'>
+                                {is_owner && postDetail && (<DropdownMenu />)}
+                            </div>
+
+
                         </Row>
                     </Card.Header>
                     <Row className={styles.Row}>
@@ -179,85 +273,12 @@ const Post = (props) => {
                     <Row className={styles.Row}>
                         <Col>
                             <Card.Text className={styles.AlikeText}>
-                                <span>Advert image</span>
-                                <br />
-                                <span>Is this like the advert? : </span>
-                                <br />
-                                <span>
-                                    {is_owner ? (
-                                        // The user is the owner so cant vote
-                                        <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
-                                            <i className="fa-regular fa-thumbs-up" />
-                                        </OverlayTrigger>
-                                    ) : alike_id ? (
-                                        // The user has already voted and can unvote
-                                        <span onClick={handleVoteUnAlike}>
-                                            <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
-                                            {alikes_count}
-                                        </span>
-                                    ) : currentUser ? (
-                                        <>
-                                            {not_alike_id ? (
-                                                // user has already voted not alike
-                                                <OverlayTrigger placement='top' overlay={<Tooltip>You have already voted</Tooltip>}>
-                                                    <i className="fa-regular fa-thumbs-up" />
-                                                </OverlayTrigger>
-                                            ) : (
-                                                // user has not voted yet so can vote on this
-                                                <span onClick={handleVoteALike}>
-                                                    <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
-                                                    {alikes_count}
-                                                </span>
-                                            )}
-                                        </>
-                                    ) : (
-                                        <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                                            <i className="fa-regular fa-thumbs-up" />
-                                        </OverlayTrigger>
-                                    )}
-                                </span>
+                                {alikeDetails}
                             </Card.Text>
                         </Col>
                         <Col>
                             <Card.Text className={styles.NotAlikeText}>
-                                <span>Actual image</span>
-                                <br />
-                                <span>Is this not like the advert? : </span>
-                                <br />
-                                <span>
-                                    {is_owner ? (
-                                        // The user is the owner so cant vote
-                                        <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
-                                            <i className="fa-regular fa-thumbs-down" />
-                                        </OverlayTrigger>
-                                    ) : not_alike_id ? (
-                                        // The user has already voted and can unvote
-                                        <span onClick={handleVoteUnNotAlike}>
-                                            <i className={`${styles.Icon} fa-solid fa-thumbs-down`} />
-                                            {not_alikes_count}
-                                        </span>
-                                    ) : currentUser ? (
-                                        <>
-                                            {alike_id ? (
-                                                // User has already voted alike
-                                                <OverlayTrigger placement='top' overlay={<Tooltip>You have already voted</Tooltip>}>
-                                                    <i className="fa-regular fa-thumbs-down" />
-                                                </OverlayTrigger>
-                                            ) : (
-                                                // User has not voted so can vote
-                                                <span onClick={handleVoteNotALike}>
-                                                    <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
-                                                    {not_alikes_count}
-                                                </span>
-                                            )}
-                                        </>
-                                    ) : (
-                                        <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                                            <i className="fa-regular fa-thumbs-down" />
-                                        </OverlayTrigger>
-                                    )}
-
-                                </span>
+                                {notAlikeDetails}
                             </Card.Text>
                         </Col>
                     </Row>

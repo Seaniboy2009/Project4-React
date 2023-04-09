@@ -50,11 +50,11 @@ const PostsList = ({ message, filter = "" }) => {
               onSubmit={(event) => event.preventDefault()}
             >
               <Form.Control
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              type='text'
-              className='mr-sm-2'
-              placeholder='Search Posts'
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                type='text'
+                className='mr-sm-2'
+                placeholder='Search Posts'
               >
               </Form.Control>
             </Form>
@@ -75,7 +75,6 @@ const PostsList = ({ message, filter = "" }) => {
               </>
             )}
             <br />
-
           </Col>
         </Row>
       </Container>

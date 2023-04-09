@@ -7,7 +7,7 @@ import Post from "./Post";
 function PostDetail() {
     const { id } = useParams();
     const [post, setPost] = useState({ results: [] });
-
+    console.log(PostDetail)
     useEffect(() => {
         const handleMount = async () => {
             try {
@@ -15,7 +15,6 @@ function PostDetail() {
                     axiosReq.get(`/posts/${id}`),
                 ]);
                 setPost({ results: [post] });
-                console.log(post);
             } catch (err) {
                 console.log(err);
             }
@@ -27,7 +26,7 @@ function PostDetail() {
     return (
         <Row>
             <Col>
-                <Post {...post.results[0]} setPosts={setPost} postPage />
+                <Post {...post.results[0]} setPosts={setPost} postDetail />
             </Col>
         </Row>
     );
