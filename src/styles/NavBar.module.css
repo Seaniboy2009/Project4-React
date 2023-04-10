@@ -30,3 +30,21 @@
 a:hover {
     color: #1d8922;
 }
+
+.NavDropdown div {
+    color: #ffffff;
+    background-color: #141526;
+    border: 1px solid #4c508f;
+}
+
+.NavDropdown  a {
+    color: #ffffff !important;
+}
+
+.NavDropdown  a:hover {
+    color: #1d8922 !important;
+}
+
+.NavDropdownItem:hover {
+    background-color: #4c508f;
+}

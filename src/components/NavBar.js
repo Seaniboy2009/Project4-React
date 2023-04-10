@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../styles/NavBar.module.css';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { useSetCurrentUser, useCurrentUser } from '../contexts/CurrentUserContext';
 import useClickOutsideArea from '../hooks/useClickOutsideArea';
@@ -41,7 +41,7 @@ const NavBar = () => {
                 to='/liked'>
                 <i class="fa-solid fa-star" /> Liked posts
             </NavLink>
-            <NavLink
+            {/* <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}
                 aria-label="create a post"
@@ -70,7 +70,41 @@ const NavBar = () => {
                 to='/'>
                 <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
                 {console.log(currentUser)}
-            </NavLink>
+            </NavLink> */}
+            <NavDropdown
+                className={styles.NavDropdown}
+                title={`Account: ${currentUser?.username}`}
+                id="basic-nav-dropdown"
+            >
+                <NavDropdown.Item className={styles.NavDropdownItem}>
+                    <NavLink
+                        className={styles.Link}
+                        activeClassName={styles.Active}
+                        aria-label="create a post"
+                        to='/posts/create'>
+                        <i className="fa-solid fa-plus" /> Create Post
+                    </NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item className={styles.NavDropdownItem}>
+                    <NavLink
+                        className={styles.Link}
+                        activeClassName={styles.Active}
+                        aria-label="my posts page"
+                        to='/myposts'>
+                        <i className="fa-solid fa-plus" /> My posts
+                    </NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item className={styles.NavDropdownItem}>
+                    <NavLink
+                        className={styles.Link}
+                        onClick={handleSignOut}
+                        aria-label="sign out page"
+                        to='/'>
+                        <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
+                        {console.log(currentUser)}
+                    </NavLink>
+                </NavDropdown.Item>
+            </NavDropdown>
         </>
     )
 
@@ -90,6 +124,7 @@ const NavBar = () => {
             </NavLink>
         </>
     )
+
     return (
         <Navbar className={styles.NavBar} expand="md" fixed='top' expanded={expanded}>
             <Container>
