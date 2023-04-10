@@ -38,10 +38,12 @@ const Post = (props) => {
     console.log(postDetail)
     const history = useHistory()
     
+    // handles the edit function
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`)
     }
-
+    
+    // handles the delete function
     const handleDelete = async () => {
         try {
             await axiosReq.delete(`/posts/${id}`)

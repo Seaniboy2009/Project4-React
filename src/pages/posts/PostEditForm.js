@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Form, Row, Col, Container, Alert, Image } from "react-bootstrap";
 import appStyles from "../../App.module.css";
-import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from "../../api/axiosDefaults";
 
 function PostEditForm() {
 
-    const postURL = 'https://res.cloudinary.com/dgj9rjuka/image/upload/v1678359959/media/images/default_post_fr07hq.jpg'
     const advertImageInput = useRef(null)
     const realityImageInput = useRef(null)
     const [errors, setErrors] = useState({});
@@ -190,32 +188,17 @@ function PostEditForm() {
                         <Row>
                             <Col>
                                 <Form.Group className="text-center">
-                                    {advert_image ? (
-                                        <>
-                                            <figure>
-                                                <Image className={appStyles.Image} src={advert_image} rounded />
-                                            </figure>
-                                            <div>
-                                                <Form.Label
-                                                    className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                                                    htmlFor="image-upload-advert"
-                                                >
-                                                    Change the image
-                                                </Form.Label>
-                                            </div>
-                                        </>
-                                    ) : (
+                                    <figure>
+                                        <Image className={appStyles.Image} src={advert_image} rounded />
+                                    </figure>
+                                    <div>
                                         <Form.Label
-                                            className="d-flex justify-content-center"
+                                            className={`${btnStyles.Full} ${btnStyles.Main}`}
                                             htmlFor="image-upload-advert"
                                         >
-                                            <Asset
-                                                src={postURL}
-                                                message="Click or tap to upload an image"
-                                                alike='true'
-                                            />
+                                            Change the image
                                         </Form.Label>
-                                    )}
+                                    </div>
                                     <Form.File
                                         id="image-upload-advert"
                                         accept="image/*"
@@ -226,33 +209,17 @@ function PostEditForm() {
                             </Col>
                             <Col>
                                 <Form.Group className="text-center">
-                                    {reality_image ? (
-                                        <>
-                                            <figure>
-                                                <Image className={appStyles.Image} src={reality_image} rounded />
-                                            </figure>
-                                            <div>
-                                                <Form.Label
-                                                    className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                                                    htmlFor="image-upload-reality"
-                                                >
-                                                    Change the image
-                                                </Form.Label>
-                                            </div>
-                                        </>
-                                    ) : (
+                                    <figure>
+                                        <Image className={appStyles.Image} src={reality_image} rounded />
+                                    </figure>
+                                    <div>
                                         <Form.Label
-                                            className="d-flex justify-content-center"
+                                            className={`${btnStyles.Full} ${btnStyles.Main}`}
                                             htmlFor="image-upload-reality"
                                         >
-                                            <Asset
-                                                src={postURL}
-                                                message="Click or tap to upload an image"
-                                                style={appStyles.Alike}
-                                                notAlike='True'
-                                            />
+                                            Change the image
                                         </Form.Label>
-                                    )}
+                                    </div>
                                     <Form.File
                                         id="image-upload-reality"
                                         accept="image/*"
