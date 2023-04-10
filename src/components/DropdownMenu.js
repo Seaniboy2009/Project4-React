@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from '../styles/DropdownMenu.module.css'
 
-
+// Changes the icon to be 3 dots
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     <a
         className={`${styles.DropdownIcon} fas fa-ellipsis-v`}
@@ -14,6 +14,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     />
 ));
 
+// Dropdown for handeling edit and delete, passed down as props
 export const DropdownMenu = ( { handleEdit, handleDelete }) => {
     return (
         <Dropdown className="ml-auto" drop="left">

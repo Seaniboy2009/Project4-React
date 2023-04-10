@@ -45,7 +45,7 @@ const NavBar = () => {
                 className={styles.Link}
                 activeClassName={styles.Active}
                 aria-label="create a post"
-                to='/post/create'>
+                to='/posts/create'>
                 <i className="fa-solid fa-plus" /> Create Post
             </NavLink>
             <NavLink
@@ -67,7 +67,7 @@ const NavBar = () => {
                 onClick={handleSignOut}
                 aria-label="sign out page"
                 activeClassName={styles.Active}
-                to='/signout'>
+                to='/'>
                 <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
                 {console.log(currentUser)}
             </NavLink>

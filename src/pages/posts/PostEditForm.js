@@ -1,16 +1,51 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button, Form, Row, Col, Container, Alert, Image } from "react-bootstrap";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from "../../api/axiosDefaults";
 
-function PostCreateForm() {
+function PostEditForm() {
 
     const postURL = 'https://res.cloudinary.com/dgj9rjuka/image/upload/v1678359959/media/images/default_post_fr07hq.jpg'
     const advertImageInput = useRef(null)
     const realityImageInput = useRef(null)
+    const [errors, setErrors] = useState({});
+    const history = useHistory();
+    // gets the id of the current URL
+    const { id } = useParams()
+
+    // handles didmount and didupdate for the components
+    useEffect(() => {
+        const handleMount = async () => {
+            try {
+                const { data } = await axiosReq.get(`/posts/${id}`)
+                const {
+                    title,
+                    location,
+                    franchisor,
+                    content,
+                    advert_image,
+                    reality_image,
+                    is_owner } = data;
+
+                is_owner ? setFormData(
+                    {
+                        title,
+                        location,
+                        franchisor,
+                        content,
+                        advert_image,
+                        reality_image
+                    }) : history.push('/')
+            } catch (error) {
+
+            }
+        }
+        handleMount()
+
+    }, [history, id])
 
     // Data that will be sent to the API
     const [formData, setFormData] = useState({
@@ -21,9 +56,8 @@ function PostCreateForm() {
         advert_image: '',
         reality_image: '',
     });
+
     const { title, location, franchisor, content, advert_image, reality_image } = formData;
-    const [errors, setErrors] = useState({});
-    const history = useHistory();
 
     // Handle the changes made on the form
     const handleChange = (event) => {
@@ -58,16 +92,21 @@ function PostCreateForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-    
+
         formData.append('title', title)
         formData.append('location', title)
         formData.append('franchisor', title)
         formData.append('content', content)
-        formData.append('advert_image', advertImageInput.current.files[0])
-        formData.append('reality_image', realityImageInput.current.files[0])
+        if (advertImageInput?.current?.files[0]) {
+            formData.append('advert_image', advertImageInput.current.files[0])
+        }
+        if (realityImageInput?.current?.files[0]) {
+            formData.append('reality_image', realityImageInput.current.files[0])
+        }
+
         try {
-            const { data } = await axiosReq.post("/posts/", formData);
-            history.push(`/posts/${data.id}`);
+            await axiosReq.put(`/posts/${id}`, formData);
+            history.push(`/posts/${id}`);
         } catch (errors) {
             console.log(errors.response?.data)
             setErrors(errors.response?.data)
@@ -135,10 +174,10 @@ function PostCreateForm() {
                 Cancel
             </Button>
             <Button className={`${btnStyles.Full} ${btnStyles.Main}`} type="submit">
-                Create
+                Save
             </Button>
             {errors.advert_image?.map((message, index) =>
-                    <Alert key={index}>{message}</Alert>
+                <Alert key={index}>{message}</Alert>
             )}
         </div>
     );
@@ -236,4 +275,4 @@ function PostCreateForm() {
     );
 }
 
-export default PostCreateForm;
+export default PostEditForm;
