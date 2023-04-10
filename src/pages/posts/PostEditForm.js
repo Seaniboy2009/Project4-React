@@ -92,8 +92,8 @@ function PostEditForm() {
         const formData = new FormData();
 
         formData.append('title', title)
-        formData.append('location', title)
-        formData.append('franchisor', title)
+        formData.append('location', location)
+        formData.append('franchisor', franchisor)
         formData.append('content', content)
         if (advertImageInput?.current?.files[0]) {
             formData.append('advert_image', advertImageInput.current.files[0])
@@ -180,55 +180,61 @@ function PostEditForm() {
         </div>
     );
 
+    const imageFields = (
+        <>
+            <Row>
+                <Col>
+                    <Form.Group className="text-center">
+                        <figure>
+                            <Image className={appStyles.Image} src={advert_image} rounded />
+                        </figure>
+                        <div>
+                            <Form.Label
+                                className={`${btnStyles.Full} ${btnStyles.Main}`}
+                                htmlFor="image-upload-advert"
+                            >
+                                Change the image
+                            </Form.Label>
+                        </div>
+                        <Form.File
+                            id="image-upload-advert"
+                            accept="image/*"
+                            onChange={handleChangeImageAdvert}
+                            ref={advertImageInput}
+                        />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group className="text-center">
+                        <figure>
+                            <Image className={appStyles.Image} src={reality_image} rounded />
+                        </figure>
+                        <div>
+                            <Form.Label
+                                className={`${btnStyles.Full} ${btnStyles.Main}`}
+                                htmlFor="image-upload-reality"
+                            >
+                                Change the image
+                            </Form.Label>
+                        </div>
+                        <Form.File
+                            id="image-upload-reality"
+                            accept="image/*"
+                            onChange={handleChangeImageReality}
+                            ref={realityImageInput}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+        </>
+    )
+
     return (
         <Form onSubmit={handleSubmit}>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container className={`${appStyles.Container} d-flex flex-column justify-content-center`}>
-                        <Row>
-                            <Col>
-                                <Form.Group className="text-center">
-                                    <figure>
-                                        <Image className={appStyles.Image} src={advert_image} rounded />
-                                    </figure>
-                                    <div>
-                                        <Form.Label
-                                            className={`${btnStyles.Full} ${btnStyles.Main}`}
-                                            htmlFor="image-upload-advert"
-                                        >
-                                            Change the image
-                                        </Form.Label>
-                                    </div>
-                                    <Form.File
-                                        id="image-upload-advert"
-                                        accept="image/*"
-                                        onChange={handleChangeImageAdvert}
-                                        ref={advertImageInput}
-                                    />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group className="text-center">
-                                    <figure>
-                                        <Image className={appStyles.Image} src={reality_image} rounded />
-                                    </figure>
-                                    <div>
-                                        <Form.Label
-                                            className={`${btnStyles.Full} ${btnStyles.Main}`}
-                                            htmlFor="image-upload-reality"
-                                        >
-                                            Change the image
-                                        </Form.Label>
-                                    </div>
-                                    <Form.File
-                                        id="image-upload-reality"
-                                        accept="image/*"
-                                        onChange={handleChangeImageReality}
-                                        ref={realityImageInput}
-                                    />
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                        {imageFields}
                         <div className="d-md-none">{formFields}</div>
                     </Container>
                 </Col>
