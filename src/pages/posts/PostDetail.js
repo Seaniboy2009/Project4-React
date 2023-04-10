@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { Col, Row, } from "react-bootstrap";
+import { Col, Container, Row, } from "react-bootstrap";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
+import CommentCreateForm from "../comments/CommentCreateForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import appStyles from '../../App.module.css'
+import Comment from "../comments/Comment";
 
 function PostDetail() {
     const { id } = useParams();
     const [post, setPost] = useState({ results: [] });
-    console.log(PostDetail)
+    const currentUser = useCurrentUser();
+    const profile_image = currentUser?.profile_image;
+    const [comments, setComments] = useState({ results: [] });
+
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const [{ data: post }] = await Promise.all([
+                const [{ data: post }, { data: comments }] = await Promise.all([
                     axiosReq.get(`/posts/${id}`),
+                    axiosReq.get(`/comments/?post=${id}`)
                 ]);
                 setPost({ results: [post] });
+                setComments(comments);
             } catch (err) {
                 console.log(err);
             }
@@ -24,11 +33,37 @@ function PostDetail() {
     }, [id]);
 
     return (
-        <Row>
-            <Col>
-                <Post {...post.results[0]} setPosts={setPost} postDetail />
-            </Col>
-        </Row>
+        <>
+            <Row>
+                <Col>
+                    <Post {...post.results[0]} setPosts={setPost} postDetail />
+                </Col>
+            </Row>
+            <Row>
+                <Container className={appStyles.Container}>
+                    {currentUser ? (
+                        <CommentCreateForm
+                            profile_id={currentUser.profile_id}
+                            profileImage={profile_image}
+                            post={id}
+                            setPost={setPost}
+                            setComments={setComments}
+                        />
+                    ) : comments.results.length ? (
+                        "Comments"
+                    ) : null}
+                    {comments.results.length ? (
+                        comments.results.map((comment) => (
+                            <Comment key={comment.id} {...comment} />
+                        ))
+                    ) : currentUser ? (
+                        <span>No comments yet, be the first to comment!</span>
+                    ) : (
+                        <span>No comments... yet</span>
+                    )}
+                </Container>
+            </Row>
+        </>
     );
 }
 

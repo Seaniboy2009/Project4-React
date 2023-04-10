@@ -41,36 +41,6 @@ const NavBar = () => {
                 to='/liked'>
                 <i class="fa-solid fa-star" /> Liked posts
             </NavLink>
-            {/* <NavLink
-                className={styles.Link}
-                activeClassName={styles.Active}
-                aria-label="create a post"
-                to='/posts/create'>
-                <i className="fa-solid fa-plus" /> Create Post
-            </NavLink>
-            <NavLink
-                className={styles.Link}
-                activeClassName={styles.Active}
-                aria-label="my posts page"
-                to='/myposts'>
-                <i className="fa-solid fa-plus" /> My posts
-            </NavLink>
-            <NavLink
-                className={styles.Link}
-                activeClassName={styles.Active}
-                aria-label="account page"
-                to='/account'>
-                <i className="fa-solid fa-user" /> Account: {currentUser?.username}
-            </NavLink>
-            <NavLink
-                className={styles.Link}
-                onClick={handleSignOut}
-                aria-label="sign out page"
-                activeClassName={styles.Active}
-                to='/'>
-                <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
-                {console.log(currentUser)}
-            </NavLink> */}
             <NavDropdown
                 className={styles.NavDropdown}
                 title={`Account: ${currentUser?.username}`}
