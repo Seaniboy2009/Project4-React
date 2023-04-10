@@ -58,10 +58,10 @@ function PostCreateForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-    
+
         formData.append('title', title)
-        formData.append('location', title)
-        formData.append('franchisor', title)
+        formData.append('location', location)
+        formData.append('franchisor', franchisor)
         formData.append('content', content)
         formData.append('advert_image', advertImageInput.current.files[0])
         formData.append('reality_image', realityImageInput.current.files[0])
@@ -138,91 +138,97 @@ function PostCreateForm() {
                 Create
             </Button>
             {errors.advert_image?.map((message, index) =>
-                    <Alert key={index}>{message}</Alert>
+                <Alert key={index}>{message}</Alert>
             )}
         </div>
     );
+
+    const imageFields = (
+        <>
+            <Row>
+                <Col>
+                    <Form.Group className="text-center">
+                        {advert_image ? (
+                            <>
+                                <figure>
+                                    <Image className={appStyles.Image} src={advert_image} rounded />
+                                </figure>
+                                <div>
+                                    <Form.Label
+                                        className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                                        htmlFor="image-upload-advert"
+                                    >
+                                        Change the image
+                                    </Form.Label>
+                                </div>
+                            </>
+                        ) : (
+                            <Form.Label
+                                className="d-flex justify-content-center"
+                                htmlFor="image-upload-advert"
+                            >
+                                <Asset
+                                    src={postURL}
+                                    message="Click or tap to upload an image"
+                                    alike='true'
+                                />
+                            </Form.Label>
+                        )}
+                        <Form.File
+                            id="image-upload-advert"
+                            accept="image/*"
+                            onChange={handleChangeImageAdvert}
+                            ref={advertImageInput}
+                        />
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group className="text-center">
+                        {reality_image ? (
+                            <>
+                                <figure>
+                                    <Image className={appStyles.Image} src={reality_image} rounded />
+                                </figure>
+                                <div>
+                                    <Form.Label
+                                        className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                                        htmlFor="image-upload-reality"
+                                    >
+                                        Change the image
+                                    </Form.Label>
+                                </div>
+                            </>
+                        ) : (
+                            <Form.Label
+                                className="d-flex justify-content-center"
+                                htmlFor="image-upload-reality"
+                            >
+                                <Asset
+                                    src={postURL}
+                                    message="Click or tap to upload an image"
+                                    style={appStyles.Alike}
+                                    notAlike='True'
+                                />
+                            </Form.Label>
+                        )}
+                        <Form.File
+                            id="image-upload-reality"
+                            accept="image/*"
+                            onChange={handleChangeImageReality}
+                            ref={realityImageInput}
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+        </>
+    )
 
     return (
         <Form onSubmit={handleSubmit}>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container className={`${appStyles.Container} d-flex flex-column justify-content-center`}>
-                        <Row>
-                            <Col>
-                                <Form.Group className="text-center">
-                                    {advert_image ? (
-                                        <>
-                                            <figure>
-                                                <Image className={appStyles.Image} src={advert_image} rounded />
-                                            </figure>
-                                            <div>
-                                                <Form.Label
-                                                    className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                                                    htmlFor="image-upload-advert"
-                                                >
-                                                    Change the image
-                                                </Form.Label>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <Form.Label
-                                            className="d-flex justify-content-center"
-                                            htmlFor="image-upload-advert"
-                                        >
-                                            <Asset
-                                                src={postURL}
-                                                message="Click or tap to upload an image"
-                                                alike='true'
-                                            />
-                                        </Form.Label>
-                                    )}
-                                    <Form.File
-                                        id="image-upload-advert"
-                                        accept="image/*"
-                                        onChange={handleChangeImageAdvert}
-                                        ref={advertImageInput}
-                                    />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group className="text-center">
-                                    {reality_image ? (
-                                        <>
-                                            <figure>
-                                                <Image className={appStyles.Image} src={reality_image} rounded />
-                                            </figure>
-                                            <div>
-                                                <Form.Label
-                                                    className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                                                    htmlFor="image-upload-reality"
-                                                >
-                                                    Change the image
-                                                </Form.Label>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <Form.Label
-                                            className="d-flex justify-content-center"
-                                            htmlFor="image-upload-reality"
-                                        >
-                                            <Asset
-                                                src={postURL}
-                                                message="Click or tap to upload an image"
-                                                style={appStyles.Alike}
-                                                notAlike='True'
-                                            />
-                                        </Form.Label>
-                                    )}
-                                    <Form.File
-                                        id="image-upload-reality"
-                                        accept="image/*"
-                                        onChange={handleChangeImageReality}
-                                        ref={realityImageInput}
-                                    />
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                        {imageFields}
                         <div className="d-md-none">{formFields}</div>
                     </Container>
                 </Col>
