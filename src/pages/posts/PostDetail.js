@@ -40,28 +40,30 @@ function PostDetail() {
                 </Col>
             </Row>
             <Row>
-                <Container className={appStyles.Container}>
-                    {currentUser ? (
-                        <CommentCreateForm
-                            profile_id={currentUser.profile_id}
-                            profileImage={profile_image}
-                            post={id}
-                            setPost={setPost}
-                            setComments={setComments}
-                        />
-                    ) : comments.results.length ? (
-                        "Comments"
-                    ) : null}
-                    {comments.results.length ? (
-                        comments.results.map((comment) => (
-                            <Comment key={comment.id} {...comment} />
-                        ))
-                    ) : currentUser ? (
-                        <span>No comments yet, be the first to comment!</span>
-                    ) : (
-                        <span>No comments... yet</span>
-                    )}
-                </Container>
+                <Col>
+                    <Container>
+                        {currentUser ? (
+                            <CommentCreateForm
+                                profile_id={currentUser.profile_id}
+                                profileImage={profile_image}
+                                post={id}
+                                setPost={setPost}
+                                setComments={setComments}
+                            />
+                        ) : comments.results.length ? (
+                            "Comments"
+                        ) : null}
+                        {comments.results.length ? (
+                            comments.results.map((comment) => (
+                                <Comment key={comment.id} {...comment} />
+                            ))
+                        ) : currentUser ? (
+                            <span>No comments yet, be the first to comment!</span>
+                        ) : (
+                            <span>No comments... yet</span>
+                        )}
+                    </Container>
+                </Col>
             </Row>
         </>
     );

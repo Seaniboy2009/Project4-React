@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Form, Row, Col, Container, Alert, Image } from "react-bootstrap";
-import appStyles from "../../App.module.css";
+import styles from "../../styles/PostCreateEdit.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from "../../api/axiosDefaults";
@@ -186,7 +186,7 @@ function PostEditForm() {
                 <Col>
                     <Form.Group className="text-center">
                         <figure>
-                            <Image className={appStyles.Image} src={advert_image} rounded />
+                            <Image className={styles.Image} src={advert_image} rounded />
                         </figure>
                         <div>
                             <Form.Label
@@ -207,7 +207,7 @@ function PostEditForm() {
                 <Col>
                     <Form.Group className="text-center">
                         <figure>
-                            <Image className={appStyles.Image} src={reality_image} rounded />
+                            <Image className={styles.Image} src={reality_image} rounded />
                         </figure>
                         <div>
                             <Form.Label
@@ -233,13 +233,13 @@ function PostEditForm() {
         <Form onSubmit={handleSubmit}>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                    <Container className={`${appStyles.Container} d-flex flex-column justify-content-center`}>
+                    <Container className={`${styles.Container} d-flex flex-column justify-content-center`}>
                         {imageFields}
                         <div className="d-md-none">{formFields}</div>
                     </Container>
                 </Col>
                 <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-                    <Container className={appStyles.Container}>
+                    <Container className={styles.Container}>
                         {formFields}
                     </Container>
                 </Col>

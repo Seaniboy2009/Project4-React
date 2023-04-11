@@ -45,19 +45,21 @@ const PostsList = ({ message, filter = "" }) => {
       <Container>
         <Row className="h-150">
           <Col className='py-2 p-0 p-lg-2' lg={12}>
-            <i className={`${styles.SearchIcon} fas fa-search`} />
-            <Form className={styles.SearchBar}
-              onSubmit={(event) => event.preventDefault()}
-            >
-              <Form.Control
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                type='text'
-                className='mr-sm-2'
-                placeholder='Search Posts'
+            <Container>
+              <i className={`${styles.SearchIcon} fas fa-search`} />
+              <Form className={styles.SearchBar}
+                onSubmit={(event) => event.preventDefault()}
               >
-              </Form.Control>
-            </Form>
+                <Form.Control
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  type='text'
+                  className='mr-sm-2'
+                  placeholder='Search Posts'
+                >
+                </Form.Control>
+              </Form>
+            </Container>
             {hasLoaded ? (
               <>
                 {/* check if there are posts with length if there are map and then display */}
