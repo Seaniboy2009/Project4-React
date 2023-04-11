@@ -35,7 +35,6 @@ const Post = (props) => {
     const currentUser = useCurrentUser();
     // check if the current user is the owner of this post
     const is_owner = currentUser?.username === owner;
-    console.log(postDetail)
     const history = useHistory()
     
     // handles the edit function

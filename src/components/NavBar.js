@@ -38,13 +38,15 @@ const NavBar = () => {
                 className={styles.Link}
                 activeClassName={styles.Active}
                 aria-label="liked posts page"
+                name="dropdown"
                 to='/liked'>
                 <i class="fa-solid fa-star" /> Liked posts
             </NavLink>
             <NavDropdown
                 className={styles.NavDropdown}
+                name="dropdown"
                 title={`Account: ${currentUser?.username}`}
-                id="basic-nav-dropdown"
+                id="dropdown"
             >
                 <NavDropdown.Item className={styles.NavDropdownItem}>
                     <NavLink
@@ -71,7 +73,6 @@ const NavBar = () => {
                         aria-label="sign out page"
                         to='/'>
                         <i className="fa-solid fa-arrow-right-from-bracket" /> Sign out
-                        {console.log(currentUser)}
                     </NavLink>
                 </NavDropdown.Item>
             </NavDropdown>
