@@ -8,6 +8,8 @@ import Asset from '../../components/Asset';
 import styles from '../../styles/PostList.module.css'
 import Post from './Post';
 import { Form } from 'react-bootstrap';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { fetchMoreData } from '../../utils/utils'
 
 const PostsList = ({ message, filter = "" }) => {
   const [query, setQuery] = useState("");
@@ -64,9 +66,15 @@ const PostsList = ({ message, filter = "" }) => {
               <>
                 {/* check if there are posts with length if there are map and then display */}
                 {posts.results.length ? (
-                  posts.results.map(post => (
-                    <Post key={post.id} {...post} setPosts={setPosts} />
-                  ))
+                  <InfiniteScroll
+                    children={posts.results.map((post) => (
+                      <Post key={post.id} {...post} setPosts={setPosts} />
+                    ))}
+                    dataLength={posts.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!posts.next}
+                    next={() => fetchMoreData(posts, setPosts)}
+                  />
                 ) : (
                   <Asset message={message} />
                 )}
