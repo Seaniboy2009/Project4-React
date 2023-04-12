@@ -14,7 +14,6 @@
 - as a user i can view my posts
 - as a user i can like a post
 - as a user i can unlike a post
-- as a user i can expore all posts
 - as a user i can search posts
 - as a user i can follow others
 - as a user i can comment on a post
@@ -24,16 +23,37 @@
 ## 3.Features:
 - User features
     - Full navigation for all site functions
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/nav_signed_in_dqzmsh.png)
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/nav_signed_out_gw1nsj.png)
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/nav_dropdown_xujghv.png)
+
     - Ability to create an account
     - Ability to sign in and out
     - Ability to create/update/delete a post
     - Can view all posts on the app
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_k5scvd.png)
+
     - Can search posts for keywords
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/search_bar_aag6ub.png)
+
     - Can follow and unfollow a post
+
     - Can vote on a post if its alike or not alike, can also unvote
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_like_comments_jhpcvl.png)
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_not_alike_dnuqv6.png)
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_alike_e6vtce.png)
+
     - Can comment on a post
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283732/comment_done_s7rfgk.png)
+
     - Can view other users profiles
     - Can follow other users
+
 - React features
     - Use of context for the current user this allows the current user to be passed down to each child in the dom, this is used in the navbar as well as the posts to get the owner and name
 
@@ -59,6 +79,9 @@
 - ability to sign in with google account
 ## 5.Typography and color scheme:
 - Main colors are blue/purple with green highlights
+
+![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/full_post_dxpooz.png)
+
 ## 6.Wireframes:
 ## 7.Technology:
 - Frameworks
@@ -81,8 +104,18 @@
     - Testing application on local enviroment npm start Runs the app in the development mode [http://localhost:3000](http://localhost:3000)
     - Deployment to heroku and testing on the live enviroment [project5-react](https://project5-react.herokuapp.com/)
 
-- Automation testing
-    - 
+- User story testing
+    - navigation
+    - sign up with errors
+    - sign in with errors
+    - create a post with errors 
+    - edit a post 
+    - delete a post 
+    - search for a post
+    - open a post
+    - view comments 
+    - add a comment
+
 ## 9.Deployment:
 - Heroku
     - Deployment from heroku involved signing up to the site, click create app.
@@ -92,3 +125,6 @@
    - Deployment from gitpod to github was adding the files for commit by typing git add then . (git add .) this would then add all of the updated/changed files for push to github this can be checked by using git status. a commit message is then needed for this to be pushed to github (git commit -m "Message in here") once that has been done you can then do a git push to send all the files to github
 
 ## 10.Credits:
+
+- Moments app by code institute 
+- Bootstrap react
