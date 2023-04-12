@@ -10,6 +10,7 @@ import Post from './Post';
 import { Form } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/utils'
+import PopularProfiles from '../profiles/PopularProfiles';
 
 const PostsList = ({ message, filter = "" }) => {
   const [query, setQuery] = useState("");
@@ -46,7 +47,7 @@ const PostsList = ({ message, filter = "" }) => {
     <div>
       <Container>
         <Row className="h-150">
-          <Col className='py-2 p-0 p-lg-2' lg={12}>
+          <Col className='py-2 p-0 p-lg-2' lg={8}>
             <Container>
               <i className={`${styles.SearchIcon} fas fa-search`} />
               <Form className={styles.SearchBar}
@@ -85,6 +86,9 @@ const PostsList = ({ message, filter = "" }) => {
               </>
             )}
             <br />
+          </Col>
+          <Col md={4} className='d-none d-lg-block'>
+            <PopularProfiles />
           </Col>
         </Row>
       </Container>
