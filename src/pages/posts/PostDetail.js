@@ -15,6 +15,7 @@ function PostDetail() {
     const profile_image = currentUser?.profile_image;
     const [comments, setComments] = useState({ results: [] });
 
+    // Get all of the posts and the comments with the post id
     useEffect(() => {
         const handleMount = async () => {
             try {
@@ -55,7 +56,7 @@ function PostDetail() {
                         ) : null}
                         {comments.results.length ? (
                             comments.results.map((comment) => (
-                                <Comment key={comment.id} {...comment} />
+                                <Comment key={comment.id} {...comment} setPost={setPost} setComments={setComments}/>
                             ))
                         ) : currentUser ? (
                             <span>No comments yet, be the first to comment!</span>

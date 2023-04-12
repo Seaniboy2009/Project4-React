@@ -52,6 +52,7 @@ const Post = (props) => {
         }
     }
 
+    // User can like the post
     const handleLike = async () => {
         try {
             const { data } = await axiosRes.post("/likes/", { post: id });
@@ -68,6 +69,7 @@ const Post = (props) => {
         }
     };
 
+    // User can Unlike the post
     const handleUnlike = async () => {
         try {
             await axiosRes.delete(`/likes/${like_id}`);
@@ -84,6 +86,7 @@ const Post = (props) => {
         }
     };
 
+    // User can vote on alike
     const handleVoteALike = async () => {
         try {
             const { data } = await axiosRes.post("/votealike/", { post: id });
@@ -100,6 +103,7 @@ const Post = (props) => {
         }
     };
 
+    // User can Unvote on alike
     const handleVoteUnAlike = async () => {
         try {
             await axiosRes.delete(`/votealike/${alike_id}`);
@@ -116,6 +120,7 @@ const Post = (props) => {
         }
     };
 
+    // User can vote on NOt alike
     const handleVoteNotALike = async () => {
         try {
             const { data } = await axiosRes.post("/votenotalike/", { post: id });
@@ -132,6 +137,7 @@ const Post = (props) => {
         }
     };
 
+    // User can Unvote on Not alike
     const handleVoteUnNotAlike = async () => {
         try {
             await axiosRes.delete(`/votenotalike/${not_alike_id}`);
