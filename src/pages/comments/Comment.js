@@ -6,7 +6,7 @@ import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { DropdownMenu } from "../../components/DropdownMenu";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Comment = (props) => {
   const { profile_id, profile_image, owner, updated_at, content, id, setPost, setComments, } = props;
