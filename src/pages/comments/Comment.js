@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Media } from "react-bootstrap";
+import CommentEditForm from "./CommentEditForm";
 import { Link } from "react-router-dom";
 import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -13,6 +14,7 @@ const Comment = (props) => {
   const currentUser = useCurrentUser()
   // check if the current user is the owner of this post
   const is_owner = currentUser?.username === owner;
+  const [showEditForm, setShowEditForm] = useState(false);
   const history = useHistory()
 
   // handles the edit function
@@ -41,23 +43,36 @@ const Comment = (props) => {
   }
 
   return (
-    <div>
+    <>
       <hr />
       <Media>
         <Link to={`/profiles/${profile_id}`}>
-          <span className={styles.Owner}>{owner}</span>
+          {/* <Avatar src={profile_image} /> */}
         </Link>
-        <Media.Body className={`${styles.Container} align-self-center ml-2`}>
+        <Media.Body className="align-self-center ml-2">
+          <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
-          <p>{content}</p>
-          {is_owner ? (
-            <span><DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} /></span>
+          {showEditForm ? (
+            <CommentEditForm
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              profileImage={profile_image}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+            />
           ) : (
-            <span>Not owner</span>
+            <p>{content}</p>
           )}
         </Media.Body>
+        {is_owner && !showEditForm && (
+          <DropdownMenu
+            handleEdit={() => setShowEditForm(true)}
+            handleDelete={handleDelete}
+          />
+        )}
       </Media>
-    </div>
+    </>
   );
 };
 
