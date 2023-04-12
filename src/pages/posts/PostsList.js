@@ -49,6 +49,7 @@ const PostsList = ({ message, filter = "" }) => {
         <Row className="h-150">
           <Col className='py-2 p-0 p-lg-2' lg={8}>
             <Container>
+              <PopularProfiles mobile />
               <i className={`${styles.SearchIcon} fas fa-search`} />
               <Form className={styles.SearchBar}
                 onSubmit={(event) => event.preventDefault()}
