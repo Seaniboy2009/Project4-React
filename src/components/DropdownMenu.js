@@ -4,9 +4,10 @@ import styles from '../styles/DropdownMenu.module.css'
 
 // Changes the icon to be 3 dots
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
-    <a
+    <i
         className={`${styles.DropdownIcon} fas fa-ellipsis-v`}
         ref={ref}
+        aria-label="dropdown image"
         onClick={(e) => {
             e.preventDefault();
             onClick(e);
@@ -18,7 +19,7 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
 export const DropdownMenu = ( { handleEdit, handleDelete }) => {
     return (
         <Dropdown className="ml-auto" drop="left">
-            <Dropdown.Toggle as={ThreeDots} />
+            <Dropdown.Toggle as={ThreeDots} aria-label="toggle dropdown" />
 
             <Dropdown.Menu className={`text-center ${styles.Dropdown}`}>
                 <Dropdown.Item

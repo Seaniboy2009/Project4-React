@@ -6,13 +6,16 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
 
 
 function CommentCreateForm(props) {
-  const { post, setPost, setComments, profileImage, profile_id } = props;
+  const { 
+    post, 
+    setPost, 
+    setComments, 
+    // profileImage, 
+    profile_id } = props;
   const [content, setContent] = useState("");
-  const [errors, setErrors] = useState('')
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -39,7 +42,6 @@ function CommentCreateForm(props) {
       }));
       setContent("");
     } catch (errors) {
-      setErrors(errors?.results?.data)
       console.log(errors);
     }
   };

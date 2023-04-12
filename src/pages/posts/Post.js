@@ -1,5 +1,10 @@
 import React from 'react';
-import { Card, Col, Container, Dropdown, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Row from 'react-bootstrap/Row';
+import Tooltip from 'react-bootstrap/Tooltip';
 import styles from '../../styles/Post.module.css';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Link } from 'react-router-dom';
@@ -13,7 +18,7 @@ const Post = (props) => {
         owner,
         title,
         profile_id,
-        profile_image,
+        // profile_image,
         advert_image,
         reality_image,
         location,
@@ -22,7 +27,7 @@ const Post = (props) => {
         content,
         postDetail,
         like_id,
-        likes_count,
+        // likes_count,
         comments_count,
         alikes_count,
         not_alikes_count,
@@ -36,12 +41,12 @@ const Post = (props) => {
     // check if the current user is the owner of this post
     const is_owner = currentUser?.username === owner;
     const history = useHistory()
-    
+
     // handles the edit function
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`)
     }
-    
+
     // handles the delete function
     const handleDelete = async () => {
         try {
@@ -299,7 +304,7 @@ const Post = (props) => {
                             </Col>
 
                             <div className='d-flex align-items-center'>
-                                {is_owner && postDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete}/>)}
+                                {is_owner && postDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
                             </div>
                         </Row>
                     </Card.Header>

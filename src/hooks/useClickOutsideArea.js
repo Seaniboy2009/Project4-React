@@ -5,7 +5,7 @@ const useClickOutsideArea = () => {
   const ref = useRef(null);
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target) && event.target.id != 'dropdown') {
+      if (ref.current && !ref.current.contains(event.target) && event.target.id !== 'dropdown') {
         setExpanded(false);
 
       }

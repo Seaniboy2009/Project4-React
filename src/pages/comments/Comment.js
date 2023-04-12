@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/Comment.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { DropdownMenu } from "../../components/DropdownMenu";
-import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosRes } from "../../api/axiosDefaults";
 
 const Comment = (props) => {
@@ -15,12 +14,6 @@ const Comment = (props) => {
   // check if the current user is the owner of this post
   const is_owner = currentUser?.username === owner;
   const [showEditForm, setShowEditForm] = useState(false);
-  const history = useHistory()
-
-  // handles the edit function
-  const handleEdit = () => {
-    history.push(`/comment/${id}/edit`)
-  }
 
   // handles the delete function
   const handleDelete = async () => {
