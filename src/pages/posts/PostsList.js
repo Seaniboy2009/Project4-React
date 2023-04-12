@@ -12,6 +12,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/utils'
 import PopularProfiles from '../profiles/PopularProfiles';
 
+
 const PostsList = ({ message, filter = "" }) => {
   const [query, setQuery] = useState("");
   const { pathname } = useLocation();
