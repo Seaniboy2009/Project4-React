@@ -20,6 +20,7 @@ import {
 } from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { ProfileEditDropdown } from "../../components/DropdownMenu";
 
 function ProfileDetail() {
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -79,6 +80,7 @@ function ProfileDetail() {
                     </Row>
                 </Col>
                 <Col lg={3} className="text-lg-right">
+                {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
                     {currentUser &&
                         !is_owner &&
                         (profile?.following_id ? (
@@ -104,24 +106,24 @@ function ProfileDetail() {
 
     const mainProfilePosts = (
         <>
-          <hr />
-          <p className="text-center">{profile?.owner}'s posts</p>
-          <hr />
-          {posts.results.length ? (
-            <InfiniteScroll
-              children={posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail/>
-              ))}
-              dataLength={posts.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!posts.next}
-              next={() => fetchMoreData(posts, setPosts)}
-            />
-          ) : (
-            'No results'
-          )}
+            <hr />
+            <p className="text-center">{profile?.owner}'s posts</p>
+            <hr />
+            {posts.results.length ? (
+                <InfiniteScroll
+                    children={posts.results.map((post) => (
+                        <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail />
+                    ))}
+                    dataLength={posts.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!posts.next}
+                    next={() => fetchMoreData(posts, setPosts)}
+                />
+            ) : (
+                'No results'
+            )}
         </>
-      );
+    );
 
     return (
         <Row>
