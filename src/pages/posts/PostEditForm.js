@@ -106,7 +106,6 @@ function PostEditForm() {
             await axiosReq.put(`/posts/${id}`, formData);
             history.push(`/posts/${id}`);
         } catch (errors) {
-            console.log(errors.response?.data)
             setErrors(errors.response?.data)
         }
     }

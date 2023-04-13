@@ -34,6 +34,7 @@ const Post = (props) => {
         setPosts,
         alike_id,
         not_alike_id,
+        ProfileDetail,
     } = props;
 
     // get the current user
@@ -53,7 +54,6 @@ const Post = (props) => {
             await axiosReq.delete(`/posts/${id}`)
             history.goBack()
         } catch (error) {
-            console.log(error)
         }
     }
 
@@ -70,7 +70,6 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -87,7 +86,6 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -104,7 +102,6 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -121,7 +118,6 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -138,7 +134,6 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -155,7 +150,6 @@ const Post = (props) => {
                 }),
             }));
         } catch (err) {
-            console.log(err);
         }
     };
 
@@ -305,6 +299,7 @@ const Post = (props) => {
 
                             <div className='d-flex align-items-center'>
                                 {is_owner && postDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
+                                {is_owner && ProfileDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
                             </div>
                         </Row>
                     </Card.Header>

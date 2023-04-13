@@ -46,7 +46,6 @@ function ProfileDetail() {
                 setPosts(posts)
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
             }
         };
         fetchData();
@@ -111,7 +110,7 @@ function ProfileDetail() {
           {posts.results.length ? (
             <InfiniteScroll
               children={posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} />
+                <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail/>
               ))}
               dataLength={posts.results.length}
               loader={<Asset spinner />}

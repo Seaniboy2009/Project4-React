@@ -72,7 +72,6 @@ function PostCreateForm() {
             const { data } = await axiosReq.post("/posts/", formData);
             history.push(`/posts/${data.id}`);
         } catch (errors) {
-            console.log(errors.response?.data)
             setErrors(errors.response?.data)
             setMessage('Failed to submit form, please try again')
             setShow(true)

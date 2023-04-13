@@ -42,13 +42,6 @@ function App() {
             />
           )}
           />
-          <Route exact path='/myposts' render={() => (
-            <PostsList
-              message={'No results found'}
-              filter={`owner__profile=${profile_id}&`}
-            />
-          )}
-          />
           <Route exact path='/signin' render={() => <SignInForm />} />
           <Route exact path='/signup' render={() => <SignUpForm />} />
           <Route exact path='/signout' render={() => <h1>Sign out</h1>} />

@@ -23,7 +23,6 @@ const SignUpForm = () => {
             await axios.post("https://project-5-api.herokuapp.com/dj-rest-auth/registration/", formData);
             history.push("/signin");
         } catch (errors) {
-            console.log(errors.response?.data)
             setErrors(errors.response?.data)
         }
     }

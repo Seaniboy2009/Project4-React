@@ -27,8 +27,7 @@ const PostsList = ({ message, filter = "" }) => {
         const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         setPosts(data);
         setHasLoaded(true);
-      } catch (error) {
-        console.log(error);
+      } catch (error) {]
       }
     };
 

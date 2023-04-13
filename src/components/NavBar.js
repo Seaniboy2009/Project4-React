@@ -21,8 +21,7 @@ const NavBar = () => {
             await axios.post("https://project-5-api.herokuapp.com/dj-rest-auth/logout/");
             setCurrentUser(null);
         } catch (error) {
-            console.log(error);
-            console.log(error.response?.data)
+
         }
     };
 
@@ -46,7 +45,7 @@ const NavBar = () => {
             <NavDropdown
                 className={styles.NavDropdown}
                 name="dropdown"
-                title={`Account: ${currentUser?.username}`}
+                title={`Logged in as: ${currentUser?.username}`}
                 id="dropdown"
             >
                 <NavDropdown.Item className={styles.NavDropdownItem}>
@@ -63,8 +62,8 @@ const NavBar = () => {
                         className={styles.Link}
                         activeClassName={styles.Active}
                         aria-label="my posts page"
-                        to='/myposts'>
-                        <i className="fa-solid fa-plus" /> My posts
+                        to={`/profiles/${currentUser?.profile_id}`}>
+                        <i className="fa-solid fa-plus" /> Account
                     </NavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item className={styles.NavDropdownItem}>
