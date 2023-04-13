@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useLocation } from 'react-router-dom';
 import Container from "react-bootstrap/Container";
@@ -9,7 +9,7 @@ import styles from '../../styles/PostList.module.css'
 import Post from './Post';
 import { Form } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { fetchMoreData } from '../../utils/utils'
+import { fetchMoreData } from '../../utils/utils';
 import ProfileList from '../profiles/ProfileList';
 
 
