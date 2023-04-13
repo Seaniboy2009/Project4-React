@@ -26,7 +26,7 @@ function ProfileDetail() {
     const [posts, setPosts] = useState({ results: [] });
     const currentUser = useCurrentUser();
     const { id } = useParams();
-    const setProfileData = useSetProfileData();
+    const { setProfileData, handleFollow } = useSetProfileData();
     const { pageProfile } = useProfileData();
     const [profile] = pageProfile.results;
     const is_owner = currentUser?.username === profile?.owner;
@@ -91,7 +91,7 @@ function ProfileDetail() {
                         ) : (
                             <Button
                                 className={`${btnStyles.Full} ${btnStyles.Main}`}
-                                onClick={() => { }}
+                                onClick={() => handleFollow(profile)}
                             >
                                 follow
                             </Button>
