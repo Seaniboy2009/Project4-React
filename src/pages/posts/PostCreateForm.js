@@ -5,12 +5,16 @@ import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from "../../api/axiosDefaults";
+import MessageAlert from '../../components/MessageAlert';
 
 function PostCreateForm() {
 
     const postURL = 'https://res.cloudinary.com/dgj9rjuka/image/upload/v1678359959/media/images/default_post_fr07hq.jpg'
     const advertImageInput = useRef(null)
     const realityImageInput = useRef(null)
+
+    const [show, setShow] = useState(false);
+    const [message, setMessage] = useState('Default message')
 
     // Data that will be sent to the API
     const [formData, setFormData] = useState({
@@ -71,6 +75,8 @@ function PostCreateForm() {
         } catch (errors) {
             console.log(errors.response?.data)
             setErrors(errors.response?.data)
+            setMessage('Failed to submit form, please try again')
+            setShow(true)
         }
     }
 
@@ -225,6 +231,18 @@ function PostCreateForm() {
 
     return (
         <Form onSubmit={handleSubmit}>
+            <Row>
+                <Col>
+                    {show ? (
+                        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                            <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+                            <p>
+                                {message}
+                            </p>
+                        </Alert>
+                    ) : (null)}
+                </Col>
+            </Row>
             <Row>
                 <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
                     <Container className={`${styles.Container} d-flex flex-column justify-content-center`}>

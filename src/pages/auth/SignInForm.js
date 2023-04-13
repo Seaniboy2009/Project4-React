@@ -14,7 +14,7 @@ const SignInForm = () => {
         username: '',
         password: '',
     });
-    const {username, password} = formData;
+    const { username, password } = formData;
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
@@ -40,44 +40,47 @@ const SignInForm = () => {
         }
     }
     return (
-        <Row className="justify-content-md-center">
-            <Col xs={6}>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="username">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter Name"
-                            name='username'
-                            value={username}
-                            onChange={handleChange}
-                        />
-                        {errors.username?.map((message, index) =>
+        <>
+            <Row className="justify-content-md-center">
+                <Col xs={6}>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group controlId="username">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter Name"
+                                name='username'
+                                value={username}
+                                onChange={handleChange}
+                            />
+                            {errors.username?.map((message, index) =>
+                                <Alert key={index}>{message}</Alert>
+                            )}
+                        </Form.Group>
+                        <Form.Group controlId="password">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                name='password'
+                                value={password}
+                                onChange={handleChange}
+                            />
+                            {errors.password?.map((message, index) =>
+                                <Alert key={index}>{message}</Alert>
+                            )}
+                        </Form.Group>
+                        <Button className={`${btnStyles.Full} ${btnStyles.Main}`} type="submit">
+                            Sign in
+                        </Button>
+                        {errors.non_field_errors?.map((message, index) =>
                             <Alert key={index}>{message}</Alert>
                         )}
-                    </Form.Group>
-                    <Form.Group controlId="password">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="Password"
-                            name='password'
-                            value={password}
-                            onChange={handleChange}
-                        />
-                        {errors.password?.map((message, index) =>
-                            <Alert key={index}>{message}</Alert>
-                        )}
-                    </Form.Group>
-                    <Button className={`${btnStyles.Full} ${btnStyles.Main}`} type="submit">
-                        Sign in
-                    </Button>
-                    {errors.non_field_errors?.map((message, index) =>
-                        <Alert key={index}>{message}</Alert>
-                    )}
-                </Form>
-            </Col>
-        </Row>
+                    </Form>
+                </Col>
+            </Row>
+        </>
+
     )
 }
 
