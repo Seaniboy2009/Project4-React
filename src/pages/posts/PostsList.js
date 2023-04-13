@@ -10,7 +10,7 @@ import Post from './Post';
 import { Form } from 'react-bootstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { fetchMoreData } from '../../utils/utils'
-import PopularProfiles from '../profiles/PopularProfiles';
+import ProfileList from '../profiles/ProfileList';
 
 
 const PostsList = ({ message, filter = "" }) => {
@@ -50,7 +50,7 @@ const PostsList = ({ message, filter = "" }) => {
         <Row className="h-150">
           <Col className='py-2 p-0 p-lg-2' lg={8}>
             <Container>
-              <PopularProfiles mobile />
+              <ProfileList mobile />
               <i className={`${styles.SearchIcon} fas fa-search`} />
               <Form className={styles.SearchBar}
                 onSubmit={(event) => event.preventDefault()}
@@ -90,7 +90,7 @@ const PostsList = ({ message, filter = "" }) => {
             <br />
           </Col>
           <Col md={4} className='d-none d-lg-block'>
-            <PopularProfiles />
+            <ProfileList />
           </Col>
         </Row>
       </Container>

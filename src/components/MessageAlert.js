@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 
-const MessageAlert = ({ message, color }) => {
+const MessageAlert = ({ color }) => {
     const [show, setShow] = useState(false);
+    const [message, setMessage] = useState('Default message')
 
     return (
         <>

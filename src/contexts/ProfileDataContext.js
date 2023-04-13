@@ -12,7 +12,7 @@ export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({
     // we will use the pageProfile later!
     pageProfile: { results: [] },
-    popularProfiles: { results: [] },
+    ProfileList: { results: [] },
   });
 
   const currentUser = useCurrentUser();
@@ -25,7 +25,7 @@ export const ProfileDataProvider = ({ children }) => {
         );
         setProfileData((prevState) => ({
           ...prevState,
-          popularProfiles: data,
+          ProfileList: data,
         }));
       } catch (err) {
         console.log(err);

@@ -1,12 +1,11 @@
 import React from 'react'
-import styles from '../../styles/PopularProfiles.module.css'
+import styles from '../../styles/ProfileList.module.css'
 import { Container } from 'react-bootstrap'
 import Profile from './Profile'
 import { useProfileData } from '../../contexts/ProfileDataContext'
 
-const PopularProfiles = ({ mobile }) => {
-    const { popularProfiles } = useProfileData();
-
+const ProfileList = ({ mobile }) => {
+    const { ProfileList } = useProfileData();
 
     return (
         <Container className={`${styles.Container} ${mobile && 'd-lg-none text-center mb-3'}`}>
@@ -14,13 +13,13 @@ const PopularProfiles = ({ mobile }) => {
 
             {mobile ? (
                 <div className='d-flex justify-content-around'>
-                    {popularProfiles.results.slice(0, 4).map(profile => (
+                    {ProfileList.results.slice(0, 4).map(profile => (
                         <Profile key={profile.id} profile={profile} mobile />
                     ))}
                 </div>
             ) : (
 
-                popularProfiles.results.map(profile => (
+                ProfileList.results.map(profile => (
                     <Profile key={profile.id} profile={profile} />
                 ))
             )}
@@ -29,4 +28,4 @@ const PopularProfiles = ({ mobile }) => {
     )
 }
 
-export default PopularProfiles
+export default ProfileList

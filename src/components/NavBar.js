@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../styles/NavBar.module.css';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import { NavLink } from 'react-router-dom';
 import { useSetCurrentUser, useCurrentUser } from '../contexts/CurrentUserContext';
 import useClickOutsideArea from '../hooks/useClickOutsideArea';
