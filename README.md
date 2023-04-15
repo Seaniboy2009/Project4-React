@@ -25,7 +25,9 @@
     - Full navigation for all site functions
 
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/nav_signed_in_dqzmsh.png)
+
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/nav_signed_out_gw1nsj.png)
+
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/nav_dropdown_xujghv.png)
 
     - Ability to create an account
@@ -44,7 +46,9 @@
     - Can vote on a post if its alike or not alike, can also unvote
 
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_like_comments_jhpcvl.png)
+
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_not_alike_dnuqv6.png)
+    
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_alike_e6vtce.png)
 
     - Can comment on a post
