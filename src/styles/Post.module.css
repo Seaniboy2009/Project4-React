@@ -1,7 +1,16 @@
-.Card {
+.Card, .CardPrev {
     color: #ffffff;
     background-color: #252740;
     border: 1px solid #4c508f;
+}
+
+.CardPrev {
+    width: 18rem
+}
+
+.CardPrev:hover {
+    background-color: #4c508f;
+    border: 1px solid #252740;
 }
 
 .Alike, .NotAlike {

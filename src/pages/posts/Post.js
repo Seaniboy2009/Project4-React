@@ -35,6 +35,7 @@ const Post = (props) => {
         alike_id,
         not_alike_id,
         ProfileDetail,
+        preview,
     } = props;
 
     // get the current user
@@ -283,63 +284,76 @@ const Post = (props) => {
     return (
         <div>
             <Container>
-                <Card className={styles.Card}>
-                    <Card.Header>
-                        <Row>
-                            <Col>
-                                {likeDetails}
-                            </Col>
-                            <Col>
-                                <span>
-                                    Comments:&nbsp;
-                                    <i className="fa-regular fa-comments" />&nbsp;
-                                    {comments_count}
-                                </span>
-                            </Col>
+                {preview ? (
 
-                            <div className='d-flex align-items-center'>
-                                {is_owner && postDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
-                                {is_owner && ProfileDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
-                            </div>
-                        </Row>
-                    </Card.Header>
-                    <Row className={styles.Row}>
-                        <Col><Card.Img className={styles.Alike} src={advert_image} alt={title}></Card.Img></Col>
-                        <Col><Card.Img className={styles.NotAlike} src={reality_image} alt={title}></Card.Img></Col>
-                    </Row>
-                    <Row className={styles.Row}>
-                        <Col>
-                            <Card.Text className={styles.AlikeText}>
-                                {alikeDetails}
-                            </Card.Text>
-                        </Col>
-                        <Col>
-                            <Card.Text className={styles.NotAlikeText}>
-                                {notAlikeDetails}
-                            </Card.Text>
-                        </Col>
-                    </Row>
-                    <Card.Body>
-                        {postDetail ? (
-                            <>
-                                <Card.Text><p>Content: {content ? content : 'No details given'}</p></Card.Text>
-                                <Card.Text><p>Location: {location ? location : 'No details given'}</p></Card.Text>
-                                <Card.Text><p>Franchisor : {franchisor ? franchisor : 'No details given'}</p></Card.Text>
-                            </>
-                        ) : (
-                            <Card.Text>
-                                <Link className={styles.Title} to={`/posts/${id}`}>
-                                    Open post for details and comments
-                                </Link>
-                            </Card.Text>
-                        )}
-                    </Card.Body>
-                    <Card.Footer>
-                        <Link to={`/profiles/${profile_id}`}>
-                            <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
+                    <Card className={styles.CardPrev}>
+                        <Link className={styles.Title} to={`/posts/${id}`}>
+                            <Card.Img variant="top" src={advert_image} className={styles.Alike} />
+                            <Card.Body>
+                                <Card.Title>{title}</Card.Title>
+                            </Card.Body>
                         </Link>
-                    </Card.Footer>
-                </Card>
+                    </Card>
+                ) : (
+                    <Card className={styles.Card}>
+                        <Card.Header>
+                            <Row>
+                                <Col>
+                                    {likeDetails}
+                                </Col>
+                                <Col>
+                                    <span>
+                                        Comments:&nbsp;
+                                        <i className="fa-regular fa-comments" />&nbsp;
+                                        {comments_count}
+                                    </span>
+                                </Col>
+
+                                <div className='d-flex align-items-center'>
+                                    {is_owner && postDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
+                                    {is_owner && ProfileDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
+                                </div>
+                            </Row>
+                        </Card.Header>
+                        <Row className={styles.Row}>
+                            <Col><Card.Img className={styles.Alike} src={advert_image} alt={title}></Card.Img></Col>
+                            <Col><Card.Img className={styles.NotAlike} src={reality_image} alt={title}></Card.Img></Col>
+                        </Row>
+                        <Row className={styles.Row}>
+                            <Col>
+                                <Card.Text className={styles.AlikeText}>
+                                    {alikeDetails}
+                                </Card.Text>
+                            </Col>
+                            <Col>
+                                <Card.Text className={styles.NotAlikeText}>
+                                    {notAlikeDetails}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Card.Body>
+                            {postDetail ? (
+                                <>
+                                    <Card.Text><p>Content: {content ? content : 'No details given'}</p></Card.Text>
+                                    <Card.Text><p>Location: {location ? location : 'No details given'}</p></Card.Text>
+                                    <Card.Text><p>Franchisor : {franchisor ? franchisor : 'No details given'}</p></Card.Text>
+                                </>
+                            ) : (
+                                <Card.Text>
+                                    <Link className={styles.Title} to={`/posts/${id}`}>
+                                        Open post for details and comments
+                                    </Link>
+                                </Card.Text>
+                            )}
+                        </Card.Body>
+                        <Card.Footer>
+                            <Link to={`/profiles/${profile_id}`}>
+                                <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
+                            </Link>
+                        </Card.Footer>
+                    </Card>
+                )}
+
             </Container>
             <br />
         </div>
