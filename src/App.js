@@ -15,6 +15,7 @@ import ProfileDetail from './pages/profiles/ProfileDetail';
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import ProfileList from './pages/profiles/ProfileList';
 
 function App() {
   const currentUser = useCurrentUser()
@@ -31,11 +32,8 @@ function App() {
             />
           )}
           />
-          <Route exact path='/followed' render={() => (
-            <PostsList
-              message={'No results found'}
-              filter={`owner__followed__owner__profile=${profile_id}&`}
-            />
+          <Route exact path='/users' render={() => (
+            <ProfileList />
           )}
           />
           <Route exact path='/liked' render={() => (

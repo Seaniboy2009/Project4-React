@@ -41,7 +41,7 @@ export const DropdownMenu = ({ handleEdit, handleDelete }) => {
 export function ProfileEditDropdown({ id }) {
   const history = useHistory();
   return (
-    <Dropdown className='ml-auto' drop="left">
+    <Dropdown className='ml-auto' drop="down">
       <Dropdown.Toggle as={editIcon} aria-label="toggle dropdown" />
       <Dropdown.Menu className={`text-center ${styles.Dropdown}`}>
         <Dropdown.Item

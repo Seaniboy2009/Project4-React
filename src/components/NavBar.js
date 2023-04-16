@@ -33,9 +33,9 @@ const NavBar = () => {
             <NavLink
                 className={styles.Link}
                 activeClassName={styles.Active}
-                aria-label="followed page"
-                to='/followed'>
-                <i className="fa-solid fa-person-walking" /> Followed
+                aria-label="users page"
+                to='/users'>
+                <i className="fa-solid fa-person-walking" /> Users
             </NavLink>
             <NavLink
                 className={styles.Link}

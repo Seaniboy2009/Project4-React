@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -8,7 +7,6 @@ import Asset from "../../components/Asset";
 import Post from '../posts/Post';
 import styles from "../../styles/ProfileDetail.module.css";
 import appStyles from "../../App.module.css";
-import InfiniteScroll from "react-infinite-scroll-component";
 import btnStyles from "../../styles/Button.module.css";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -19,7 +17,6 @@ import {
     useSetProfileData,
 } from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
-import { fetchMoreData } from '../../utils/utils'
 import { ProfileEditDropdown } from "../../components/DropdownMenu";
 
 function ProfileDetail() {

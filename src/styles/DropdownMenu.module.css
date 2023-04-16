@@ -16,7 +16,9 @@
 
 .DropdownItem {
     color: #fffffffa;
-    display: inline-block;
-    max-width: 50%;
-    padding: 0;
+}
+
+.DropdownItem:hover {
+    background-color: #4c508f;
+    color: #2aac2c;
 }
