@@ -6,6 +6,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Row from 'react-bootstrap/Row';
 import Tooltip from 'react-bootstrap/Tooltip';
 import styles from '../../styles/Post.module.css';
+
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Link } from 'react-router-dom';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
@@ -18,7 +19,6 @@ const Post = (props) => {
         owner,
         title,
         profile_id,
-        // profile_image,
         advert_image,
         reality_image,
         location,
@@ -27,7 +27,6 @@ const Post = (props) => {
         content,
         postDetail,
         like_id,
-        // likes_count,
         comments_count,
         alikes_count,
         not_alikes_count,

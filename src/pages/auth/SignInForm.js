@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import btnStyles from '../../styles/Button.module.css'
-import { Row, Col, Form, Button, Alert } from 'react-bootstrap'
+import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import axios from "axios";
+
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 

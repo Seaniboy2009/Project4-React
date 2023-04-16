@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from '../styles/NavBar.module.css';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import { NavLink } from 'react-router-dom';
-import { useSetCurrentUser, useCurrentUser } from '../contexts/CurrentUserContext';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav';
 import useClickOutsideArea from '../hooks/useClickOutsideArea';
 import axios from 'axios';
+
+import { NavLink } from 'react-router-dom';
+import { useSetCurrentUser, useCurrentUser } from '../contexts/CurrentUserContext';
 
 const NavBar = () => {
     // Custom hook to get the signed in user
