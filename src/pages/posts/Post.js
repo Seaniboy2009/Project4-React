@@ -59,95 +59,118 @@ const Post = (props) => {
     }
 
     // User can like the post
-    const handleLike = async () => {
-        try {
-            const { data } = await axiosRes.post("/likes/", { post: id });
-            setPosts((prevPosts) => ({
-                ...prevPosts,
-                results: prevPosts.results.map((post) => {
-                    return post.id === id
-                        ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-                        : post;
-                }),
-            }));
-        } catch (err) {
-        }
-    };
+    // const handleLike = async () => {
+    //     try {
+    //         const { data } = await axiosRes.post("/likes/", { post: id });
+    //         setPosts((prevPosts) => ({
+    //             ...prevPosts,
+    //             results: prevPosts.results.map((post) => {
+    //                 return post.id === id
+    //                     ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+    //                     : post;
+    //             }),
+    //         }));
+    //     } catch (err) {
+    //     }
+    // };
 
     // User can Unlike the post
-    const handleUnlike = async () => {
-        try {
-            await axiosRes.delete(`/likes/${like_id}`);
-            setPosts((prevPosts) => ({
-                ...prevPosts,
-                results: prevPosts.results.map((post) => {
-                    return post.id === id
-                        ? { ...post, likes_count: post.likes_count - 1, like_id: null }
-                        : post;
-                }),
-            }));
-        } catch (err) {
-        }
-    };
+    // const handleUnlike = async () => {
+    //     try {
+    //         await axiosRes.delete(`/likes/${like_id}`);
+    //         setPosts((prevPosts) => ({
+    //             ...prevPosts,
+    //             results: prevPosts.results.map((post) => {
+    //                 return post.id === id
+    //                     ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+    //                     : post;
+    //             }),
+    //         }));
+    //     } catch (err) {
+    //     }
+    // };
 
     // User can vote on alike
-    const handleVoteALike = async () => {
-        try {
-            const { data } = await axiosRes.post("/votealike/", { post: id });
-            setPosts((prevPosts) => ({
-                ...prevPosts,
-                results: prevPosts.results.map((post) => {
-                    return post.id === id
-                        ? { ...post, alikes_count: post.alikes_count + 1, alike_id: data.id }
-                        : post;
-                }),
-            }));
-        } catch (err) {
-        }
-    };
+    // const handleVoteALike = async () => {
+    //     try {
+    //         const { data } = await axiosRes.post("/votealike/", { post: id });
+    //         setPosts((prevPosts) => ({
+    //             ...prevPosts,
+    //             results: prevPosts.results.map((post) => {
+    //                 return post.id === id
+    //                     ? { ...post, alikes_count: post.alikes_count + 1, alike_id: data.id }
+    //                     : post;
+    //             }),
+    //         }));
+    //     } catch (err) {
+    //     }
+    // };
 
     // User can Unvote on alike
-    const handleVoteUnAlike = async () => {
-        try {
-            await axiosRes.delete(`/votealike/${alike_id}`);
-            setPosts((prevPosts) => ({
-                ...prevPosts,
-                results: prevPosts.results.map((post) => {
-                    return post.id === id
-                        ? { ...post, alikes_count: post.alikes_count - 1, alike_id: null }
-                        : post;
-                }),
-            }));
-        } catch (err) {
-        }
-    };
+    // const handleVoteUnAlike = async () => {
+    //     try {
+    //         await axiosRes.delete(`/votealike/${alike_id}`);
+    //         setPosts((prevPosts) => ({
+    //             ...prevPosts,
+    //             results: prevPosts.results.map((post) => {
+    //                 return post.id === id
+    //                     ? { ...post, alikes_count: post.alikes_count - 1, alike_id: null }
+    //                     : post;
+    //             }),
+    //         }));
+    //     } catch (err) {
+    //     }
+    // };
 
     // User can vote on NOt alike
-    const handleVoteNotALike = async () => {
-        try {
-            const { data } = await axiosRes.post("/votenotalike/", { post: id });
-            setPosts((prevPosts) => ({
-                ...prevPosts,
-                results: prevPosts.results.map((post) => {
-                    return post.id === id
-                        ? { ...post, not_alikes_count: post.not_alikes_count + 1, not_alike_id: data.id }
-                        : post;
-                }),
-            }));
-        } catch (err) {
-        }
-    };
+    // const handleVoteNotALike = async () => {
+    //     try {
+    //         const { data } = await axiosRes.post("/votenotalike/", { post: id });
+    //         setPosts((prevPosts) => ({
+    //             ...prevPosts,
+    //             results: prevPosts.results.map((post) => {
+    //                 return post.id === id
+    //                     ? { ...post, not_alikes_count: post.not_alikes_count + 1, not_alike_id: data.id }
+    //                     : post;
+    //             }),
+    //         }));
+    //     } catch (err) {
+    //     }
+    // };
 
     // User can Unvote on Not alike
-    const handleVoteUnNotAlike = async () => {
+    // const handleVoteUnNotAlike = async () => {
+    //     try {
+    //         await axiosRes.delete(`/votenotalike/${not_alike_id}`);
+    //         setPosts((prevPosts) => ({
+    //             ...prevPosts,
+    //             results: prevPosts.results.map((post) => {
+    //                 return post.id === id
+    //                     ? { ...post, not_alikes_count: post.not_alikes_count - 1, not_alike_id: null }
+    //                     : post;
+    //             }),
+    //         }));
+    //     } catch (err) {
+    //     }
+    // };
+
+    const handleLikeClick = async ( {url, like, alike, notAlike} ) => {
+        console.log(url, like, alike, notAlike)
         try {
-            await axiosRes.delete(`/votenotalike/${not_alike_id}`);
+            const { data } = await axiosRes.post(`/${url}/`, { post: id });
             setPosts((prevPosts) => ({
                 ...prevPosts,
                 results: prevPosts.results.map((post) => {
                     return post.id === id
-                        ? { ...post, not_alikes_count: post.not_alikes_count - 1, not_alike_id: null }
-                        : post;
+                        ? ( like ?
+                            { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+                            : alike ?
+                            { ...post, alikes_count: post.alikes_count + 1, alike_id: data.id }
+                            : notAlike ?
+                            { ...post, not_alikes_count: post.not_alikes_count + 1, not_alike_id: data.id } 
+                            : null
+                            )
+                           : post;
                 }),
             }));
         } catch (err) {
@@ -190,9 +213,6 @@ const Post = (props) => {
             ) : like_id ? (
                 // The user has already liked and can unlike
                 <OverlayTrigger placement='top' overlay={<Tooltip>UnLike</Tooltip>}>
-                    {/* <span onClick={handleUnlike}>
-                        <i className={`${styles.Icon} fa-solid fa-star`} />
-                    </span> */}
                     <span onClick={() => handleUnlikeClick({url: 'likes', urlId: like_id, like: true})}>
                         <i className={`${styles.Icon} fa-solid fa-star`} />
                     </span>
@@ -200,7 +220,7 @@ const Post = (props) => {
             ) : currentUser ? (
                 // User has not liked and can like
                 <OverlayTrigger placement='top' overlay={<Tooltip>Like</Tooltip>}>
-                    <span onClick={handleLike}>
+                    <span onClick={() => handleLikeClick({url: 'likes', like: true})}>
                         <i className="fa-regular fa-star" />
                     </span>
                 </OverlayTrigger>
@@ -243,7 +263,7 @@ const Post = (props) => {
                         ) : (
                             // user has not voted yet so can vote on this
                             <OverlayTrigger placement='top' overlay={<Tooltip>Vote alike</Tooltip>}>
-                                <span onClick={handleVoteALike}>
+                                <span onClick={() => handleLikeClick({url: 'votealike', alike: true})}>
                                     <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
                                     {alikes_count}
                                 </span>
@@ -290,7 +310,7 @@ const Post = (props) => {
                         ) : (
                             // User has not voted so can vote
                             <OverlayTrigger placement='top' overlay={<Tooltip>Vote not alike</Tooltip>}>
-                                <span onClick={handleVoteNotALike}>
+                                <span onClick={() => handleLikeClick({url: 'votenotalike', notAlike: true})}>
                                     <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
                                     {not_alikes_count}
                                 </span>
@@ -326,6 +346,7 @@ const Post = (props) => {
                             <Row>
                                 <Col>
                                     {likeDetails}
+                                    {likes_count}
                                 </Col>
                                 <Col>
                                     <span>
