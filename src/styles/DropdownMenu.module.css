@@ -1,10 +1,17 @@
 .Dropdown {
     background-color: #141526;
     border: 1px solid #4c508f;
+    display: grid
 }
 
 .DropdownIcon {
-    font-size: 300%;
+    font-size: 150%;
+    color: #4c508f;
+}
+
+.DropdownIcon:hover {
+    font-size: 150%;
+    color: #2aac2c;
 }
 
 .DropdownItem {

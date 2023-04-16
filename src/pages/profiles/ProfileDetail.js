@@ -63,24 +63,23 @@ function ProfileDetail() {
                     />
                 </Col>
                 <Col lg={6}>
-                    <h3 className="m-2">Name: {profile?.owner}</h3>
+                    <h3 className="m-2">Name: {profile?.owner} {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}</h3>
                     <Row className="justify-content-center no-gutters">
                         <Col xs={3} className="my-2">
                             <div>{profile?.posts_count}</div>
-                            <div>posts</div>
+                            <div>Posts</div>
                         </Col>
                         <Col xs={3} className="my-2">
                             <div>{profile?.followers_count}</div>
-                            <div>followers</div>
+                            <div>Followers</div>
                         </Col>
                         <Col xs={3} className="my-2">
                             <div>{profile?.following_count}</div>
-                            <div>following</div>
+                            <div>Following</div>
                         </Col>
                     </Row>
                 </Col>
                 <Col lg={3} className="text-lg-right">
-                    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
                     {currentUser &&
                         !is_owner &&
                         (profile?.following_id ? (
@@ -88,14 +87,14 @@ function ProfileDetail() {
                                 className={`${btnStyles.Full} ${btnStyles.Main}`}
                                 onClick={() => handleUnFollow(profile)}
                             >
-                                unfollow
+                                Unfollow
                             </Button>
                         ) : (
                             <Button
                                 className={`${btnStyles.Full} ${btnStyles.Main}`}
                                 onClick={() => handleFollow(profile)}
                             >
-                                follow
+                                Follow
                             </Button>
                         ))}
                 </Col>
@@ -119,17 +118,6 @@ function ProfileDetail() {
                     {posts.results.map((post) => (
                         <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail preview />
                     ))}
-                    {/* <InfiniteScroll
-                        children={posts.results.map((post) => (
-
-                            <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail preview />
-
-                        ))}
-                        dataLength={posts.results.length}
-                        loader={<Asset spinner />}
-                        hasMore={!!posts.next}
-                        next={() => fetchMoreData(posts, setPosts)}
-                    /> */}
                 </CardColumns>
             ) : (
                 'No results'
