@@ -63,7 +63,7 @@ function ProfileDetail() {
                     />
                 </Col>
                 <Col lg={6}>
-                    <h3 className="m-2">{profile?.owner}</h3>
+                    <h3 className="m-2">Name: {profile?.owner}</h3>
                     <Row className="justify-content-center no-gutters">
                         <Col xs={3} className="my-2">
                             <div>{profile?.posts_count}</div>
@@ -107,7 +107,11 @@ function ProfileDetail() {
     const mainProfilePosts = (
         <>
             <hr />
-            <p className="text-center">{profile?.owner}'s posts</p>
+            {is_owner ? (
+                <p className="text-center">Your Posts</p>
+            ) : (
+                <p className="text-center">{profile?.owner}'s Posts</p>
+            )}
             <hr />
 
             {posts.results.length ? (
