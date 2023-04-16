@@ -58,103 +58,9 @@ const Post = (props) => {
         }
     }
 
-    // User can like the post
-    // const handleLike = async () => {
-    //     try {
-    //         const { data } = await axiosRes.post("/likes/", { post: id });
-    //         setPosts((prevPosts) => ({
-    //             ...prevPosts,
-    //             results: prevPosts.results.map((post) => {
-    //                 return post.id === id
-    //                     ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-    //                     : post;
-    //             }),
-    //         }));
-    //     } catch (err) {
-    //     }
-    // };
-
-    // User can Unlike the post
-    // const handleUnlike = async () => {
-    //     try {
-    //         await axiosRes.delete(`/likes/${like_id}`);
-    //         setPosts((prevPosts) => ({
-    //             ...prevPosts,
-    //             results: prevPosts.results.map((post) => {
-    //                 return post.id === id
-    //                     ? { ...post, likes_count: post.likes_count - 1, like_id: null }
-    //                     : post;
-    //             }),
-    //         }));
-    //     } catch (err) {
-    //     }
-    // };
-
-    // User can vote on alike
-    // const handleVoteALike = async () => {
-    //     try {
-    //         const { data } = await axiosRes.post("/votealike/", { post: id });
-    //         setPosts((prevPosts) => ({
-    //             ...prevPosts,
-    //             results: prevPosts.results.map((post) => {
-    //                 return post.id === id
-    //                     ? { ...post, alikes_count: post.alikes_count + 1, alike_id: data.id }
-    //                     : post;
-    //             }),
-    //         }));
-    //     } catch (err) {
-    //     }
-    // };
-
-    // User can Unvote on alike
-    // const handleVoteUnAlike = async () => {
-    //     try {
-    //         await axiosRes.delete(`/votealike/${alike_id}`);
-    //         setPosts((prevPosts) => ({
-    //             ...prevPosts,
-    //             results: prevPosts.results.map((post) => {
-    //                 return post.id === id
-    //                     ? { ...post, alikes_count: post.alikes_count - 1, alike_id: null }
-    //                     : post;
-    //             }),
-    //         }));
-    //     } catch (err) {
-    //     }
-    // };
-
-    // User can vote on NOt alike
-    // const handleVoteNotALike = async () => {
-    //     try {
-    //         const { data } = await axiosRes.post("/votenotalike/", { post: id });
-    //         setPosts((prevPosts) => ({
-    //             ...prevPosts,
-    //             results: prevPosts.results.map((post) => {
-    //                 return post.id === id
-    //                     ? { ...post, not_alikes_count: post.not_alikes_count + 1, not_alike_id: data.id }
-    //                     : post;
-    //             }),
-    //         }));
-    //     } catch (err) {
-    //     }
-    // };
-
-    // User can Unvote on Not alike
-    // const handleVoteUnNotAlike = async () => {
-    //     try {
-    //         await axiosRes.delete(`/votenotalike/${not_alike_id}`);
-    //         setPosts((prevPosts) => ({
-    //             ...prevPosts,
-    //             results: prevPosts.results.map((post) => {
-    //                 return post.id === id
-    //                     ? { ...post, not_alikes_count: post.not_alikes_count - 1, not_alike_id: null }
-    //                     : post;
-    //             }),
-    //         }));
-    //     } catch (err) {
-    //     }
-    // };
-
-    const handleLikeClick = async ( {url, like, alike, notAlike} ) => {
+    // handle inital click to like, alike or not alike, takes in the url to create
+    // a bool if its the like button, alike button or not alike button
+    const handleLikeClick = async ({ url, like, alike, notAlike }) => {
         console.log(url, like, alike, notAlike)
         try {
             const { data } = await axiosRes.post(`/${url}/`, { post: id });
@@ -162,22 +68,25 @@ const Post = (props) => {
                 ...prevPosts,
                 results: prevPosts.results.map((post) => {
                     return post.id === id
-                        ? ( like ?
+                        ? (like ?
                             { ...post, likes_count: post.likes_count + 1, like_id: data.id }
                             : alike ?
-                            { ...post, alikes_count: post.alikes_count + 1, alike_id: data.id }
-                            : notAlike ?
-                            { ...post, not_alikes_count: post.not_alikes_count + 1, not_alike_id: data.id } 
-                            : null
-                            )
-                           : post;
+                                { ...post, alikes_count: post.alikes_count + 1, alike_id: data.id }
+                                : notAlike ?
+                                    { ...post, not_alikes_count: post.not_alikes_count + 1, not_alike_id: data.id }
+                                    : null
+                        )
+                        : post;
                 }),
             }));
         } catch (err) {
         }
     };
 
-    const handleUnlikeClick = async ( {url, urlId, like, alike, notAlike} ) => {
+    // handle untick click to like, alike or not alike, takes in the url
+    // and ID to delete the object from the db
+    // a bool if its the like button, alike button or not alike button
+    const handleUnlikeClick = async ({ url, urlId, like, alike, notAlike }) => {
         console.log(url, urlId, like, alike, notAlike)
         try {
             await axiosRes.delete(`/${url}/${urlId}`);
@@ -185,14 +94,14 @@ const Post = (props) => {
                 ...prevPosts,
                 results: prevPosts.results.map((post) => {
                     return post.id === id
-                        ? ( like ?
-                         { ...post, likes_count: post.likes_count - 1, like_id: null }
-                         : alike ?
-                         { ...post, alikes_count: post.alikes_count - 1, alike_id: null }
-                         : notAlike ?
-                         { ...post, not_alikes_count: post.not_alikes_count - 1, not_alike_id: null } 
-                         : null
-                         )
+                        ? (like ?
+                            { ...post, likes_count: post.likes_count - 1, like_id: null }
+                            : alike ?
+                                { ...post, alikes_count: post.alikes_count - 1, alike_id: null }
+                                : notAlike ?
+                                    { ...post, not_alikes_count: post.not_alikes_count - 1, not_alike_id: null }
+                                    : null
+                        )
                         : post;
                 }),
             }));
@@ -213,14 +122,14 @@ const Post = (props) => {
             ) : like_id ? (
                 // The user has already liked and can unlike
                 <OverlayTrigger placement='top' overlay={<Tooltip>UnLike</Tooltip>}>
-                    <span onClick={() => handleUnlikeClick({url: 'likes', urlId: like_id, like: true})}>
+                    <span onClick={() => handleUnlikeClick({ url: 'likes', urlId: like_id, like: true })}>
                         <i className={`${styles.Icon} fa-solid fa-star`} />
                     </span>
                 </OverlayTrigger>
             ) : currentUser ? (
                 // User has not liked and can like
                 <OverlayTrigger placement='top' overlay={<Tooltip>Like</Tooltip>}>
-                    <span onClick={() => handleLikeClick({url: 'likes', like: true})}>
+                    <span onClick={() => handleLikeClick({ url: 'likes', like: true })}>
                         <i className="fa-regular fa-star" />
                     </span>
                 </OverlayTrigger>
@@ -246,29 +155,26 @@ const Post = (props) => {
                     </OverlayTrigger>
                 ) : alike_id ? (
                     // The user has already voted and can unvote
-                    <OverlayTrigger placement='top' overlay={<Tooltip>UnVote</Tooltip>}>
-                        <span onClick={() => handleUnlikeClick({url:'votealike', urlId: alike_id, alike: true})}>
-                            <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
+                    <span onClick={() => handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true })}>
+                        <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
+                        {alikes_count}
+                    </span>
+                ) : not_alike_id ? (
+                    <>
+                        <span onClick={() => (
+                            handleUnlikeClick({ url: 'votenotalike', urlId: not_alike_id, notAlike: true }),
+                            handleLikeClick({ url: 'votealike', alike: true })
+                        )}>
+                            <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
                             {alikes_count}
                         </span>
-                    </OverlayTrigger>
-
+                    </>
                 ) : currentUser ? (
                     <>
-                        {not_alike_id ? (
-                            // user has already voted not alike
-                            <OverlayTrigger placement='top' overlay={<Tooltip>You have already voted</Tooltip>}>
-                                <i className="fa-regular fa-thumbs-up" />
-                            </OverlayTrigger>
-                        ) : (
-                            // user has not voted yet so can vote on this
-                            <OverlayTrigger placement='top' overlay={<Tooltip>Vote alike</Tooltip>}>
-                                <span onClick={() => handleLikeClick({url: 'votealike', alike: true})}>
-                                    <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
-                                    {alikes_count}
-                                </span>
-                            </OverlayTrigger>
-                        )}
+                        <span onClick={() => handleLikeClick({ url: 'votealike', alike: true })}>
+                            <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
+                            {alikes_count}
+                        </span>
                     </>
                 ) : (
                     <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
@@ -294,29 +200,28 @@ const Post = (props) => {
                 ) : not_alike_id ? (
                     // The user has already voted and can unvote
                     <OverlayTrigger placement='top' overlay={<Tooltip>UnVote</Tooltip>}>
-                        <span onClick={() => handleUnlikeClick({url:'votenotalike', urlId: not_alike_id, notAlike: true})}>
+                        <span onClick={() => handleUnlikeClick({ url: 'votenotalike', urlId: not_alike_id, notAlike: true })}>
                             <i className={`${styles.Icon} fa-solid fa-thumbs-down`} />
                             {not_alikes_count}
                         </span>
                     </OverlayTrigger>
 
+                ) : alike_id ? (
+                    <>
+                        <span onClick={() => (
+                            handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true }),
+                            handleLikeClick({ url: 'votenotalike', notAlike: true })
+                        )}>
+                            <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
+                            {not_alikes_count}
+                        </span>
+                    </>
                 ) : currentUser ? (
                     <>
-                        {alike_id ? (
-                            // User has already voted alike
-                            <OverlayTrigger placement='top' overlay={<Tooltip>You have already voted</Tooltip>}>
-                                <i className="fa-regular fa-thumbs-down" />
-                            </OverlayTrigger>
-                        ) : (
-                            // User has not voted so can vote
-                            <OverlayTrigger placement='top' overlay={<Tooltip>Vote not alike</Tooltip>}>
-                                <span onClick={() => handleLikeClick({url: 'votenotalike', notAlike: true})}>
-                                    <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
-                                    {not_alikes_count}
-                                </span>
-                            </OverlayTrigger>
-
-                        )}
+                        <span onClick={() => handleLikeClick({ url: 'votealike', alike: true })}>
+                            <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
+                            {not_alikes_count}
+                        </span>
                     </>
                 ) : (
                     <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
@@ -331,7 +236,6 @@ const Post = (props) => {
         <div>
             <Container>
                 {preview ? (
-
                     <Card className={styles.CardPrev}>
                         <Link className={styles.Title} to={`/posts/${id}`}>
                             <Card.Img variant="top" src={advert_image} className={styles.Alike} />
