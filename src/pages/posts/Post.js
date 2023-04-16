@@ -109,6 +109,7 @@ const Post = (props) => {
         }
     };
 
+    //  Like button logic
     const likeDetails = (
         <>
             <Link className={styles.Title} to={`/posts/${id}`}>
@@ -141,6 +142,7 @@ const Post = (props) => {
         </>
     );
 
+    //  Alike button logic
     const alikeDetails = (
         <>
             <span>Advert image</span>
@@ -161,10 +163,10 @@ const Post = (props) => {
                     </span>
                 ) : not_alike_id ? (
                     <>
-                        <span onClick={() => (
-                            handleUnlikeClick({ url: 'votenotalike', urlId: not_alike_id, notAlike: true }),
-                            handleLikeClick({ url: 'votealike', alike: true })
-                        )}>
+                        <span onClick={() => {
+                            handleUnlikeClick({ url: 'votenotalike', urlId: not_alike_id, notAlike: true });
+                            handleLikeClick({ url: 'votealike', alike: true });
+                        }}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
                             {alikes_count}
                         </span>
@@ -185,6 +187,7 @@ const Post = (props) => {
         </>
     );
 
+    // Not Alike button logic
     const notAlikeDetails = (
         <>
             <span>Actual image</span>
@@ -208,10 +211,10 @@ const Post = (props) => {
 
                 ) : alike_id ? (
                     <>
-                        <span onClick={() => (
-                            handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true }),
-                            handleLikeClick({ url: 'votenotalike', notAlike: true })
-                        )}>
+                        <span onClick={() => {
+                            handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true });
+                            handleLikeClick({ url: 'votenotalike', notAlike: true });
+                        }}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-down`} />
                             {not_alikes_count}
                         </span>
@@ -261,8 +264,12 @@ const Post = (props) => {
                                 </Col>
 
                                 <div className='d-flex align-items-center'>
-                                    {is_owner && postDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
-                                    {is_owner && ProfileDetail && (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
+                                    {is_owner &&
+                                        postDetail &&
+                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
+                                    {is_owner &&
+                                        ProfileDetail &&
+                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
                                 </div>
                             </Row>
                         </Card.Header>
