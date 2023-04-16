@@ -5,7 +5,8 @@
 }
 
 .CardPrev {
-    width: 18rem
+    width: 18rem;
+    margin: 0px;
 }
 
 .CardPrev:hover {

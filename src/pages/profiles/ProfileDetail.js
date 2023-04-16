@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
+import CardColumns from 'react-bootstrap/CardColumns';
 import Asset from "../../components/Asset";
-import { fetchMoreData } from '../../utils/utils'
 import Post from '../posts/Post';
-
 import styles from "../../styles/ProfileDetail.module.css";
 import appStyles from "../../App.module.css";
+import InfiniteScroll from "react-infinite-scroll-component";
 import btnStyles from "../../styles/Button.module.css";
+
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -19,7 +19,7 @@ import {
     useSetProfileData,
 } from "../../contexts/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from '../../utils/utils'
 import { ProfileEditDropdown } from "../../components/DropdownMenu";
 
 function ProfileDetail() {
@@ -80,7 +80,7 @@ function ProfileDetail() {
                     </Row>
                 </Col>
                 <Col lg={3} className="text-lg-right">
-                {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+                    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
                     {currentUser &&
                         !is_owner &&
                         (profile?.following_id ? (
@@ -109,16 +109,24 @@ function ProfileDetail() {
             <hr />
             <p className="text-center">{profile?.owner}'s posts</p>
             <hr />
+
             {posts.results.length ? (
-                <InfiniteScroll
-                    children={posts.results.map((post) => (
-                        <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail preview/>
+                <CardColumns>
+                    {posts.results.map((post) => (
+                        <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail preview />
                     ))}
-                    dataLength={posts.results.length}
-                    loader={<Asset spinner />}
-                    hasMore={!!posts.next}
-                    next={() => fetchMoreData(posts, setPosts)}
-                />
+                    {/* <InfiniteScroll
+                        children={posts.results.map((post) => (
+
+                            <Post key={post.id} {...post} setPosts={setPosts} ProfileDetail preview />
+
+                        ))}
+                        dataLength={posts.results.length}
+                        loader={<Asset spinner />}
+                        hasMore={!!posts.next}
+                        next={() => fetchMoreData(posts, setPosts)}
+                    /> */}
+                </CardColumns>
             ) : (
                 'No results'
             )}
@@ -126,20 +134,17 @@ function ProfileDetail() {
     );
 
     return (
-        <Row>
-            <Col className="py-2 p-0 p-lg-2" lg={12}>
-                <Container className={appStyles.Content}>
-                    {hasLoaded ? (
-                        <>
-                            {mainProfile}
-                            {mainProfilePosts}
-                        </>
-                    ) : (
-                        <Asset spinner />
-                    )}
-                </Container>
-            </Col>
-        </Row>
+
+        <Container className={appStyles.Content}>
+            {hasLoaded ? (
+                <>
+                    {mainProfile}
+                    {mainProfilePosts}
+                </>
+            ) : (
+                <Asset spinner />
+            )}
+        </Container>
     );
 }
 

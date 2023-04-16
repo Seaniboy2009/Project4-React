@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Row from 'react-bootstrap/Row';
 import Tooltip from 'react-bootstrap/Tooltip';
@@ -12,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { DropdownMenu } from '../../components/DropdownMenu'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 const Post = (props) => {
     const {
@@ -236,9 +236,9 @@ const Post = (props) => {
     );
 
     return (
-        <div>
-            <Container>
-                {preview ? (
+        <>
+            {preview ? (
+                <>
                     <Card className={styles.CardPrev}>
                         <Link className={styles.Title} to={`/posts/${id}`}>
                             <Card.Img variant="top" src={advert_image} className={styles.Alike} />
@@ -247,7 +247,9 @@ const Post = (props) => {
                             </Card.Body>
                         </Link>
                     </Card>
-                ) : (
+                </>
+            ) : (
+                <>
                     <Card className={styles.Card}>
                         <Card.Header>
                             <Row>
@@ -310,11 +312,10 @@ const Post = (props) => {
                             </Link>
                         </Card.Footer>
                     </Card>
-                )}
-
-            </Container>
-            <br />
-        </div>
+                    <br />
+                </>
+            )}
+        </>
     )
 }
 
