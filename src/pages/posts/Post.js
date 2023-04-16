@@ -334,9 +334,9 @@ const Post = (props) => {
                         <Card.Body>
                             {postDetail ? (
                                 <>
-                                    <Card.Text><p>Content: {content ? content : 'No details given'}</p></Card.Text>
-                                    <Card.Text><p>Location: {location ? location : 'No details given'}</p></Card.Text>
-                                    <Card.Text><p>Franchisor : {franchisor ? franchisor : 'No details given'}</p></Card.Text>
+                                    <Card.Text><span>Content: {content ? content : 'No details given'}</span></Card.Text>
+                                    <Card.Text><span>Location: {location ? location : 'No details given'}</span></Card.Text>
+                                    <Card.Text><span>Franchisor : {franchisor ? franchisor : 'No details given'}</span></Card.Text>
                                 </>
                             ) : (
                                 <Card.Text>

@@ -234,9 +234,9 @@ function PostCreateForm() {
                     {show ? (
                         <Alert variant="danger" onClose={() => setShow(false)} dismissible>
                             <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-                            <p>
+                            <span>
                                 {message}
-                            </p>
+                            </span>
                         </Alert>
                     ) : (null)}
                 </Col>

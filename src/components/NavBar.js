@@ -32,7 +32,7 @@ const NavBar = () => {
                 activeClassName={styles.Active}
                 aria-label="followed page"
                 to='/followed'>
-                <i class="fa-solid fa-person-walking" /> Followed
+                <i className="fa-solid fa-person-walking" /> Followed
             </NavLink>
             <NavLink
                 className={styles.Link}
@@ -40,7 +40,7 @@ const NavBar = () => {
                 aria-label="liked posts page"
                 name="dropdown"
                 to='/liked'>
-                <i class="fa-solid fa-star" /> Liked posts
+                <i className="fa-solid fa-star" /> Liked posts
             </NavLink>
             <NavDropdown
                 className={styles.NavDropdown}
@@ -109,7 +109,7 @@ const NavBar = () => {
                 />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto text-left">
-                        <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i class="fa-brands fa-wpexplorer fa-lg"></i> Explore</NavLink>
+                        <NavLink exact className={styles.Link} activeClassName={styles.Active} to='/'><i className="fa-brands fa-wpexplorer fa-lg"></i> Explore</NavLink>
                         {currentUser ? loggedIn : loggedOut}
                     </Nav>
                 </Navbar.Collapse>
