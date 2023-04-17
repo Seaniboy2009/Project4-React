@@ -61,13 +61,13 @@ const SignInForm = () => {
                 ) : (null)}
             </Row>
             <Row className={`${styles.Welcome} justify-content-md-center`}>
-                <Col xs={8}>
+                <Col xs={12}>
                 <span>Welcome to as advertised. <br /> Where we compare advertised products to the actual product</span>
                 <br />
                 </Col>
             </Row>
             <Row className={`${styles.Container} justify-content-md-center`}>
-                <Col xs={5}>
+                <Col xs={8}>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="username">
                             <Form.Label>Name (Case sensitive)</Form.Label>

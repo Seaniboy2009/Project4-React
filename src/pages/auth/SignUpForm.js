@@ -36,7 +36,7 @@ const SignUpForm = () => {
     return (
         <>
             <Row className={`${styles.Welcome} justify-content-md-center`}>
-                <Col xs={8}>
+                <Col xs={12}>
                     <span>Welcome to as advertised. <br /> Where we compare advertised products to the actual product</span>
                     <br />
                 </Col>
