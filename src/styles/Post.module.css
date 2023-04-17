@@ -54,10 +54,24 @@
     color: #2aac2c;
 }
 
+.Icon:hover {
+    cursor: pointer;
+}
+
 .Title {
     color: #ffffff;
 }
 
 .Title:hover {
     color: #2aac2c;
+}
+
+.VoteText {
+    background-color: #2aac2c;
+    border: 1px solid #4c508f;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: center;
+    color: #000000;
+    font-size: 110%;
 }
