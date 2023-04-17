@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Row from 'react-bootstrap/Row';
 import Tooltip from 'react-bootstrap/Tooltip';
 import styles from '../../styles/Post.module.css';
+import modalStyles from '../../styles/Modal.module.css';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Link } from 'react-router-dom';
@@ -57,6 +60,11 @@ const Post = (props) => {
         } catch (error) {
         }
     }
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     // handle inital click to like, alike or not alike, takes in the url to create
     // a bool if its the like button, alike button or not alike button
@@ -274,6 +282,20 @@ const Post = (props) => {
 
     return (
         <>
+            <Modal show={show} onHide={handleClose} className={modalStyles.Modal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Delete Post</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Please confirm you want to delete, THIS CAN NOT BE UNDONE!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button variant="danger" onClick={handleDelete}>
+                        Confirm Delete
+                    </Button>
+                </Modal.Footer>
+            </Modal>
             {preview ? (
                 <>
                     <Card className={styles.CardPrev}>
@@ -305,10 +327,10 @@ const Post = (props) => {
                                 <div className='d-flex align-items-center'>
                                     {is_owner &&
                                         postDetail &&
-                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
+                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
                                     {is_owner &&
                                         ProfileDetail &&
-                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />)}
+                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
                                 </div>
                             </Row>
                         </Card.Header>
