@@ -4,18 +4,14 @@
     border-bottom: 1px solid #4c508f;
 }
 
-.Brand, .Toggle {
+.Brand {
     color: #fffffffa;
     font-size: 150%;
 }
 
 .Toggle {
-    background-color: #252740;
+    background-color: #1d8922;
     border: 1px solid #4c508f;
-}
-
-.Brand:hover {
-    color: #1d8922;
 }
 
 .Active i {
@@ -25,10 +21,6 @@
 .Link {
     padding: 10px;
     color: #ffffff;
-}
-
-a:hover {
-    color: #1d8922;
 }
 
 .NavDropdown div {
@@ -41,7 +33,7 @@ a:hover {
     color: #ffffff !important;
 }
 
-.NavDropdown  a:hover {
+.NavDropdown,  a:hover, .Brand:hover {
     color: #1d8922 !important;
 }
 

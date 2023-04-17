@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import axios from "axios";
+import styles from '../../styles/SignInUp.module.css'
 
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
@@ -59,11 +60,17 @@ const SignInForm = () => {
                     </Alert>
                 ) : (null)}
             </Row>
-            <Row className="justify-content-md-center">
-                <Col xs={6}>
+            <Row className={`${styles.Welcome} justify-content-md-center`}>
+                <Col xs={8}>
+                <span>Welcome to as advertised. <br /> Where we compare advertised products to the actual product</span>
+                <br />
+                </Col>
+            </Row>
+            <Row className={`${styles.Container} justify-content-md-center`}>
+                <Col xs={5}>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="username">
-                            <Form.Label>Name</Form.Label>
+                            <Form.Label>Name (Case sensitive)</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Name"

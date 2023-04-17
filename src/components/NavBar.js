@@ -21,7 +21,7 @@ const NavBar = () => {
 
     const handleSignOut = async () => {
         try {
-            await axios.post("https://project-5-api.herokuapp.com/dj-rest-auth/logout/");
+            await axios.post("/dj-rest-auth/logout/");
             setCurrentUser(null);
         } catch (error) {
 
