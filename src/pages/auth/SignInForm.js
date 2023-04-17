@@ -23,6 +23,9 @@ const SignInForm = () => {
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
+    const [show, setShow] = useState(false);
+    const [message, setMessage] = useState('Default message')
+
     // Handle the changes made on the form
     const handleChange = (event) => {
         setFormData({
@@ -40,10 +43,22 @@ const SignInForm = () => {
             history.push("/");
         } catch (errors) {
             setErrors(errors.response?.data)
+            setMessage(errors.response?.data.non_field_errors)
+            setShow(true)
         }
     }
     return (
         <>
+            <Row className="justify-content-md-center">
+                {show ? (
+                    <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+                        <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+                        <span>
+                            {message}
+                        </span>
+                    </Alert>
+                ) : (null)}
+            </Row>
             <Row className="justify-content-md-center">
                 <Col xs={6}>
                     <Form onSubmit={handleSubmit}>
