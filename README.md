@@ -1,24 +1,30 @@
 # As advertised project
 
-## 1.Purpose of the project:
+## 1.Purpose of the project / Goals:
 - The purpose of this project is to create a react application with a endpoint API.
 - The applications main purpose is for creating blogs/posts for voting on a product, you can upload the products advert image and then its actual image, users can then vote if its alike the advert or not alike.
 
+- Goals for the project
+    - my goals are for people who are sick and tired of getting food/products that are not as they are advertised, this app
+    will give users a place to create posts that show what the comapny are advertising and comparing it to what people got
+    - I want users to interact and add there posts and also comment and follow others who have the same issues with there product
+    - maybe with enough users something can be done about false advertising 
+
 ## 2.User stories:
-- as a user i can navigate all aspects of the web app
-- as a user i can create an account
-- as a user i can create a post
-- as a user i can update a post
-- as a user i can delete a post
-- as a user i can view other posts
-- as a user i can view my posts
-- as a user i can like a post
-- as a user i can unlike a post
-- as a user i can search posts
-- as a user i can follow others
-- as a user i can comment on a post
-- as a user i can read others comments
-- as a user i can vote/unvote on a post
+- as a user i can navigate all aspects of the web app - Creation of the navbar
+- as a user i can create an account - User signup page
+- as a user i can create a post - Signed in user can create posts
+- as a user i can update a post - Owner of the post can edit
+- as a user i can delete a post - Owner of the post can delete it
+- as a user i can view other posts - The main page will load all posts for users to see
+- as a user i can view my posts - User can see there own posts under account and on the main page
+- as a user i can like a post - All posts can be liked/followed except for a post the user ownes
+- as a user i can unlike a post - Posts that are liked can be unliked
+- as a user i can search posts - Main page has a search function for , user who posted, title and content
+- as a user i can follow others - Users are shown on the main page as well as the user page
+- as a user i can comment on a post - All posts have a comment section, where comments can be created
+- as a user i can read others comments - All posts have coments below the main post details
+- as a user i can vote/unvote on a post - Posts will allow you to vote alike or not alike
 
 ## 3.Features:
 - User features
@@ -60,6 +66,7 @@
 
 - React features
     - Use of context for the current user this allows the current user to be passed down to each child in the dom, this is used in the navbar as well as the posts to get the owner and name
+    - React having individual components loaded and updating separate from each other adds to a much better user experience, for example, having a user sign in will not refresh the entire page(except if there is a re-direct), or clicking on a like button will not refresh everything, but will instead refresh the one part the user clicked this stops constant black screens as a site refreshes the entire page for a small button click
 
     - User context return
 
@@ -86,11 +93,26 @@
 
 ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/full_post_dxpooz.png)
 
-## 6.Wireframes:
+## 6.Wireframes / UX Design:
+- Wirefame for the initial layout of the most important part the post 
+- There had to be a clear divide for the advert image(red) and the actual image(blue)
+
+![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681901105/wireframe1_sxxenm.png)
+
+- The navbar had to be not cluttered so a small dropdown was created that would store thew user actions, create, account, logout
+so the user could see the main parts such as explore and users without the rest getting in the way.
+
+![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681901377/nav_dropdown_urhnkx.png)
+
+
 ## 7.Technology:
 - Frameworks
     - React is the main framework [React](https://react.dev/)
+    - React was chosen for its versatility and components, for an application like this the use of components having their own
+     loading and updating has improved user experience and development.
     - Bootstrap for the HTML and CSS and some components [React Bootstrap](https://react-bootstrap.github.io/)
+    - Bootstrap in my opinion has everything you need to make any front end app, it can be used out of the box for layout, styles and
+    is very customizable, thats why this has been chosen and will be chosen in the future.
 - API
     - The API is hosted https://project-5-api.herokuapp.com and was built using Django rest
 ## 8.Testing:
