@@ -31,6 +31,7 @@ function PostEditForm() {
                     location,
                     franchisor,
                     content,
+                    category,
                     advert_image,
                     reality_image,
                     is_owner } = data;
@@ -41,6 +42,7 @@ function PostEditForm() {
                         location,
                         franchisor,
                         content,
+                        category,
                         advert_image,
                         reality_image
                     }) : history.push('/')
@@ -58,11 +60,12 @@ function PostEditForm() {
         location: '',
         franchisor: '',
         content: '',
+        category: '',
         advert_image: '',
         reality_image: '',
     });
 
-    const { title, location, franchisor, content, advert_image, reality_image } = formData;
+    const { title, location, franchisor, content, category, advert_image, reality_image } = formData;
 
     // Handle the changes made on the form
     const handleChange = (event) => {
@@ -102,6 +105,7 @@ function PostEditForm() {
         formData.append('location', location)
         formData.append('franchisor', franchisor)
         formData.append('content', content)
+        formData.append('category', category)
         if (advertImageInput?.current?.files[0]) {
             formData.append('advert_image', advertImageInput.current.files[0])
         }
@@ -170,6 +174,20 @@ function PostEditForm() {
                 {errors.content?.map((message, index) =>
                     <Alert key={index}>{message}</Alert>
                 )}
+            </Form.Group>
+            <Form.Group controlId="category">
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                    as="select"
+                    name='category'
+                    value={category}
+                    onChange={handleChange}
+                >
+                    <option value="">Select a category</option>
+                    <option value="food">Food</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="other">Other</option>
+                </Form.Control>
             </Form.Group>
             <Button
                 className={`${btnStyles.Full} ${btnStyles.Main}`}

@@ -337,9 +337,13 @@ const Post = (props) => {
                                                 Category: {category}
                                             </span>
                                         ) : category === 'Food' ? (
-                                            <span class={styles.CategoryOther}>Food</span>
+                                            <span class={styles.CategoryFood}>
+                                                Category: {category}
+                                            </span>
                                         ) : (
-                                            <span class={styles.CategoryOther}>Cloths</span>
+                                            <span class={styles.CategoryCloths}>
+                                                Category: {category}
+                                            </span>
                                         )}
                                     </span>
                                 </Col>
@@ -396,12 +400,12 @@ const Post = (props) => {
                             )}
                         </Card.Body>
                         <Card.Footer>
-                            <Col>
+                            <Col xs={2}>
                                 <Link to={`/profiles/${profile_id}`}>
                                     <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
                                 </Link>
                             </Col>
-                            <Col>
+                            <Col xs={2}>
                                 {likeDetails}
                                 {likes_count}
                             </Col>

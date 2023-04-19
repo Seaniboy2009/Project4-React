@@ -141,7 +141,7 @@ function PostCreateForm() {
                     <Alert key={index}>{message}</Alert>
                 )}
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Group controlId="category">
                 <Form.Label>Category</Form.Label>
                 <Form.Control
                     as="select"

@@ -79,12 +79,14 @@
 .CategoryFood {
     background-color: #256b45;
     border: 1px solid #4c508f;
+    padding: 5px;
     color: #000000;
 }
 
 .CategoryCloths {
     background-color: #127f8d;
     border: 1px solid #4c508f;
+    padding: 5px;
     color: #000000;
 }
 
