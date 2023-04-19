@@ -205,7 +205,7 @@ function PostCreateForm() {
                                         className={`${btnStyles.Full} ${btnStyles.Main} btn`}
                                         htmlFor="image-upload-reality"
                                     >
-                                        Change the image
+                                    Change the image
                                     </Form.Label>
                                 </div>
                             </>

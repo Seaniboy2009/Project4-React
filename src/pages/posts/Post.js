@@ -125,8 +125,8 @@ const Post = (props) => {
             </Link>
             {is_owner ? (
                 // If the owner is viewing this display the tooltop
-                <OverlayTrigger placement='top' overlay={<Tooltip> You cant like your own post</Tooltip>}>
-                    <i className={`${styles.Icon} fa-solid fa-star`} />
+                <OverlayTrigger placement='top' overlay={<Tooltip>Cant like your own post</Tooltip>}>
+                    <i className={`${styles.Icon} fa-regular fa-star`} />
                 </OverlayTrigger>
             ) : like_id ? (
                 // The user has already liked and can unlike
