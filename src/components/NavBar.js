@@ -88,13 +88,13 @@ const NavBar = () => {
                 className={styles.Link}
                 aria-label="sign up page"
                 activeClassName={styles.Active} to='/signup'>
-                <i className="fa-solid fa-user-plus"></i> Sign up
+                <i className="fa-solid fa-user-plus" /> Sign up
             </NavLink>
             <NavLink
                 className={styles.Link}
                 aria-label="sign in page"
                 activeClassName={styles.Active} to='/signin'>
-                <i className="fa-solid fa-arrow-right-to-bracket"></i> Sign in
+                <i className="fa-solid fa-arrow-right-to-bracket" /> Sign in
             </NavLink>
         </>
     )
