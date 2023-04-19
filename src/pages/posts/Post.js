@@ -39,6 +39,7 @@ const Post = (props) => {
         not_alike_id,
         ProfileDetail,
         preview,
+        category,
     } = props;
 
     // get the current user
@@ -117,12 +118,16 @@ const Post = (props) => {
         }
     };
 
-    //  Like button logic
-    const likeDetails = (
+    const titleDetails = (
         <>
             <Link className={styles.Title} to={`/posts/${id}`}>
                 Title:&nbsp;{title}&nbsp;
             </Link>
+        </>
+    )
+    //  Like button logic
+    const likeDetails = (
+        <>
             {is_owner ? (
                 // If the owner is viewing this display the tooltop
                 <OverlayTrigger placement='top' overlay={<Tooltip>Cant like your own post</Tooltip>}>
@@ -312,26 +317,40 @@ const Post = (props) => {
                     <Card className={styles.Card}>
                         <Card.Header>
                             <Row>
-                                <Col>
-                                    {likeDetails}
-                                    {likes_count}
+                                <Col xs={6}>
+                                    {titleDetails}
                                 </Col>
-                                <Col>
+                            </Row>
+                            <Row>
+                                <Col xs={7}>
                                     <span>
                                         Comments:&nbsp;
                                         <i className="fa-regular fa-comments" />&nbsp;
                                         {comments_count}
                                     </span>
                                 </Col>
-
-                                <div className='d-flex align-items-center'>
+                                <Col xs={3}>
+                                    <span>
+                                        <i className="fa-light fa-books" />&nbsp;
+                                        {category === 'Other' ? (
+                                            <span class={styles.CategoryOther}>
+                                                Category: {category}
+                                            </span>
+                                        ) : category === 'Food' ? (
+                                            <span class={styles.CategoryOther}>Food</span>
+                                        ) : (
+                                            <span class={styles.CategoryOther}>Cloths</span>
+                                        )}
+                                    </span>
+                                </Col>
+                                <Col xs={2}>
                                     {is_owner &&
                                         postDetail &&
                                         (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
                                     {is_owner &&
                                         ProfileDetail &&
                                         (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
-                                </div>
+                                </Col>
                             </Row>
                         </Card.Header>
                         <Row className={styles.Row}>
@@ -377,9 +396,15 @@ const Post = (props) => {
                             )}
                         </Card.Body>
                         <Card.Footer>
-                            <Link to={`/profiles/${profile_id}`}>
-                                <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
-                            </Link>
+                            <Col>
+                                <Link to={`/profiles/${profile_id}`}>
+                                    <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
+                                </Link>
+                            </Col>
+                            <Col>
+                                {likeDetails}
+                                {likes_count}
+                            </Col>
                         </Card.Footer>
                     </Card>
                     <br />
