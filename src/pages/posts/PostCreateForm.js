@@ -28,10 +28,11 @@ function PostCreateForm() {
         location: '',
         franchisor: '',
         content: '',
+        category: '',
         advert_image: '',
         reality_image: '',
     });
-    const { title, location, franchisor, content, advert_image, reality_image } = formData;
+    const { title, location, franchisor, content, category, advert_image, reality_image } = formData;
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
@@ -75,6 +76,7 @@ function PostCreateForm() {
         formData.append('content', content)
         formData.append('advert_image', advertImageInput.current.files[0])
         formData.append('reality_image', realityImageInput.current.files[0])
+        formData.append('category', category)
         try {
             const { data } = await axiosReq.post("/posts/", formData);
             history.push(`/posts/${data.id}`);
@@ -138,6 +140,20 @@ function PostCreateForm() {
                 {errors.content?.map((message, index) =>
                     <Alert key={index}>{message}</Alert>
                 )}
+            </Form.Group>
+            <Form.Group controlId="exampleForm.ControlSelect1">
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                    as="select"
+                    name='category'
+                    value={category}
+                    onChange={handleChange}
+                >
+                    <option value="">Select a category</option>
+                    <option value="food">Food</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="other">Other</option>
+                </Form.Control>
             </Form.Group>
             <Button
                 className={`${btnStyles.Full} ${btnStyles.Main}`}
@@ -205,7 +221,7 @@ function PostCreateForm() {
                                         className={`${btnStyles.Full} ${btnStyles.Main} btn`}
                                         htmlFor="image-upload-reality"
                                     >
-                                    Change the image
+                                        Change the image
                                     </Form.Label>
                                 </div>
                             </>
