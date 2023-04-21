@@ -41,7 +41,7 @@
     - Ability to create/update/delete a post
     - Can view all posts on the app
 
-    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/post_k5scvd.png)
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682065944/full_post_orjw6p.png)
 
     - Can search posts for keywords
 
@@ -76,7 +76,7 @@
 
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681207800/user_context_used_tpsojp.png)
 
-    - Current user being used to eather display logged in or logged out links.
+    - Current user being used to ether display logged in or logged out links.
 
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681207943/user_context_nav_vcipiw.png)
 
@@ -91,7 +91,7 @@
 ## 5.Typography and color scheme:
 - Main colors are blue/purple with green highlights
 
-![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/full_post_dxpooz.png)
+![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682065944/full_post_orjw6p.png)
 
 ## 6.Wireframes / UX Design:
 - Wirefame for the initial layout of the most important part the post 
@@ -133,8 +133,17 @@ so the user could see the main parts such as explore and users without the rest 
 - User story testing
     - navigation
     - sign up with errors
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682065781/sign_up_error_c7kvpb.png)
+
     - sign in with errors
-    - create a post with errors 
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682065781/sign_in_error_nxr1wq.png)
+
+    - create a post with errors
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682065781/create_post_error_wuamhs.png)
+
     - edit a post 
     - delete a post 
     - search for a post

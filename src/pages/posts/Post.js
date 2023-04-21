@@ -237,9 +237,14 @@ const Post = (props) => {
                         </span>
                     </>
                 ) : (
-                    <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                        <i className="fa-regular fa-thumbs-up" />
-                    </OverlayTrigger>
+                    <>
+                        <span>Votes: </span>
+                        {alikes_count}
+                        <br />
+                        <OverlayTrigger placement='top' overlay={<Tooltip>Log in to Vote</Tooltip>}>
+                            <i className="fa-regular fa-thumbs-up" />
+                        </OverlayTrigger>
+                    </>
                 )}
             </span>
         </>
@@ -305,7 +310,7 @@ const Post = (props) => {
                         <span>Votes: </span>
                         {not_alikes_count}
                         <br />
-                        <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
+                        <OverlayTrigger placement='top' overlay={<Tooltip>Log in to Vote</Tooltip>}>
                             <i className="fa-regular fa-thumbs-up" />
                         </OverlayTrigger>
                     </>
@@ -404,15 +409,17 @@ const Post = (props) => {
                             )}
                         </Card.Body>
                         <Card.Footer>
-                            <Col xs={2}>
-                                <Link to={`/profiles/${profile_id}`}>
-                                    <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
-                                </Link>
-                            </Col>
-                            <Col xs={2}>
-                                {likeDetails}
-                                {likes_count}
-                            </Col>
+                            <Row>
+                                <Col xs={10}>
+                                    <Link to={`/profiles/${profile_id}`}>
+                                        <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
+                                    </Link>
+                                </Col>
+                                <Col xs={2}>
+                                    {likeDetails}
+                                    {likes_count}
+                                </Col>
+                            </Row>
                         </Card.Footer>
                     </Card>
                     <br />
