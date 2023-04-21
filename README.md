@@ -5,25 +5,25 @@
 - The applications main purpose is for creating blogs/posts for voting on a product, you can upload the products advert image and then its actual image, users can then vote if its alike the advert or not alike.
 
 - Goals for the project
-    - my goals are for people who are sick and tired of getting food/products that are not as they are advertised, this app
-    will give users a place to create posts that show what the comapny are advertising and comparing it to what people got
-    - I want users to interact and add there posts and also comment and follow others who have the same issues with there product
-    - maybe with enough users something can be done about false advertising 
+ - my goals are for people who are sick and tired of getting food/products that are not as they are advertised, this app
+ will give users a place to create posts that show what the company are advertising and comparing it to what people got
+ - I want users to interact and add there posts and also comment and follow others who have the same issues with their product
+ - maybe with enough user's something can be done about false advertising 
 
 ## 2.User stories:
 - as a user i can navigate all aspects of the web app - Creation of the navbar
-- as a user i can create an account - User signup page
+- as a user i can create an account - User sign up page
 - as a user i can create a post - Signed in user can create posts
 - as a user i can update a post - Owner of the post can edit
 - as a user i can delete a post - Owner of the post can delete it
 - as a user i can view other posts - The main page will load all posts for users to see
-- as a user i can view my posts - User can see there own posts under account and on the main page
-- as a user i can like a post - All posts can be liked/followed except for a post the user ownes
+- as a user i can view my posts - User can see their own posts under account and on the main page
+- as a user i can like a post - All posts can be liked/followed except for a post the user owns
 - as a user i can unlike a post - Posts that are liked can be unliked
 - as a user i can search posts - Main page has a search function for , user who posted, title and content
 - as a user i can follow others - Users are shown on the main page as well as the user page
 - as a user i can comment on a post - All posts have a comment section, where comments can be created
-- as a user i can read others comments - All posts have coments below the main post details
+- as a user i can read others comments - All posts have comments below the main post details
 - as a user i can vote/unvote on a post - Posts will allow you to vote alike or not alike
 
 ## 3.Features:
@@ -87,19 +87,20 @@
 ## 4.Future features:
 - Have a top liked or top voted
 - Have a most voted post show for all users
-- ability to sign in with google account
+- Ability to sign in with google account
+
 ## 5.Typography and color scheme:
 - Main colors are blue/purple with green highlights
 
 ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682065944/full_post_orjw6p.png)
 
 ## 6.Wireframes / UX Design:
-- Wirefame for the initial layout of the most important part the post 
+- Wireframe for the initial layout of the most important part the post 
 - There had to be a clear divide for the advert image(red) and the actual image(blue)
 
 ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681901105/wireframe1_sxxenm.png)
 
-- The navbar had to be not cluttered so a small dropdown was created that would store thew user actions, create, account, logout
+- The navbar had to be not cluttered so a small drop down was created that would store thew user actions, create, account, logout
 so the user could see the main parts such as explore and users without the rest getting in the way.
 
 ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681901377/nav_dropdown_urhnkx.png)
@@ -117,8 +118,8 @@ so the user could see the main parts such as explore and users without the rest 
     - The API is hosted https://project-5-api.herokuapp.com and was built using Django rest
 ## 8.Testing:
 - Agile
-    - Agile development of implementing small code blocks and then refactoring the code for better readability
-    - Agile lifecycle for removing not needed functions and adding extra, updating the React app and the backend with any changes
+ - Agile development of implementing small code blocks and then refactoring the code for better readability
+ - Agile lifecycle for removing not needed functions and adding extra, updating the React app and the back end with any changes
 
 - Code validation
     - CSS validation [CSS](https://jigsaw.w3.org/css-validator/validator)
@@ -151,13 +152,18 @@ so the user could see the main parts such as explore and users without the rest 
     - view comments 
     - add a comment
 
+- Auto testing with jest
+    - 3 tests created one for app, navbar and asset
+
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682068118/testing_f8cjje.png)
+
 ## 9.Deployment:
 - Heroku
-    - Deployment from heroku involved signing up to the site, click create app.
-    - once done i then clicked on the deploy tab linked to my github, selected the main branch then deployed, i set this to automatic deploys so when ever i made a change it would do it. New app > settings > config var > build packs > deploy
+ - Deployment from Heroku involved signing up to the site, click create app.
+    - once done i then clicked on the deploy tab linked to my github, selected the main branch then deployed, i set this to automatic deploys so when ever i made a change it would do it. New app > settings > config var > build packs > deploy.
    
 - Gitpod
-   - Deployment from gitpod to github was adding the files for commit by typing git add then . (git add .) this would then add all of the updated/changed files for push to github this can be checked by using git status. a commit message is then needed for this to be pushed to github (git commit -m "Message in here") once that has been done you can then do a git push to send all the files to github
+ - Deployment from git pod to github was adding the files for commit by typing git add then. (git add.) this would then add all the updated/changed files for push to github this can be checked by using git status. a commit message is then needed for this to be pushed to github (git commit -m "Message in here") once that has been done you can then do a git push to send all the files to github
 
 ## 10.Credits:
 
