@@ -64,6 +64,8 @@
     - Can view other users profiles
     - Can follow other users
 
+    ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682072881/Screenshot_2023-04-21_112748_jcxac8.png)
+
 - React features
     - Use of context for the current user this allows the current user to be passed down to each child in the dom, this is used in the navbar as well as the posts to get the owner and name
     - React having individual components loaded and updating separate from each other adds to a much better user experience, for example, having a user sign in will not refresh the entire page(except if there is a re-direct), or clicking on a like button will not refresh everything, but will instead refresh the one part the user clicked this stops constant black screens as a site refreshes the entire page for a small button click
