@@ -120,9 +120,41 @@ const Post = (props) => {
 
     const titleDetails = (
         <>
-            <Link className={styles.Title} to={`/posts/${id}`}>
-                Title:&nbsp;{title}&nbsp;
-            </Link>
+            <Col xs={6}>
+                <Link className={styles.Title} to={`/posts/${id}`}>
+                    Title:&nbsp;{title}&nbsp;
+                </Link>
+            </Col>
+            <Col xs={3}>
+                <span>
+                    <i className="fa-light fa-books" />&nbsp;
+                    {category === 'clothing' ? (
+                        <span class={styles.CategoryClothing}>
+                            Category: {category}
+                        </span>
+                    ) : category === 'food' ? (
+                        <span class={styles.CategoryFood}>
+                            Category: {category}
+                        </span>
+                    ) : category === 'product' ? (
+                        <span class={styles.CategoryProduct}>
+                            Category: {category}
+                        </span>
+                    ) : (
+                        <span class={styles.CategoryOther}>
+                            Category: {category}
+                        </span>
+                    )}
+                </span>
+            </Col>
+            <Col xs={3}>
+                {is_owner &&
+                    postDetail &&
+                    (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
+                {is_owner &&
+                    ProfileDetail &&
+                    (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
+            </Col>
         </>
     )
     //  Like button logic
@@ -317,43 +349,17 @@ const Post = (props) => {
                     <Card className={styles.Card}>
                         <Card.Header>
                             <Row>
-                                <Col xs={6}>
-                                    {titleDetails}
-                                </Col>
+                                {titleDetails}
                             </Row>
                             <Row>
                                 <Col xs={7}>
                                     <span>
-                                        Comments:&nbsp;
-                                        <i className="fa-regular fa-comments" />&nbsp;
+                                        <Link className={styles.Title} to={`/posts/${id}`}>
+                                            Comments:&nbsp;
+                                            <i className="fa-regular fa-comments" />&nbsp;
+                                        </Link>
                                         {comments_count}
                                     </span>
-                                </Col>
-                                <Col xs={3}>
-                                    <span>
-                                        <i className="fa-light fa-books" />&nbsp;
-                                        {category === 'Other' ? (
-                                            <span class={styles.CategoryOther}>
-                                                Category: {category}
-                                            </span>
-                                        ) : category === 'Food' ? (
-                                            <span class={styles.CategoryFood}>
-                                                Category: {category}
-                                            </span>
-                                        ) : (
-                                            <span class={styles.CategoryCloths}>
-                                                Category: {category}
-                                            </span>
-                                        )}
-                                    </span>
-                                </Col>
-                                <Col xs={2}>
-                                    {is_owner &&
-                                        postDetail &&
-                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
-                                    {is_owner &&
-                                        ProfileDetail &&
-                                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
                                 </Col>
                             </Row>
                         </Card.Header>
