@@ -70,7 +70,6 @@ const Post = (props) => {
     // handle inital click to like, alike or not alike, takes in the url to create
     // a bool if its the like button, alike button or not alike button
     const handleLikeClick = async ({ url, like, alike, notAlike }) => {
-        console.log(url, like, alike, notAlike)
         try {
             const { data } = await axiosRes.post(`/${url}/`, { post: id });
             setPosts((prevPosts) => ({
@@ -96,7 +95,6 @@ const Post = (props) => {
     // and ID to delete the object from the db
     // a bool if its the like button, alike button or not alike button
     const handleUnlikeClick = async ({ url, urlId, like, alike, notAlike }) => {
-        console.log(url, urlId, like, alike, notAlike)
         try {
             await axiosRes.delete(`/${url}/${urlId}`);
             setPosts((prevPosts) => ({
