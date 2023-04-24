@@ -116,43 +116,67 @@ const Post = (props) => {
         }
     };
 
+    // Title logic
     const titleDetails = (
         <>
-            <Col xs={6}>
-                <Link className={styles.Title} to={`/posts/${id}`}>
-                    Title:&nbsp;{title}&nbsp;
-                </Link>
-            </Col>
-            <Col xs={3}>
-                <span>
-                    <i className="fa-light fa-books" />&nbsp;
-                    {category === 'clothing' ? (
-                        <span class={styles.CategoryClothing}>
-                            Category: {category}
-                        </span>
-                    ) : category === 'food' ? (
-                        <span class={styles.CategoryFood}>
-                            Category: {category}
-                        </span>
-                    ) : category === 'product' ? (
-                        <span class={styles.CategoryProduct}>
-                            Category: {category}
-                        </span>
-                    ) : (
-                        <span class={styles.CategoryOther}>
-                            Category: {category}
-                        </span>
-                    )}
-                </span>
-            </Col>
-            <Col xs={3}>
-                {is_owner &&
-                    postDetail &&
-                    (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
-                {is_owner &&
-                    ProfileDetail &&
-                    (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
-            </Col>
+            <Row>
+                <Col>
+                    <Link className={styles.Title} to={`/posts/${id}`}>
+                        Title:&nbsp;{title}&nbsp;
+                    </Link>
+                </Col>
+                <Col>
+                    {is_owner &&
+                        postDetail &&
+                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
+                    {is_owner &&
+                        ProfileDetail &&
+                        (<DropdownMenu handleEdit={handleEdit} handleDelete={handleShow} />)}
+                </Col>
+            </Row>
+        </>
+    )
+    // Comments logic
+    const commentsDetails = (
+        <>
+            <Row>
+                <Col xs={7}>
+                    <span>
+                        <Link className={styles.Title} to={`/posts/${id}`}>
+                            Comments:&nbsp;
+                            <i className="fa-regular fa-comments" />&nbsp;
+                        </Link>
+                        {comments_count}
+                    </span>
+                </Col>
+            </Row>
+        </>
+    )
+    const categoryDetails = (
+        <>
+            <Row>
+                <Col>
+                    <span>
+                        {category === 'clothing' ? (
+                            <span class={styles.CategoryClothing}>
+                                Category: {category}
+                            </span>
+                        ) : category === 'food' ? (
+                            <span class={styles.CategoryFood}>
+                                Category: {category}
+                            </span>
+                        ) : category === 'product' ? (
+                            <span class={styles.CategoryProduct}>
+                                Category: {category}
+                            </span>
+                        ) : (
+                            <span class={styles.CategoryOther}>
+                                Category: {category}
+                            </span>
+                        )}
+                    </span>
+                </Col>
+            </Row>
         </>
     )
     //  Like button logic
@@ -161,25 +185,25 @@ const Post = (props) => {
             {is_owner ? (
                 // If the owner is viewing this display the tooltop
                 <OverlayTrigger placement='top' overlay={<Tooltip>Cant like your own post</Tooltip>}>
-                    <i className={`${styles.Icon} fa-regular fa-star`} />
+                    <i className={`${styles.Icon} fa-solid fa-bookmark`} />
                 </OverlayTrigger>
             ) : like_id ? (
                 // The user has already liked and can unlike
                 <OverlayTrigger placement='top' overlay={<Tooltip>UnLike</Tooltip>}>
                     <span onClick={() => handleUnlikeClick({ url: 'likes', urlId: like_id, like: true })}>
-                        <i className={`${styles.Icon} fa-solid fa-star`} />
+                        <i className={`${styles.Icon} fa-solid fa-bookmark`} />
                     </span>
                 </OverlayTrigger>
             ) : currentUser ? (
                 // User has not liked and can like
                 <OverlayTrigger placement='top' overlay={<Tooltip>Like</Tooltip>}>
                     <span onClick={() => handleLikeClick({ url: 'likes', like: true })}>
-                        <i className={`${styles.Icon} fa-solid fa-star`} />
+                        <i className={`${styles.Icon} fa-regular fa-bookmark`} />
                     </span>
                 </OverlayTrigger>
             ) : (
                 <OverlayTrigger placement='top' overlay={<Tooltip>Log in to like</Tooltip>}>
-                    <i className="fa-regular fa-star" />
+                    <i className="fa-regular fa-bookmark" />
                 </OverlayTrigger>
             )}
         </>
@@ -351,20 +375,9 @@ const Post = (props) => {
                 <>
                     <Card className={styles.Card}>
                         <Card.Header>
-                            <Row>
-                                {titleDetails}
-                            </Row>
-                            <Row>
-                                <Col xs={7}>
-                                    <span>
-                                        <Link className={styles.Title} to={`/posts/${id}`}>
-                                            Comments:&nbsp;
-                                            <i className="fa-regular fa-comments" />&nbsp;
-                                        </Link>
-                                        {comments_count}
-                                    </span>
-                                </Col>
-                            </Row>
+                            {titleDetails}
+                            {commentsDetails}
+                            {categoryDetails}
                         </Card.Header>
                         <Row className={styles.Row}>
                             <Col className={styles.VoteText}>
@@ -373,7 +386,7 @@ const Post = (props) => {
                                 ) : not_alike_id ? (
                                     <span>You have voted not like the advert</span>
                                 ) : (
-                                    <span>Vote if the product is like the advert image or the real image</span>
+                                    <span>Vote if this is like the ad or not</span>
                                 )}
                             </Col>
                         </Row>
@@ -417,7 +430,6 @@ const Post = (props) => {
                                 </Col>
                                 <Col xs={2}>
                                     {likeDetails}
-                                    {likes_count}
                                 </Col>
                             </Row>
                         </Card.Footer>

@@ -76,30 +76,27 @@
     font-size: 110%;
 }
 
+.CategoryFood, 
+.CategoryClothing, 
+.CategoryOther, 
+.CategoryProduct {
+    border: 1px solid #ffffff;
+    padding: 2px 5px;
+    color: #000000;
+}
+
 .CategoryFood {
     background-color: #256b45;
-    border: 1px solid #4c508f;
-    padding: 5px;
-    color: #000000;
 }
 
 .CategoryClothing {
     background-color: #bec4c5;
-    border: 1px solid #4c508f;
-    padding: 5px;
-    color: #000000;
 }
 
 .CategoryOther {
     background-color: #d9db6b;
-    border: 1px solid #4c508f;
-    padding: 5px;
-    color: #000000;
 }
 
 .CategoryProduct {
     background-color: #b11738;
-    border: 1px solid #4c508f;
-    padding: 5px;
-    color: #000000;
 }
