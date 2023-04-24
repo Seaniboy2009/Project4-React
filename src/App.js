@@ -33,7 +33,7 @@ function App() {
           )}
           />
           <Route exact path='/users' render={() => (
-            <ProfileList />
+            <ProfileList page/>
           )}
           />
           <Route exact path='/liked' render={() => (
