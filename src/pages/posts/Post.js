@@ -29,7 +29,6 @@ const Post = (props) => {
         created_at,
         content,
         postDetail,
-        likes_count,
         like_id,
         comments_count,
         alikes_count,
@@ -181,7 +180,7 @@ const Post = (props) => {
     )
     //  Like button logic
     const likeDetails = (
-        <>
+        <row>
             {is_owner ? (
                 // If the owner is viewing this display the tooltop
                 <OverlayTrigger placement='top' overlay={<Tooltip>Cant like your own post</Tooltip>}>
@@ -206,7 +205,7 @@ const Post = (props) => {
                     <i className="fa-regular fa-bookmark" />
                 </OverlayTrigger>
             )}
-        </>
+        </row>
     );
 
     //  Alike button logic
@@ -234,7 +233,6 @@ const Post = (props) => {
                         <br />
                         <span onClick={() => handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true })}>
                             <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
-                            {alikes_count}
                         </span>
                     </>
                 ) : not_alike_id ? (
@@ -247,7 +245,6 @@ const Post = (props) => {
                             handleLikeClick({ url: 'votealike', alike: true });
                         }}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
-                            {alikes_count}
                         </span>
                     </>
                 ) : currentUser ? (
@@ -257,7 +254,6 @@ const Post = (props) => {
                         <br />
                         <span onClick={() => handleLikeClick({ url: 'votealike', alike: true })}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
-                            {alikes_count}
                         </span>
                     </>
                 ) : (
@@ -300,7 +296,6 @@ const Post = (props) => {
                         <OverlayTrigger placement='top' overlay={<Tooltip>UnVote</Tooltip>}>
                             <span onClick={() => handleUnlikeClick({ url: 'votenotalike', urlId: not_alike_id, notAlike: true })}>
                                 <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
-                                {not_alikes_count}
                             </span>
                         </OverlayTrigger>
                     </>
@@ -315,7 +310,6 @@ const Post = (props) => {
                             handleLikeClick({ url: 'votenotalike', notAlike: true });
                         }}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
-                            {not_alikes_count}
                         </span>
                     </>
                 ) : currentUser ? (
@@ -325,8 +319,6 @@ const Post = (props) => {
                         <br />
                         <span onClick={() => handleLikeClick({ url: 'votenotalike', notAlike: true })}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
-                            <span>Count: </span>
-                            {not_alikes_count}
                         </span>
                     </>
                 ) : (
@@ -416,7 +408,7 @@ const Post = (props) => {
                             ) : (
                                 <Card.Text>
                                     <Link className={styles.Title} to={`/posts/${id}`}>
-                                        Open post for details and comments
+                                        Click for more details
                                     </Link>
                                 </Card.Text>
                             )}
@@ -428,7 +420,7 @@ const Post = (props) => {
                                         <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
                                     </Link>
                                 </Col>
-                                <Col xs={2}>
+                                <Col xs={1}>
                                     {likeDetails}
                                 </Col>
                             </Row>

@@ -6,8 +6,7 @@ import { useProfileData } from '../../contexts/ProfileDataContext'
 
 const ProfileList = ({ mobile, page }) => {
     const { ProfileList } = useProfileData();
-    { page ? console.log('page') : console.log('not') }
-
+    
     return (
         <Container className={`${styles.Container} ${mobile && 'd-lg-none text-center mb-3'}`}>
             <p><i class="fa-regular fa-user" /> Profiles: </p>
