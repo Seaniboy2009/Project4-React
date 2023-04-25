@@ -106,7 +106,7 @@ function ProfileDetail() {
             {is_owner ? (
                 <p className="text-center">Your Posts</p>
             ) : (
-                <p className="text-center">{profile?.owner}'s Posts</p>
+                <p className="text-center">{profile?.owner}s Posts</p>
             )}
             <hr />
 

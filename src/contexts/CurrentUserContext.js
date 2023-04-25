@@ -1,3 +1,4 @@
+import React from 'react'
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
@@ -22,7 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
       setCurrentUser(data);
-    } catch (err) {
+    } catch (error) {
     }
   };
 
@@ -36,7 +37,7 @@ export const CurrentUserProvider = ({ children }) => {
       async (config) => {
         try {
           await axios.post("/dj-rest-auth/token/refresh/");
-        } catch (err) {
+        } catch (error) {
           setCurrentUser((prevCurrentUser) => {
             if (prevCurrentUser) {
               history.push("/signin");
@@ -47,19 +48,19 @@ export const CurrentUserProvider = ({ children }) => {
         }
         return config;
       },
-      (err) => {
-        return Promise.reject(err);
+      (error) => {
+        return Promise.reject(error);
       }
     );
 
     // response interceptor to refresh auth token
     axiosRes.interceptors.response.use(
       (response) => response,
-      async (err) => {
-        if (err.response?.status === 401) {
+      async (error) => {
+        if (error.response?.status === 401) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
-          } catch (err) {
+          } catch (error) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 history.push("/signin");
@@ -67,9 +68,9 @@ export const CurrentUserProvider = ({ children }) => {
               return null;
             });
           }
-          return axios(err.config);
+          return axios(error.config);
         }
-        return Promise.reject(err);
+        return Promise.reject(error);
       }
     );
   }, [history]);

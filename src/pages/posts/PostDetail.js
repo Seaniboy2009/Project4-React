@@ -31,7 +31,6 @@ function PostDetail() {
                 setPost({ results: [post] });
                 setComments(comments);
             } catch (err) {
-
             }
         };
 

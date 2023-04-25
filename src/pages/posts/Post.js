@@ -157,19 +157,19 @@ const Post = (props) => {
                 <Col>
                     <span>
                         {category === 'clothing' ? (
-                            <span class={styles.CategoryClothing}>
+                            <span className={styles.CategoryClothing}>
                                 Category: {category}
                             </span>
                         ) : category === 'food' ? (
-                            <span class={styles.CategoryFood}>
+                            <span className={styles.CategoryFood}>
                                 Category: {category}
                             </span>
                         ) : category === 'product' ? (
-                            <span class={styles.CategoryProduct}>
+                            <span className={styles.CategoryProduct}>
                                 Category: {category}
                             </span>
                         ) : (
-                            <span class={styles.CategoryOther}>
+                            <span className={styles.CategoryOther}>
                                 Category: {category}
                             </span>
                         )}
@@ -217,7 +217,7 @@ const Post = (props) => {
                 {is_owner ? (
                     // The user is the owner so cant vote
                     <>
-                        <span>Votes: </span>
+                        <span>Votes:</span>
                         {alikes_count}
                         <br />
                         <OverlayTrigger placement='top' overlay={<Tooltip> You cant vote on your own post</Tooltip>}>
@@ -228,7 +228,7 @@ const Post = (props) => {
                 ) : alike_id ? (
                     // The user has already voted and can unvote
                     <>
-                        <span>Votes: </span>
+                        <span>Votes:</span>
                         {alikes_count}
                         <br />
                         <span onClick={() => handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true })}>
@@ -237,7 +237,7 @@ const Post = (props) => {
                     </>
                 ) : not_alike_id ? (
                     <>
-                        <span>Votes: </span>
+                        <span>Votes:</span>
                         {alikes_count}
                         <br />
                         <span onClick={() => {
@@ -249,7 +249,7 @@ const Post = (props) => {
                     </>
                 ) : currentUser ? (
                     <>
-                        <span>Votes: </span>
+                        <span>Votes:</span>
                         {alikes_count}
                         <br />
                         <span onClick={() => handleLikeClick({ url: 'votealike', alike: true })}>
@@ -258,7 +258,7 @@ const Post = (props) => {
                     </>
                 ) : (
                     <>
-                        <span>Votes: </span>
+                        <span>Votes:</span>
                         {alikes_count}
                         <br />
                         <OverlayTrigger placement='top' overlay={<Tooltip>Log in to Vote</Tooltip>}>
@@ -286,7 +286,6 @@ const Post = (props) => {
                             <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
                         </OverlayTrigger>
                     </>
-
                 ) : not_alike_id ? (
                     // The user has already voted and can unvote
                     <>
@@ -299,7 +298,6 @@ const Post = (props) => {
                             </span>
                         </OverlayTrigger>
                     </>
-
                 ) : alike_id ? (
                     <>
                         <span>Votes: </span>
@@ -330,7 +328,6 @@ const Post = (props) => {
                             <i className="fa-regular fa-thumbs-up" />
                         </OverlayTrigger>
                     </>
-
                 )}
             </span>
         </>
@@ -401,9 +398,21 @@ const Post = (props) => {
                         <Card.Body>
                             {postDetail ? (
                                 <>
-                                    <Card.Text><span>Content: {content ? content : 'No details given'}</span></Card.Text>
-                                    <Card.Text><span>Location: {location ? location : 'No details given'}</span></Card.Text>
-                                    <Card.Text><span>Franchisor : {franchisor ? franchisor : 'No details given'}</span></Card.Text>
+                                    <Card.Text>
+                                        <span>
+                                            Content:{content ? content : 'No details given'}
+                                        </span>
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <span>
+                                            Location:{location ? location : 'No details given'}
+                                        </span>
+                                    </Card.Text>
+                                    <Card.Text>
+                                        <span>
+                                            Franchisor:{franchisor ? franchisor : 'No details given'}
+                                        </span>
+                                    </Card.Text>
                                 </>
                             ) : (
                                 <Card.Text>
@@ -417,7 +426,9 @@ const Post = (props) => {
                             <Row>
                                 <Col xs={10}>
                                     <Link to={`/profiles/${profile_id}`}>
-                                        <small className="text-muted">Created on: {created_at}<br />Created by: {owner}</small>
+                                        <small className="text-muted">
+                                            Created on:{created_at}<br />Created by:{owner}
+                                        </small>
                                     </Link>
                                 </Col>
                                 <Col xs={1}>

@@ -9,7 +9,7 @@ const ProfileList = ({ mobile, page }) => {
     
     return (
         <Container className={`${styles.Container} ${mobile && 'd-lg-none text-center mb-3'}`}>
-            <p><i class="fa-regular fa-user" /> Profiles: </p>
+            <p><i className="fa-regular fa-user" /> Profiles: </p>
 
             {mobile ? (
                 <div className='d-flex justify-content-around'>

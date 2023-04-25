@@ -4,7 +4,7 @@ import styles from '../styles/DropdownMenu.module.css'
 
 import { useHistory } from "react-router";
 
-// Changes the icon to be 3 dots
+// Changes the icon for the dropdown
 const editIcon = React.forwardRef(({ onClick }, ref) => (
   <i
     className={`${styles.DropdownIcon} fa-regular fa-pen-to-square`}

@@ -1,3 +1,4 @@
+import React from 'react'
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
@@ -27,13 +28,21 @@ export const ProfileDataProvider = ({ children }) => {
         ...prevState,
         pageProfile: {
           results: prevState.pageProfile.results.map((profile) =>
-            followHelper(profile, clickedProfile, data.id)
+            followHelper(
+              profile,
+              clickedProfile,
+              data.id
+            )
           ),
         },
         ProfileList: {
           ...prevState.ProfileList,
           results: prevState.ProfileList.results.map((profile) =>
-            followHelper(profile, clickedProfile, data.id)
+            followHelper(
+              profile,
+              clickedProfile,
+              data.id
+            )
           ),
         },
       }));
@@ -51,13 +60,19 @@ export const ProfileDataProvider = ({ children }) => {
         ...prevState,
         pageProfile: {
           results: prevState.pageProfile.results.map((profile) =>
-          unFollowHelper(profile, clickedProfile)
+            unFollowHelper(
+              profile,
+              clickedProfile
+            )
           ),
         },
         ProfileList: {
           ...prevState.ProfileList,
           results: prevState.ProfileList.results.map((profile) =>
-          unFollowHelper(profile, clickedProfile)
+            unFollowHelper(
+              profile,
+              clickedProfile
+            )
           ),
         },
       }));
@@ -85,7 +100,7 @@ export const ProfileDataProvider = ({ children }) => {
 
   return (
     <ProfileDataContext.Provider value={profileData}>
-      <SetProfileDataContext.Provider value={{setProfileData, handleFollow, handleUnFollow}}>
+      <SetProfileDataContext.Provider value={{ setProfileData, handleFollow, handleUnFollow }}>
         {children}
       </SetProfileDataContext.Provider>
     </ProfileDataContext.Provider>

@@ -183,9 +183,9 @@ function PostEditForm() {
                     value={category}
                     onChange={handleChange}
                 >
-                    <option value="">Select a category</option>
                     <option value="food">Food</option>
                     <option value="clothing">Clothing</option>
+                    <option value="product">Product</option>
                     <option value="other">Other</option>
                 </Form.Control>
             </Form.Group>
