@@ -231,32 +231,41 @@ const Post = (props) => {
                         <span>Votes:</span>
                         {alikes_count}
                         <br />
+                        <OverlayTrigger placement='top' overlay={<Tooltip>UnVote</Tooltip>}>
                         <span onClick={() => handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true })}>
                             <i className={`${styles.Icon} fa-solid fa-thumbs-up`} />
                         </span>
+                        </OverlayTrigger>
                     </>
                 ) : not_alike_id ? (
+                    // User has already voted for not alike, so unvote not alike and vote alike
                     <>
                         <span>Votes:</span>
                         {alikes_count}
                         <br />
+                        <OverlayTrigger placement='top' overlay={<Tooltip>Vote</Tooltip>}>
                         <span onClick={() => {
                             handleUnlikeClick({ url: 'votenotalike', urlId: not_alike_id, notAlike: true });
                             handleLikeClick({ url: 'votealike', alike: true });
                         }}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
                         </span>
+                        </OverlayTrigger>
                     </>
                 ) : currentUser ? (
+                    // User can vote
                     <>
                         <span>Votes:</span>
                         {alikes_count}
                         <br />
+                        <OverlayTrigger placement='top' overlay={<Tooltip>Vote</Tooltip>}>
                         <span onClick={() => handleLikeClick({ url: 'votealike', alike: true })}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
                         </span>
+                        </OverlayTrigger>
                     </>
                 ) : (
+                    // User not logged in
                     <>
                         <span>Votes:</span>
                         {alikes_count}
@@ -299,27 +308,34 @@ const Post = (props) => {
                         </OverlayTrigger>
                     </>
                 ) : alike_id ? (
+                    // User has already voted for alike, so unvote alike and vote not alike
                     <>
                         <span>Votes: </span>
                         {not_alikes_count}
                         <br />
+                        <OverlayTrigger placement='top' overlay={<Tooltip>Vote</Tooltip>}>
                         <span onClick={() => {
                             handleUnlikeClick({ url: 'votealike', urlId: alike_id, alike: true });
                             handleLikeClick({ url: 'votenotalike', notAlike: true });
                         }}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
                         </span>
+                        </OverlayTrigger>
                     </>
                 ) : currentUser ? (
+                    // User can vote
                     <>
                         <span>Votes: </span>
                         {not_alikes_count}
                         <br />
+                        <OverlayTrigger placement='top' overlay={<Tooltip>Vote</Tooltip>}>
                         <span onClick={() => handleLikeClick({ url: 'votenotalike', notAlike: true })}>
                             <i className={`${styles.Icon} fa-regular fa-thumbs-up`} />
                         </span>
+                        </OverlayTrigger>
                     </>
                 ) : (
+                    // User not logged in
                     <>
                         <span>Votes: </span>
                         {not_alikes_count}
