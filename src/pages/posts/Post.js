@@ -180,7 +180,7 @@ const Post = (props) => {
     )
     //  Like button logic
     const likeDetails = (
-        <row>
+        <Row>
             {is_owner ? (
                 // If the owner is viewing this display the tooltop
                 <OverlayTrigger placement='top' overlay={<Tooltip>Cant like your own post</Tooltip>}>
@@ -205,7 +205,7 @@ const Post = (props) => {
                     <i className="fa-regular fa-bookmark" />
                 </OverlayTrigger>
             )}
-        </row>
+        </Row>
     );
 
     //  Alike button logic
