@@ -24,6 +24,7 @@ function ProfileDetail() {
     const [posts, setPosts] = useState({ results: [] });
     const currentUser = useCurrentUser();
     const { id } = useParams();
+    const [errors, setErrors] = useState({});
     const { setProfileData, handleFollow, handleUnFollow } = useSetProfileData();
     const { pageProfile } = useProfileData();
     const [profile] = pageProfile.results;
@@ -43,7 +44,8 @@ function ProfileDetail() {
 
                 setPosts(posts)
                 setHasLoaded(true);
-            } catch (err) {
+            } catch (errors) {
+                setErrors(errors.response?.data)
             }
         };
         fetchData();

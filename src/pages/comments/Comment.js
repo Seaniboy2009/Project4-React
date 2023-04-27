@@ -15,6 +15,7 @@ const Comment = (props) => {
   // check if the current user is the owner of this post
   const is_owner = currentUser?.username === owner;
   const [showEditForm, setShowEditForm] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // handles the delete function
   const handleDelete = async () => {
@@ -31,7 +32,8 @@ const Comment = (props) => {
         ...prevCommnets,
         results: prevCommnets.results.filter(comment => comment.id !== id)
       }))
-    } catch (error) {
+    } catch (errors) {
+      setErrors(errors.response?.data)
     }
   }
 

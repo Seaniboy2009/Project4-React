@@ -10,6 +10,10 @@
  - I want users to interact and add there posts and also comment and follow others who have the same issues with their product
  - maybe with enough user's something can be done about false advertising 
 
+- Backend API
+    - https://github.com/Seaniboy2009/Project5-API
+    - https://project-5-api.herokuapp.com/
+
 ## 2.User stories:
 - as a user i can navigate all aspects of the web app - Creation of the navbar
 - as a user i can create an account - User sign up page
@@ -148,7 +152,9 @@ so the user could see the main parts such as explore and users without the rest 
     ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682065781/create_post_error_wuamhs.png)
 
     - edit a post 
-    - delete a post 
+        - click on the post, then if you are owner click on the edit icon and edit
+    - delete a post
+        - click on the post, then if you are owner click on the delete icon and confirm delete
     - search for a post
     - open a post
     - view comments 

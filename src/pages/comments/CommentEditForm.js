@@ -8,6 +8,7 @@ function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
 
   const [formContent, setFormContent] = useState(content);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setFormContent(event.target.value);
@@ -32,7 +33,8 @@ function CommentEditForm(props) {
         }),
       }));
       setShowEditForm(false);
-    } catch (err) {
+    } catch (errors) {
+      setErrors(errors.response?.data)
     }
   };
 

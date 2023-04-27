@@ -15,6 +15,7 @@ function CommentCreateForm(props) {
     // profileImage, 
     profile_id } = props;
   const [content, setContent] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -41,6 +42,7 @@ function CommentCreateForm(props) {
       }));
       setContent("");
     } catch (errors) {
+      setErrors(errors.response?.data)
     }
   };
 

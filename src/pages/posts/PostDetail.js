@@ -19,6 +19,7 @@ function PostDetail() {
     const currentUser = useCurrentUser();
     const profile_image = currentUser?.profile_image;
     const [comments, setComments] = useState({ results: [] });
+    const [errors, setErrors] = useState({});
 
     // Get all of the posts and the comments with the post id
     useEffect(() => {
@@ -30,7 +31,8 @@ function PostDetail() {
                 ]);
                 setPost({ results: [post] });
                 setComments(comments);
-            } catch (err) {
+            } catch (errors) {
+                setErrors(errors.response?.data)
             }
         };
 

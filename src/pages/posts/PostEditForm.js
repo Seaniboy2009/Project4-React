@@ -46,8 +46,8 @@ function PostEditForm() {
                         advert_image,
                         reality_image
                     }) : history.push('/')
-            } catch (error) {
-
+            } catch (errors) {
+                setErrors(errors.response?.data)
             }
         }
         handleMount()

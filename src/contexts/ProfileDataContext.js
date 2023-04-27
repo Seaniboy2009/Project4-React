@@ -17,6 +17,7 @@ export const ProfileDataProvider = ({ children }) => {
   });
 
   const currentUser = useCurrentUser();
+  const [, setErrors] = useState({});
 
   const handleFollow = async (clickedProfile) => {
     try {
@@ -46,7 +47,8 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
-    } catch (err) {
+    } catch (errors) {
+      setErrors(errors.response?.data)
     }
   };
 
@@ -76,7 +78,8 @@ export const ProfileDataProvider = ({ children }) => {
           ),
         },
       }));
-    } catch (err) {
+    } catch (errors) {
+      setErrors(errors.response?.data)
     }
   };
 
@@ -90,8 +93,8 @@ export const ProfileDataProvider = ({ children }) => {
           ...prevState,
           ProfileList: data,
         }));
-      } catch (err) {
-
+      } catch (errors) {
+        setErrors(errors.response?.data)
       }
     };
 

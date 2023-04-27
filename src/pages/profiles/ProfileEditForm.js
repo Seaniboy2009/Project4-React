@@ -41,7 +41,7 @@ const ProfileEditForm = () => {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { name, content, image } = data;
           setProfileData({ name, content, image });
-        } catch (err) {
+        } catch (errors) {
           history.push("/");
         }
       } else {
@@ -76,8 +76,8 @@ const ProfileEditForm = () => {
         profile_image: data.image,
       }));
       history.goBack();
-    } catch (err) {
-      setErrors(err.response?.data);
+    } catch (errors) {
+      setErrors(errors.response?.data);
     }
   };
 

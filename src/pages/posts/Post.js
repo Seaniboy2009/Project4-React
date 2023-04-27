@@ -46,6 +46,7 @@ const Post = (props) => {
     // check if the current user is the owner of this post
     const is_owner = currentUser?.username === owner;
     const history = useHistory()
+    const [, setErrors] = useState({});
 
     // handles the edit function
     const handleEdit = () => {
@@ -57,7 +58,8 @@ const Post = (props) => {
         try {
             await axiosReq.delete(`/posts/${id}`)
             history.goBack()
-        } catch (error) {
+        } catch (errors) {
+            setErrors(errors.response?.data)
         }
     }
 
@@ -86,7 +88,8 @@ const Post = (props) => {
                         : post;
                 }),
             }));
-        } catch (err) {
+        } catch (errors) {
+            setErrors(errors.response?.data)
         }
     };
 
@@ -111,7 +114,8 @@ const Post = (props) => {
                         : post;
                 }),
             }));
-        } catch (err) {
+        } catch (errors) {
+            setErrors(errors.response?.data)
         }
     };
 

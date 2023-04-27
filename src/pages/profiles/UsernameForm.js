@@ -45,8 +45,8 @@ const UsernameForm = () => {
         username,
       }));
       history.goBack();
-    } catch (err) {
-      setErrors(err.response?.data);
+    } catch (errors) {
+      setErrors(errors.response?.data);
     }
   };
 

@@ -20,6 +20,7 @@ const PostsList = ({ message, filter = "" }) => {
   const { pathname } = useLocation();
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [errors, setErrors] = useState({});
 
   // This will get all posts, or get the filtered posts and 
   // set posts state
@@ -30,7 +31,7 @@ const PostsList = ({ message, filter = "" }) => {
         setPosts(data);
         setHasLoaded(true);
       } catch (error) {
-        
+        setErrors(errors.response?.data)
       }
     };
 
