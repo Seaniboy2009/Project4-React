@@ -153,12 +153,28 @@ so the user could see the main parts such as explore and users without the rest 
 
     - edit a post 
         - click on the post, then if you are owner click on the edit icon and edit
+        ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682628535/Screenshot_2023-04-27_214821_fo30mb.png)
+
     - delete a post
         - click on the post, then if you are owner click on the delete icon and confirm delete
+
+        ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682628402/delete_post_warning_b60ixs.png)
+
     - search for a post
+        - click on the search bar and type in the search word, can be owner name, title, category
+
+        ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283733/search_bar_aag6ub.png)
+
     - open a post
-    - view comments 
-    - add a comment
+        - click on the title, comment or more details
+
+        ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1682628782/Screenshot_2023-04-27_215248_m8xzje.png)
+
+    - view / add comments
+        - scroll down on an open post to see comments and add comments
+
+        ![Header](https://res.cloudinary.com/dgj9rjuka/image/upload/v1681283732/comment_done_s7rfgk.png)
+
 
 - Auto testing with jest
     - 3 tests created one for app, navbar and asset
